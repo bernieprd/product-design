@@ -257,12 +257,8 @@ main {
     h2 {
         align-self: center;
 
-        &:hover {
-            &:before {
-                border-top: 2px solid $secondary;
-                right: 100%;
-                transition: all 1s ease-in;
-            }
+        &:before {
+            border-top: none;
         }
     }
 
