@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143375865-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-143375865-1');
+    </script>
+
+    <meta charset="utf-8">
+    <title>Relationship-based graduated fees · Bernardo Prudêncio</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="author" content="Bernardo Prudêncio">
+    <meta name="description" content="Aligning sitter fees with relationship value to curb diversion and grow per-relationship revenue at Rover.">
+    <link href="https://fonts.googleapis.com/css?family=Fahkwang:300,600" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body class="projects-page case-study-page">
+    <h1><a href="./index.html">Bernardo Prudêncio</a></h1><span> &nbsp;/ product designer</span>
+    <main>
+        <h2><span>relationship</span><br><span>graduated fees</span></h2>
+    </main>
+    <nav>
+        <a href="./index.html">about</a>
+        <a href="./projects.html">projects</a>
+    </nav>
+    <section id="about" class="specific-project">
+        <article class="gradfees01">
+            <div class="image">
+                <img src="./resources/graduated-fees-cover.png" alt="Early explorations — graduated fee model concepts">
+            </div>
+            <div class="description">
+                <p><strong>Rover · 2025 · in flight</strong></p>
+                <p>Today, Rover takes a flat percentage of sitter earnings on every booking — the same fee for a first-ever booking with a brand-new client and for a long-standing relationship where owner and sitter know and trust each other. Frustration about fees is a core driver of diversion: sitters often feel that "paying the same fee forever" no longer matches the value they get.</p>
+                <p>Internal analysis shows that if we could keep diverted revenue on platform, Rover's marketplace take could be <strong>~40% higher</strong>, with repeat-relationship diversion as the biggest driver. The provider strategy North Star is to increase take per relationship by ~23% over the next few years, not just per booking — and a flat fee doesn't map to that reality.</p>
+                <p>Relationship-based graduated fees is a strategic, in-flight project to rethink how Rover charges sitters: instead of a flat percentage, we're testing a model where the platform fee starts higher on the first bookings with a client and decreases as that relationship grows. The goal is to better align fees with the value Rover actually provides, reduce off-platform bookings, and increase take per relationship, while still feeling fair to top sitters.</p>
+            </div>
+        </article>
+        <article class="gradfees02">
+            <div class="image">
+                <img src="./resources/graduated-fees-strategy.png" alt="Model evaluation — new vs repeat, relationship-based GBV, account-based GBV">
+            </div>
+            <div class="description">
+                <p><strong>Strategy and model options</strong></p>
+                <p>Before diving into UI, we mapped the space of possible models: new vs. repeat (lower fee on all repeat bookings); relationship-based GBV (fee drops as cumulative booking value with a specific client hits milestones); and account-based GBV (fee drops as a sitter's total Rover earnings hit milestones).</p>
+                <p>We assessed each along: comprehension (can sitters understand and track it?); fairness (does it match their mental model of when Rover adds value?); gaming risk; revenue impact; and segment impact on top sitters who drive ~75% of earnings.</p>
+                <p>We landed on relationship-based as the best match to sitter mental models and loyalty incentives. New vs. repeat was too easy to game and weak at directing behaviour. Account-based was conceptually cleaner but less aligned with how sitters talk about "fair vs. unfair" fees — they think per client, not per year. We decided to test relationship-based GBV first, in Canada as a proxy for the US, and keep account-based as a later complementary option.</p>
+            </div>
+        </article>
+        <article class="gradfees03">
+            <div class="image">
+                <img src="./resources/graduated-fees-relationship.png" alt="Relationship page — GBV progress tracker, fee tier, and transaction history">
+            </div>
+            <div class="description">
+                <p><strong>The Relationship page as source of truth</strong></p>
+                <p>At its simplest, the test model looks like: higher fee on the first slice of relationship GBV (e.g. 28–35% up to a threshold); lower fee once the relationship hits that milestone (e.g. 10–15% after $X); with the option of a third "loyal" tier. Each owner–sitter pair has its own progress; once you unlock a lower tier with that client, you keep it for future bookings.</p>
+                <p>That led to a core design challenge: sitters currently cannot see GBV per client or how fees are calculated per relationship. A multistep GBV model is conceptually more complex than "your fee is 20%". I explored several options — small tweaks to payment history, reworking Rebook into a client-centric view — but concluded that a dedicated Relationship page is necessary: a single source of truth for a sitter–client pair, with a GBV progress tracker, fee tier, and transaction history.</p>
+                <p>My contributions span co-creating the evaluation framework, leading the relationship-based experience exploration, writing the deep-dives that informed the 1-pager, and defining the MVP Relationship page scope and touchpoints needed to make the model explainable.</p>
+            </div>
+        </article>
+        <article class="gradfees04">
+            <div class="image">
+                <img src="./resources/graduated-fees-challenges.png" alt="Key UX challenges — comprehension, agency, and threshold-crossing decisions">
+            </div>
+            <div class="description">
+                <p><strong>Key UX challenges</strong></p>
+                <p>Design exploration, usability tests, and strategy reviews surfaced hard problems. Model mechanics comprehension: sitters struggled with cumulative GBV, milestones, permanent reductions, and how they applied across services. We decided to lean on progressive disclosure and anchor everything around "this relationship with this client," not the abstract platform model.</p>
+                <p>Perceived inequality between services: earnings-based milestones naturally favour high-ticket boarding vs. low-ticket walking and drop-ins. We accepted that trade-off given boarding's revenue share, but baked it into messaging and considered longer-term point systems to rebalance.</p>
+                <p>Sense of agency: sitters felt some parts of the model depended heavily on owner behaviour rather than their own effort. We focused UI and messaging on actions sitters control — rebooking on platform, keeping relationships active — and avoided over-promising.</p>
+                <p>The test is just beginning in Canada. I'll consider it successful if we see high comprehension and perceived fairness among top sitters, no material increase in new-relationship diversion despite higher upfront fees, and improved repeat behaviour on platform for eligible relationships.</p>
+            </div>
+        </article>
+    </section>
+    <footer>
+        <h2><span>let's talk</span><br> or have a beer</h2>
+        <section class="contacts">
+            <a href="https://www.linkedin.com/in/bernardoprd/" target="_blank">LinkedIn</a>
+            <a href="https://dribbble.com/bernardoprd" target="_blank">Dribbble</a>
+            <a href="https://medium.com/@bernardo.prd" target="_blank">Medium</a>
+            <a href="https://www.behance.net/bernardoprd" target="_blank">Bëhance</a>
+            <a href="mailto:bernardo.prd@gmail.com">bernardo.prd@gmail.com</a>
+        </section>
+    </footer>
+</body>
+
+</html>
