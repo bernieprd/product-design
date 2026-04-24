@@ -36,6 +36,8 @@
 }
 .projects-page main h2 {
   align-self: center;
+  hyphens: none;
+  word-break: keep-all;
 }
 .projects-page main h2:hover:before {
   border-top: 2px solid yellow;
