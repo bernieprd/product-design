@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>external-link</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="external-link" transform="translate(1.000000, 1.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <path d="M14.5,10 L14.5,16 C14.5,16.8284271 13.8284271,17.5 13,17.5 L2,17.5 C1.17157288,17.5 0.5,16.8284271 0.5,16 L0.5,5 C0.5,4.17157288 1.17157288,3.5 2,3.5 L8,3.5 L8,2.5 L2,2.5 C0.619288125,2.5 -0.5,3.61928813 -0.5,5 L-0.5,16 C-0.5,17.3807119 0.619288125,18.5 2,18.5 L13,18.5 C14.3807119,18.5 15.5,17.3807119 15.5,16 L15.5,10 L14.5,10 Z" id="Path"></path>
+            <path d="M17.5,0.5 L17.5,6 L18.5,6 L18.5,0 C18.5,-0.276142375 18.2761424,-0.5 18,-0.5 L12,-0.5 L12,0.5 L17.5,0.5 Z" id="Path"></path>
+            <polygon id="Path" points="7.35355339 11.3535534 18.3535534 0.353553391 17.6464466 -0.353553391 6.64644661 10.6464466"></polygon>
+        </g>
+    </g>
+</svg>

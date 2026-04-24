@@ -1,0 +1,169 @@
+@import 'variables';
+@import 'functions';
+
+.projects-page {
+    main {
+        h2 {
+            align-self: center;
+
+            &:hover {
+                &:before {
+                    border-top: 2px solid $secondary;
+                    right: 0;
+                    transition: all 1s ease-in;
+                }
+            }
+        }
+    }
+    section {
+        &#projects {
+            article {
+                width: 100%;
+                height: px(200);
+                display: flex;
+                position: relative;
+                padding: px(24);
+                transition: all 1s ease;
+                background-color: $dark;
+                background-size: cover;
+                background-position: center;
+                background-blend-mode: multiply;
+                a.heading{
+                    display: contents;
+                }
+                &:hover {
+                    height: px(400);
+                    transition: all 1s ease;
+                }
+                &:not(:first-of-type) {
+                    margin-top: 80px;
+                }
+                &.ccrs {
+                    background-image: url(../resources/ccrs.png);
+                }
+                &.dashboards {
+                    background-image: url(../resources/dashboards.png);
+                    a{
+                        &.link-type{
+                            &:nth-of-type(2){
+                                left: px(24);
+                            }
+                            &:nth-of-type(3){
+                                left: px(64);
+                            }
+                        }
+                    }
+                }
+                &.needat {
+                    background-image: url(../resources/needat.png);
+                }
+                &.myh {
+                    background-image: url(../resources/myh02.png);
+                }
+                &.rest {
+                    background-image: url(../resources/rest01.gif);
+                }
+                &.reddit {
+                    background-image: url(../resources/reddit.png);
+                }
+                h3 {
+                    align-self: center;
+                    text-align: center;
+                    margin: 0 auto;
+                    font-size: px(40);
+                }
+                a {
+                    &.link-type {
+                        width: px(24);
+                        height: px(24);
+                        position: absolute;
+                        background-color: $dark;
+                        left: px(24);
+                        top: px(24);
+                        background-size: cover;
+                        &:nth-of-type(2) {
+                            left: px(64);
+                        }
+                        &:hover:not(.wip) {
+                            animation: projects 1s ease-in-out infinite;
+                        }
+                        &.wip{
+                            width: 100%;
+                            background-color: transparent;
+                        }
+                        &.medium {
+                            background-image: url(../resources/medium.svg);
+                        }
+                        &.behance {
+                            background-image: url(../resources/behance.svg);
+                        }
+                        &.external-link {
+                            background-image: url(../resources/external-link.svg);
+                        }
+                        &.link {
+                            background-image: url(../resources/link.svg);
+                        }
+                    }
+                }
+                p {
+                    position: absolute;
+                    bottom: px(24);
+                    right: px(24);
+                    column-count: 1;
+                }
+            }
+        }
+    }
+}
+
+html body{
+    &.projects-dashboards {
+        .specific-project{
+            .image{
+                min-height: 400px;
+                background-blend-mode: normal;
+                background-repeat: no-repeat;
+            }
+            .description{
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+            .dashboard01 {
+                .image {
+                    background-image: url(../resources/dashboard01.png);
+                    background-size: 220%;
+                    background-position: bottom right;
+                }
+            }
+            .dashboard02 {
+                .image {
+                    background-image: url(../resources/dashboard02.png);
+                    background-size: 190%;
+                    background-position: top left;
+                }
+            }
+            .dashboard03 {
+                .image {
+                    background-image: url(../resources/dashboard03.png);
+                    background-size: cover;
+                    background-position: top right;
+                }
+            }
+            .dashboard04 {
+                .image {
+                    background-image: url(../resources/dashboard04.png);
+                    background-size: 200%;
+                    background-position: top left;
+                }
+            }
+            .dashboard05 {
+                .image {
+                    background-image: url(../resources/dashboard05.png);
+                    background-size: 190%;
+                    background-position: center top;
+                }
+            }
+        }
+    }
+}
