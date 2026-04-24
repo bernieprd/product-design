@@ -38,33 +38,17 @@
                 &:not(:first-of-type) {
                     margin-top: 80px;
                 }
-                &.ccrs {
-                    background-image: url(../resources/ccrs.png);
+                &.star-sitter {
+                    background-image: url(../resources/star-sitter-cover.png);
                 }
-                &.dashboards {
-                    background-image: url(../resources/dashboards.png);
-                    a{
-                        &.link-type{
-                            &:nth-of-type(2){
-                                left: px(24);
-                            }
-                            &:nth-of-type(3){
-                                left: px(64);
-                            }
-                        }
-                    }
+                &.diversion {
+                    background-image: url(../resources/diversion-cover.png);
                 }
-                &.needat {
-                    background-image: url(../resources/needat.png);
+                &.service-areas {
+                    background-image: url(../resources/service-areas-cover.png);
                 }
-                &.myh {
-                    background-image: url(../resources/myh02.png);
-                }
-                &.rest {
-                    background-image: url(../resources/rest01.gif);
-                }
-                &.reddit {
-                    background-image: url(../resources/reddit.png);
+                &.graduated-fees {
+                    background-image: url(../resources/graduated-fees-cover.png);
                 }
                 h3 {
                     align-self: center;
@@ -117,6 +101,29 @@
 }
 
 html body{
+    &.case-study-page {
+        .specific-project {
+            .image {
+                min-height: 400px;
+                padding: 0;
+                overflow: hidden;
+                background-blend-mode: normal;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                }
+            }
+            .description {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+        }
+    }
+
     &.projects-dashboards {
         .specific-project{
             .image{
