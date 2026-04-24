@@ -500,17 +500,8 @@ section article .image h3 {
   font-size: 2.5rem;
   text-align: center;
 }
-section article.aboutme .image {
-  background-image: url(../resources/about.png);
-}
-section article.journey .image {
-  background-image: url(../resources/journey.png);
-}
 section article.projects .image {
   background-image: url(../resources/projects.png);
-}
-section article.toolsfields .image {
-  background-image: url(../resources/tools.png);
 }
 section article .description {
   font-weight: 300;
@@ -533,9 +524,78 @@ section article .description .date {
   float: right;
   text-align: right;
 }
-section article:nth-last-of-type(2):not(.dashboard03) p {
-  column-count: 2;
-  margin: 0;
+.description h4 {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin: 40px 0 16px;
+  padding: 0;
+}
+.description h4:first-child {
+  margin-top: 0;
+}
+.role-group {
+  margin-bottom: 32px;
+  clear: both;
+}
+.role-group .company {
+  font-size: 18px;
+  line-height: 28px;
+  margin: 0 0 4px;
+  float: none;
+  width: 100%;
+}
+.role-group .role-item {
+  font-size: 16px;
+  line-height: 26px;
+  opacity: 0.7;
+  margin: 0 0 2px;
+  float: none;
+  width: 100%;
+}
+.role-group .role-item span {
+  font-weight: 600;
+}
+.role-group ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  font-size: 16px;
+  line-height: 26px;
+  opacity: 0.7;
+}
+.role-group ul li {
+  margin-bottom: 4px;
+}
+
+.role-group details {
+  margin-top: 8px;
+}
+
+.role-group details summary {
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 300;
+  opacity: 0.45;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  list-style: none;
+  user-select: none;
+  display: inline-block;
+}
+
+.role-group details summary::-webkit-details-marker {
+  display: none;
+}
+
+.role-group details[open] summary {
+  opacity: 0.7;
+}
+
+.role-group details ul {
+  margin-top: 8px;
+  opacity: 0.7;
 }
 
 footer {

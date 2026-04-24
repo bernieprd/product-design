@@ -5,6 +5,8 @@
     main {
         h2 {
             align-self: center;
+            hyphens: none;
+            word-break: keep-all;
 
             &:hover {
                 &:before {
