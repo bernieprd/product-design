@@ -402,10 +402,8 @@ main {
 main h2 {
   align-self: center;
 }
-main h2:hover:before {
-  border-top: 2px solid yellow;
-  right: 100%;
-  transition: all 1s ease-in;
+main h2:before {
+  border-top: none;
 }
 main span.digital:after {
   content: "";
