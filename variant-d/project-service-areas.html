@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Service Areas · Bernardo Prudêncio</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="./index.html" class="logo">Bernardo Prudêncio</a>
+  <nav><a href="./index.html">Home</a><a href="./projects.html">Projects</a></nav>
+</header>
+
+<nav class="progress-dots">
+  <div class="dot active" data-target="ch-origin"></div>
+  <div class="dot" data-target="ch-research"></div>
+  <div class="dot" data-target="ch-impact"></div>
+</nav>
+
+<div class="cs-hero">
+  <div class="cs-hero-bg"><img src="../resources/service-areas-cover.png" alt="Service areas"></div>
+  <div class="cs-hero-content">
+    <p class="cs-eyebrow">Rover · 2024–2025 · Search &amp; Supply</p>
+    <h1 class="cs-title">Service Areas<br>Travel Distance</h1>
+    <p class="cs-hero-metric">+4% bookings · +7% match quality · +5–6% revenue per searcher</p>
+  </div>
+</div>
+
+<div class="scrolly-container">
+  <div class="scrolly-visual">
+    <img src="../resources/service-areas-cover.png" alt="Service areas" id="scrolly-img">
+    <div class="visual-overlay"></div>
+  </div>
+  <div class="scrolly-narrative">
+
+    <div class="chapter" id="ch-origin" data-img="../resources/service-areas-cover.png">
+      <p class="chapter-num">01 · Origin</p>
+      <h2 class="chapter-title">From Hackathon to Product</h2>
+      <p>Sitters historically set a simple circular radius — easy to build, blind to real geography. Sitters told us: "I'm getting requests within my radius that are practically impossible." Owners saw sitters as available, only to be declined because the trip was too far.</p>
+      <p>This started at Maker Days: a small team explored whether we could replace the straight-line circle with a polygon reflecting how sitters actually move. That prototype became the product.</p>
+      <details class="chapter-detail">
+        <summary>My role</summary>
+        <div class="chapter-detail-body">Lead product designer — full travel-distance service area experience from exploratory research through experiment design, global rollout, and search integration.</div>
+      </details>
+      <div class="wireframe-callout">
+        <div class="storyboard-inner">
+          <span class="frame-num">Frame 01</span>
+          <p class="frame-desc">Research session prototype — sitter sees existing circular radius, then it redraws as a travel-distance polygon using Mapbox isochrone API. Annotated: distance vs. time toggle; per-service configuration. Captures the "aha moment."</p>
+          <p class="frame-caption">The prototype shaped the core model: distance or time, per service type.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter" id="ch-research" data-img="../resources/service-areas-research.png">
+      <p class="chapter-num">02 · Research</p>
+      <h2 class="chapter-title">How Sitters Think About Distance</h2>
+      <p>In moderated sessions, sitters reacted to their areas being redrawn, adjusted distance/time and travel mode, and talked through how far they'd go for different service types.</p>
+      <p>Three design anchors: sitters think in miles <em>and</em> minutes; irregular road-based shapes feel more intuitive than circles; and they want different areas per traveling service — wider for house sitting, more local for walks in dense cities.</p>
+      <details class="chapter-detail">
+        <summary>The unified model</summary>
+        <div class="chapter-detail-body">Distance (1–100 km/miles) or travel time (1–60 min), with walking/cycling/driving support. House sitting, drop-ins, and walks each get their own service area. Existing radius backfilled automatically — no sitter starts from scratch.</div>
+      </details>
+      <div class="wireframe-callout">
+        <div class="storyboard-inner">
+          <span class="frame-num">Frame 02</span>
+          <p class="frame-desc">Settings UI — live polygon map view updating in real time as sitter adjusts distance/time and travel mode. Tab structure showing per-service configuration. Side-by-side with old circular radius UI.</p>
+          <p class="frame-caption">The settings UI made the polygon feel controllable — not something the algorithm did to you.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter" id="ch-impact" data-img="../resources/service-areas-solution.png">
+      <p class="chapter-num">03 · Results</p>
+      <h2 class="chapter-title">Better Matching, Better Conversion</h2>
+      <p>Two geographic A/B tests. Both waves: better matching, better conversion, strong sitter adoption — committed to global rollout instead of extending the split.</p>
+      <p>Search-to-request +2–3% relative. Search-to-book +1.6–2.8%. Match quality +7%. Revenue per searcher +5–6% in US markets.</p>
+      <details class="chapter-detail">
+        <summary>The initial conversion trade-off</summary>
+        <div class="chapter-detail-body">Small initial dip (–1–2%) in new-owner conversion from stricter "outside service area" behaviour. But the sitters who showed up were closer and more likely to accept. A fair trade for better long-run quality.</div>
+      </details>
+      <div class="chapter metric-chapter">
+        <div class="chapter-metric-num">+7%</div>
+        <p class="chapter-metric-label">match quality improvement — sitters closer and more likely to accept</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="next-project"><a href="./project-graduated-fees.html">Next: Graduated Fees →</a></div>
+
+<footer>
+  <h2 class="footer-title">Let's talk<br><em>or have a beer</em></h2>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/bernardoprd/" target="_blank">LinkedIn</a>
+    <a href="../bernardo.prd.en.2026.pdf" target="_blank">CV</a>
+    <a href="mailto:bernardo.prd@gmail.com">bernardo.prd@gmail.com</a>
+  </div>
+</footer>
+
+<nav class="variant-switcher">
+  <span class="vs-label">variant</span>
+  <a href="../variant-a/" class="vs-link">A</a><a href="../variant-b/" class="vs-link">B</a>
+  <a href="../variant-c/" class="vs-link">C</a><a href="../variant-d/" class="vs-link vs-active">D</a>
+  <a href="../variant-e/" class="vs-link">E</a><a href="../" class="vs-orig">↩</a>
+</nav>
+
+<script>
+  const chapters = document.querySelectorAll('[data-img]');
+  const scrollyImg = document.getElementById('scrolly-img');
+  const dots = document.querySelectorAll('.dot');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const src = entry.target.dataset.img;
+        if (src) { scrollyImg.style.opacity='0'; setTimeout(()=>{scrollyImg.src=src;scrollyImg.style.opacity='1';},250); }
+        const idx = Array.from(chapters).indexOf(entry.target);
+        dots.forEach((d,i) => d.classList.toggle('active', i===idx));
+      }
+    });
+  }, { threshold: 0.4 });
+  chapters.forEach(ch => obs.observe(ch));
+  dots.forEach((dot,i) => dot.addEventListener('click', ()=>chapters[i].scrollIntoView({behavior:'smooth',block:'center'})));
+</script>
+</body>
+</html>

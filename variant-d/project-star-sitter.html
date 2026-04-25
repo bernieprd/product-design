@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Star Sitter Program · Bernardo Prudêncio</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="./index.html" class="logo">Bernardo Prudêncio</a>
+  <nav><a href="./index.html">Home</a><a href="./projects.html">Projects</a></nav>
+</header>
+
+<!-- PROGRESS DOTS -->
+<nav class="progress-dots" id="progress-dots">
+  <div class="dot active" data-target="ch-overview" title="Overview"></div>
+  <div class="dot" data-target="ch-foundation" title="Foundation"></div>
+  <div class="dot" data-target="ch-fairness" title="Fairness"></div>
+  <div class="dot" data-target="ch-impact" title="Impact"></div>
+</nav>
+
+<!-- HERO -->
+<div class="cs-hero">
+  <div class="cs-hero-bg"><img src="../resources/star-sitter-cover.png" alt="Star Sitter"></div>
+  <div class="cs-hero-content">
+    <p class="cs-eyebrow">Rover · 2023–2025 · Loyalty &amp; Incentives</p>
+    <h1 class="cs-title">Star Sitter<br>Program</h1>
+    <p class="cs-hero-metric">4.8% revenue per customer · ~$2.5M incremental ARR</p>
+  </div>
+</div>
+
+<!-- SCROLLYTELLING LAYOUT -->
+<div class="scrolly-container">
+  <div class="scrolly-visual" id="scrolly-visual">
+    <img src="../resources/star-sitter-cover.png" alt="Star Sitter" id="scrolly-img">
+    <div class="visual-overlay"></div>
+  </div>
+
+  <div class="scrolly-narrative">
+
+    <div class="chapter" id="ch-overview" data-img="../resources/star-sitter-cover.png">
+      <p class="chapter-num">01 · Overview</p>
+      <h2 class="chapter-title">The Problem Space</h2>
+      <p>Rover already had work in motion around successful sitters: onboarding best practices, booking walkthroughs, a Sitter Insights dashboard. Despite that, three gaps remained: owners couldn't identify the most reliable sitters in search; sitters saw metrics but lacked motivation to change behaviour; and off-platform diversion was a strategic revenue leak.</p>
+      <p>Star Sitter was built as a third lever — a provider-level status program that gamifies behaviours, directs demand to reliable supply, and ties status to on-platform repeat behaviour.</p>
+      <details class="chapter-detail">
+        <summary>My role on this project</summary>
+        <div class="chapter-detail-body">Lead product designer from first concept through global rollout — end-to-end status model, owner and sitter surfaces, and the explainability layer in Sitter Insights.</div>
+      </details>
+    </div>
+
+    <div class="chapter" id="ch-foundation" data-img="../resources/star-sitter-insights.png">
+      <p class="chapter-num">02 · Phases 1–2</p>
+      <h2 class="chapter-title">Foundation &amp; Beta</h2>
+      <p>We launched Sitter Insights first — establishing the mental model before introducing status. Key metrics: response rate, booking rate, calendar updates, cancellations. A small positive improvement in booking rate (+0.6%) confirmed sitters responded to visibility.</p>
+      <p>The beta introduced provider-level, non-tiered status. Badge surfacing on search cards and profiles, plus an owner filter. The badge shifted owner behaviour meaningfully — but CX sentiment surfaced early cracks around edge cases.</p>
+
+      <div class="wireframe-callout">
+        <div class="storyboard-inner">
+          <span class="frame-num">Frame 01</span>
+          <p class="frame-desc">3 annotated screens: Star Sitter badge on search result cards; the "Only show Star Sitters" owner filter; and the Sitter Insights qualification criteria panel.</p>
+          <p class="frame-caption">The badge and filter worked in tandem to shift owner search behaviour.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter" id="ch-fairness" data-img="../resources/star-sitter-tracking.png">
+      <p class="chapter-num">03 · Phases 3–4</p>
+      <h2 class="chapter-title">Understandable &amp; Fair</h2>
+      <p>Usability tests showed sitters skimmed past key rules. We tightened copy to use direct, instructive phrasing, pulled core rules into scannable bullets, and added a prominent "Check your progress" CTA.</p>
+      <p>Three major fairness changes: moved to recent activity windows; formalised a grace period for sitters who narrowly miss one metric; and fixed a Contact More Sitters bias that was unfairly penalising booking rates.</p>
+
+      <div class="wireframe-callout">
+        <div class="storyboard-inner">
+          <span class="frame-num">Frame 02</span>
+          <p class="frame-desc">Affinity map from 6 moderated sessions — 3 clusters: qualification confusion (what counts toward the badge?), fairness concerns (low-activity vs. long-tenure), and competitive motivation.</p>
+          <p class="frame-caption">Research synthesis that shaped the Phase 3–4 fairness interventions.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter chapter-metric" id="ch-impact" data-img="../resources/star-sitter-live.png">
+      <p class="chapter-num">04 · Phase 5 · Impact</p>
+      <h2 class="chapter-title">Rolling Status &amp; Outcomes</h2>
+      <p>Moving to a rolling model eliminated quarterly batch refreshes, predictable CX ticket spikes, and a fragile manual process. Sitters earn Star Sitter as soon as they meet criteria. A three-month grace period handles drops below criteria.</p>
+      <p>The Sitter Insights UX simplified dramatically: no more qualification period dropdowns, a single real-time status view. Better model, less complexity.</p>
+
+      <div class="chapter metric-chapter">
+        <div class="chapter-metric-num" data-value="4.8">4.8%</div>
+        <p class="chapter-metric-label">revenue per new-to-Rover customer · ~$2.5M incremental annual revenue</p>
+      </div>
+
+      <div class="wireframe-callout">
+        <div class="storyboard-inner">
+          <span class="frame-num">Frame 03</span>
+          <p class="frame-desc">Before/after: Sitter Insights tracking tab in the quarterly model versus the rolling model. Shows the UX simplification — from qualification period dropdowns to a single real-time status message.</p>
+          <p class="frame-caption">The Phase 5 UX simplification was as impactful as the metric improvements.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="next-project">
+  <a href="./project-diversion.html">Next: Reducing Platform Diversion →</a>
+</div>
+
+<footer>
+  <h2 class="footer-title">Let's talk<br><em>or have a beer</em></h2>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/bernardoprd/" target="_blank">LinkedIn</a>
+    <a href="../bernardo.prd.en.2026.pdf" target="_blank">CV</a>
+    <a href="mailto:bernardo.prd@gmail.com">bernardo.prd@gmail.com</a>
+  </div>
+</footer>
+
+<nav class="variant-switcher">
+  <span class="vs-label">variant</span>
+  <a href="../variant-a/" class="vs-link">A</a>
+  <a href="../variant-b/" class="vs-link">B</a>
+  <a href="../variant-c/" class="vs-link">C</a>
+  <a href="../variant-d/" class="vs-link vs-active">D</a>
+  <a href="../variant-e/" class="vs-link">E</a>
+  <a href="../" class="vs-orig">↩</a>
+</nav>
+
+<script>
+  // Sticky image swap
+  const chapters = document.querySelectorAll('[data-img]');
+  const scrollyImg = document.getElementById('scrolly-img');
+  const dots = document.querySelectorAll('.dot');
+
+  const chapterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const newSrc = entry.target.dataset.img;
+        if (newSrc && scrollyImg.src !== newSrc) {
+          scrollyImg.style.opacity = '0';
+          setTimeout(() => {
+            scrollyImg.src = newSrc;
+            scrollyImg.style.opacity = '1';
+          }, 250);
+        }
+        // Update dots
+        const idx = Array.from(chapters).indexOf(entry.target);
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      }
+    });
+  }, { threshold: 0.4 });
+
+  chapters.forEach(ch => chapterObserver.observe(ch));
+
+  // Dot click nav
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      chapters[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+</script>
+
+</body>
+</html>
