@@ -10,7 +10,10 @@
 
 <header class="site-header">
   <a href="./index.html" class="logo">Bernardo Prudêncio</a>
-  <nav><a href="./index.html">Home</a><a href="./projects.html">Work</a></nav>
+  <nav>
+    <a href="./index.html">Home</a>
+    <a href="./projects.html">Work</a>
+  </nav>
 </header>
 
 <!-- HERO -->
@@ -19,16 +22,17 @@
   <div class="cs-hero-card-overlay">
     <p class="cse">Rover · 2023–2025 · Loyalty &amp; Incentives</p>
     <h1>Star Sitter Program</h1>
-    <p class="csh-metric">4.8% revenue per customer · ~$2.5M incremental ARR</p>
+    <p class="csh-metric">4.8% revenue per new customer · ~$2.5M ARR</p>
   </div>
 </div>
 
 <!-- INTRO BENTO -->
 <div class="cs-bento">
   <div class="card cs-text-card col-5">
+    <span class="cs-section-label">01 / Problem</span>
     <h2>The Problem</h2>
     <p>Three gaps remained despite existing sitter tooling: owners couldn't identify the most reliable sitters; sitters saw metrics but lacked motivation; and off-platform diversion was a strategic revenue leak.</p>
-    <p>Star Sitter was a third lever — provider-level status gamifying supply-side behaviours, directing demand to reliable sitters, tying status to on-platform repeat behaviour.</p>
+    <p>Star Sitter was a third lever — provider-level status that gamified supply-side behaviours, directed demand to reliable sitters, and tied status to on-platform repeat behaviour.</p>
   </div>
   <div class="card card-dark cs-metric-card col-4">
     <div class="cmn">4.8%</div>
@@ -46,9 +50,10 @@
     <img src="../resources/star-sitter-insights.png" alt="Sitter Insights" style="aspect-ratio: unset; height: 100%; min-height: 300px;">
   </div>
   <div class="card cs-text-card col-6">
-    <h2>Phases 1–2: Foundation &amp; Beta</h2>
-    <p>We launched Sitter Insights first — establishing the mental model before introducing status. The beta introduced provider-level, non-tiered status. Badge on search cards, owner filter, qualification tracking.</p>
-    <p>The badge shifted owner behaviour. But CX surfaced early cracks: confusion around booking rate, pain around edge cases.</p>
+    <span class="cs-section-label">02 / Foundation &amp; Beta</span>
+    <h2>Phases 1–2: Build the Mental Model First</h2>
+    <p>We launched Sitter Insights before introducing status — establishing the mental model before asking sitters to compete for a badge. The beta introduced provider-level, non-tiered status: badge on search cards, owner filter, qualification tracking.</p>
+    <p>The badge shifted owner behaviour. But CX surfaced early cracks: confusion around booking rate, frustration around edge cases.</p>
     <details class="cs-detail">
       <summary>Early signals detail</summary>
       <div class="cs-detail-body">Confusion around booking rate calculation. Long-tenured but low-activity sitters felt unfairly excluded. These became the design brief for Phases 3–4.</div>
@@ -73,11 +78,12 @@
     </div>
   </div>
   <div class="card cs-text-card col-6">
-    <h2>Phases 3–4: Understandable &amp; Fair</h2>
-    <p>Usability tests showed sitters skimmed past key rules. We tightened copy, added a "Check your progress" CTA, and made three major fairness changes: recent activity windows, grace periods, and fixing a booking-rate bias.</p>
+    <span class="cs-section-label">03 / Understandable &amp; Fair</span>
+    <h2>Phases 3–4: Fixing What We Got Wrong</h2>
+    <p>Usability tests showed sitters skimmed past key rules. We tightened copy, added a "Check your progress" CTA, and made three major fairness changes: recent activity windows, grace periods, and fixing a booking-rate calculation bias.</p>
     <details class="cs-detail">
       <summary>The three fairness fixes</summary>
-      <div class="cs-detail-body">1. Moved from lifetime to recent activity. 2. Formalised legacying — one grace period if one metric is missed. 3. Fixed Contact More Sitters bias unfairly penalising booking rates.</div>
+      <div class="cs-detail-body">1. Moved from lifetime to recent activity. 2. Formalised legacying — one grace period if one metric is missed. 3. Fixed Contact More Sitters bias that was unfairly penalising booking rates.</div>
     </details>
   </div>
   <div class="card cs-image-card col-12 row-3">
@@ -92,6 +98,7 @@
     <div class="cml">more requests to top-tier sitters</div>
   </div>
   <div class="card cs-text-card col-8">
+    <span class="cs-section-label">04 / Simplification</span>
     <h2>Phase 5: Rolling Status</h2>
     <p>Moving to a rolling model eliminated quarterly batch refreshes and predictable CX spikes. Sitters earn Star Sitter as soon as they meet criteria. A three-month grace period handles drops.</p>
     <p>The Sitter Insights UX simplified dramatically: no more qualification period dropdowns, a single real-time status view.</p>
@@ -113,7 +120,7 @@
 </div>
 
 <footer>
-  <h2 class="footer-title">Let's talk<br><span>or connect in person</span></h2>
+  <h2 class="footer-title">Let's talk<br><span>or meet in person</span></h2>
   <div class="footer-links">
     <a href="https://www.linkedin.com/in/bernardoprd/" target="_blank">LinkedIn</a>
     <a href="../bernardo.prd.en.2026.pdf" target="_blank">CV</a>
@@ -121,14 +128,15 @@
   </div>
 </footer>
 
-<nav class="variant-switcher">
+<nav class="variant-switcher" aria-label="Design variants">
   <span class="vs-label">variant</span>
-  <a href="../variant-a/" class="vs-link">A</a>
-  <a href="../variant-b/" class="vs-link">B</a>
-  <a href="../variant-c/" class="vs-link">C</a>
-  <a href="../variant-d/" class="vs-link">D</a>
-  <a href="../variant-e/" class="vs-link vs-active">E</a>
-  <a href="../" class="vs-orig">↩</a>
+  <a href="../variant-a/" class="vs-link" aria-label="Variant A">A</a>
+  <a href="../variant-b/" class="vs-link" aria-label="Variant B">B</a>
+  <a href="../variant-c/" class="vs-link" aria-label="Variant C">C</a>
+  <a href="../variant-d/" class="vs-link" aria-label="Variant D">D</a>
+  <a href="../variant-e/" class="vs-link vs-active" aria-label="Variant E">E</a>
+  <a href="../variant-f/" class="vs-link" aria-label="Variant F">F</a>
+  <a href="../" class="vs-orig" aria-label="Original site">↩</a>
 </nav>
 
 </body>

@@ -10,23 +10,27 @@
 
 <header class="site-header">
   <a href="./index.html" class="logo">Bernardo Prudêncio</a>
-  <nav><a href="./index.html">Home</a><a href="./projects.html">Work</a></nav>
+  <nav>
+    <a href="./index.html">Home</a>
+    <a href="./projects.html">Work</a>
+  </nav>
 </header>
 
 <div class="cs-hero-card">
   <img src="../resources/graduated-fees-cover.png" alt="Graduated fees">
   <div class="cs-hero-card-overlay">
     <p class="cse">Rover · 2025 · Strategy · In Flight</p>
-    <h1>Relationship<br>Graduated Fees</h1>
+    <h1>Relationship-based<br>Graduated Fees</h1>
     <p class="csh-metric">~40% higher take · 23% take-per-relationship target</p>
   </div>
 </div>
 
 <div class="cs-bento">
   <div class="card cs-text-card col-6">
+    <span class="cs-section-label">01 / Problem</span>
     <h2>The Flat Fee Problem</h2>
     <p>Today, Rover charges the same fee on a sitter's first booking with a new client as on their 20th booking with a long-term trusted relationship. Frustration about fees is a core driver of diversion.</p>
-    <p>Internal analysis: capturing repeat-relationship diversion could make Rover's take ~40% higher. The provider strategy targets ~23% take-per-relationship growth. A flat fee doesn't map to that reality.</p>
+    <p>Internal analysis showed that capturing repeat-relationship diversion could make Rover's take ~40% higher. The provider strategy targets ~23% take-per-relationship growth. A flat fee doesn't map to that reality.</p>
   </div>
   <div class="card card-dark cs-metric-card col-3">
     <div class="cmn">~40%</div>
@@ -42,14 +46,15 @@
   <div class="wireframe-callout col-6">
     <div class="wf-inner">
       <span class="wf-tag">[ wireframe · WF-01 ]</span>
-      <p class="wf-desc">Model evaluation matrix — 3 models (new vs. repeat / relationship-based GBV / account-based GBV) compared across 5 dimensions (comprehension, fairness, gaming risk, revenue impact, segment impact). Shows the framework that selected relationship-based as the test model.</p>
+      <p class="wf-desc">Model evaluation matrix — 3 models (new vs. repeat / relationship-based GBV / account-based GBV) compared across 5 dimensions: comprehension, fairness, gaming risk, revenue impact, segment impact. Shows the framework that selected relationship-based as the test model.</p>
       <p class="wf-footer">Evaluation matrix pending</p>
     </div>
   </div>
   <div class="card cs-text-card col-6">
+    <span class="cs-section-label">02 / Approach</span>
     <h2>Three Models, One Test</h2>
-    <p>We assessed three possible models along: comprehension, fairness, gaming risk, revenue impact, and segment impact on top sitters who drive ~75% of earnings.</p>
-    <p>Relationship-based was the best match to sitter mental models. They think per client, not per year. Testing relationship-based GBV first in Canada as a proxy for the US market.</p>
+    <p>We assessed three possible models against: comprehension, fairness, gaming risk, revenue impact, and segment impact on top sitters who drive ~75% of earnings.</p>
+    <p>Relationship-based was the best match to how sitters think. They track clients, not annual totals. Testing relationship-based GBV first in Canada as a proxy for the US market.</p>
     <details class="cs-detail">
       <summary>Why not the others?</summary>
       <div class="cs-detail-body">New vs. repeat: too easy to game, weak at directing behaviour. Account-based: cleaner conceptually but misaligned with how sitters think about fairness.</div>
@@ -68,9 +73,10 @@
 
 <div class="cs-bento">
   <div class="card cs-text-card col-6">
+    <span class="cs-section-label">03 / Design</span>
     <h2>The Relationship Page</h2>
     <p>Higher fee on the first slice of relationship GBV (e.g. 28–35%), lower fee once the relationship hits a milestone (e.g. 10–15% after $X). Each owner–sitter pair has its own progress; once unlocked, the lower tier is permanent.</p>
-    <p>Sitters currently can't see GBV per client. A multistep GBV model is complex. A dedicated Relationship page is necessary — GBV progress tracker, fee tier, transaction history per client.</p>
+    <p>Sitters currently can't see GBV per client. A multi-step GBV model is complex to understand. A dedicated Relationship page is the solution — GBV progress tracker, fee tier, transaction history per client.</p>
   </div>
   <div class="wireframe-callout col-6">
     <div class="wf-inner">
@@ -86,32 +92,33 @@
     <img src="../resources/graduated-fees-challenges.png" alt="UX challenges" style="aspect-ratio: unset; height: 100%; min-height: 250px;">
   </div>
   <div class="card cs-text-card col-6">
-    <h2>Hard UX Problems</h2>
+    <span class="cs-section-label">04 / Hard Problems</span>
+    <h2>Comprehension & Perceived Fairness</h2>
     <p>Model mechanics comprehension: sitters struggled with cumulative GBV, milestones, permanent reductions. We leaned on progressive disclosure and anchored everything around "this relationship with this client."</p>
     <p>Sense of agency: some milestones depended on owner behaviour. We focused UI on actions sitters control and avoided over-promising.</p>
   </div>
 </div>
 
-<!-- WHAT WE'RE MEASURING -->
 <div class="cs-bento">
-  <div class="card col-12" style="padding: 2rem; background: var(--card);">
-    <h2 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem;">05 · What We're Measuring — Strategy &amp; Process Showcase</h2>
-    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;">
-      <div style="border-top: 2px solid var(--accent); padding-top: 1rem;">
-        <p style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent); margin-bottom: 0.5rem;">COMPREHENSION</p>
-        <p style="font-size: 0.875rem; color: var(--muted);">High comprehension and perceived fairness among top sitters in Canada.</p>
+  <div class="card col-12" style="padding: 2rem;">
+    <span class="cs-section-label">05 / In Flight · Results Pending</span>
+    <h2 style="font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 700; margin-bottom: 1.5rem;">What We're Measuring</h2>
+    <div class="wm-grid">
+      <div class="wm-item">
+        <span class="wm-label">Comprehension</span>
+        <p class="wm-desc">High comprehension and perceived fairness among top sitters in Canada.</p>
       </div>
-      <div style="border-top: 2px solid var(--accent); padding-top: 1rem;">
-        <p style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent); margin-bottom: 0.5rem;">DIVERSION</p>
-        <p style="font-size: 0.875rem; color: var(--muted);">No material increase in diversion on new relationships despite higher upfront fees.</p>
+      <div class="wm-item">
+        <span class="wm-label">Diversion</span>
+        <p class="wm-desc">No material increase in diversion on new relationships despite higher upfront fees.</p>
       </div>
-      <div style="border-top: 2px solid var(--accent); padding-top: 1rem;">
-        <p style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent); margin-bottom: 0.5rem;">REPEAT BOOKINGS</p>
-        <p style="font-size: 0.875rem; color: var(--muted);">Improved on-platform repeat bookings for eligible relationships, 90-day window.</p>
+      <div class="wm-item">
+        <span class="wm-label">Repeat Bookings</span>
+        <p class="wm-desc">Improved on-platform repeat bookings for eligible relationships, 90-day window.</p>
       </div>
-      <div style="border-top: 2px solid var(--accent); padding-top: 1rem;">
-        <p style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent); margin-bottom: 0.5rem;">GBV GROWTH</p>
-        <p style="font-size: 0.875rem; color: var(--muted);">Per-relationship GBV growth vs. control. Clean signal → broader rollout.</p>
+      <div class="wm-item">
+        <span class="wm-label">GBV Growth</span>
+        <p class="wm-desc">Per-relationship GBV growth vs. control. Clean signal → broader rollout.</p>
       </div>
     </div>
   </div>
@@ -120,7 +127,7 @@
 <div class="next-project"><a href="./project-star-sitter.html">Next: Star Sitter →</a></div>
 
 <footer>
-  <h2 class="footer-title">Let's talk<br><span>or connect in person</span></h2>
+  <h2 class="footer-title">Let's talk<br><span>or meet in person</span></h2>
   <div class="footer-links">
     <a href="https://www.linkedin.com/in/bernardoprd/" target="_blank">LinkedIn</a>
     <a href="../bernardo.prd.en.2026.pdf" target="_blank">CV</a>
@@ -128,11 +135,16 @@
   </div>
 </footer>
 
-<nav class="variant-switcher">
+<nav class="variant-switcher" aria-label="Design variants">
   <span class="vs-label">variant</span>
-  <a href="../variant-a/" class="vs-link">A</a><a href="../variant-b/" class="vs-link">B</a>
-  <a href="../variant-c/" class="vs-link">C</a><a href="../variant-d/" class="vs-link">D</a>
-  <a href="../variant-e/" class="vs-link vs-active">E</a><a href="../" class="vs-orig">↩</a>
+  <a href="../variant-a/" class="vs-link" aria-label="Variant A">A</a>
+  <a href="../variant-b/" class="vs-link" aria-label="Variant B">B</a>
+  <a href="../variant-c/" class="vs-link" aria-label="Variant C">C</a>
+  <a href="../variant-d/" class="vs-link" aria-label="Variant D">D</a>
+  <a href="../variant-e/" class="vs-link vs-active" aria-label="Variant E">E</a>
+  <a href="../variant-f/" class="vs-link" aria-label="Variant F">F</a>
+  <a href="../" class="vs-orig" aria-label="Original site">↩</a>
 </nav>
+
 </body>
 </html>

@@ -10,22 +10,26 @@
 
 <header class="site-header">
   <a href="./index.html" class="logo">Bernardo Prudêncio</a>
-  <nav><a href="./index.html">Home</a><a href="./projects.html">Work</a></nav>
+  <nav>
+    <a href="./index.html">Home</a>
+    <a href="./projects.html">Work</a>
+  </nav>
 </header>
 
 <div class="cs-hero-card">
   <img src="../resources/service-areas-cover.png" alt="Service areas map">
   <div class="cs-hero-card-overlay">
     <p class="cse">Rover · 2024–2025 · Search &amp; Supply</p>
-    <h1>Service Areas<br>Travel Distance</h1>
+    <h1>Service Areas<br>&amp; Travel Distance</h1>
     <p class="csh-metric">+4% bookings · +7% match quality</p>
   </div>
 </div>
 
 <div class="cs-bento">
   <div class="card cs-text-card col-6">
+    <span class="cs-section-label">01 / Origin</span>
     <h2>From Hackathon to Product</h2>
-    <p>Sitters historically set a circular radius — blind to real geography. Sitters told us: "I'm getting requests within my radius that are practically impossible." This started at a Maker Days hackathon and became a global feature.</p>
+    <p>Sitters historically set a circular radius — blind to real geography. The feedback was consistent: "I'm getting requests within my radius that are practically impossible." This started at a Maker Days hackathon and became a global feature.</p>
     <p>As lead product designer, I was responsible for the full travel-distance service area experience — from exploratory research through experiment design, global rollout, and search integration.</p>
   </div>
   <div class="card card-dark cs-metric-card col-3">
@@ -47,9 +51,10 @@
     </div>
   </div>
   <div class="card cs-text-card col-7">
+    <span class="cs-section-label">02 / Research</span>
     <h2>Understanding What "Distance" Means</h2>
     <p>In moderated sessions, sitters reacted to their areas being redrawn, adjusted distance/time and travel mode, and talked through how far they'd go for different services.</p>
-    <p>Three design anchors: sitters think in miles <em>and</em> minutes; irregular road-based shapes feel more intuitive; different areas per service type.</p>
+    <p>Three design anchors: sitters think in miles <em>and</em> minutes; irregular road-based shapes feel more intuitive than circles; different services need different areas.</p>
     <details class="cs-detail">
       <summary>The unified model</summary>
       <div class="cs-detail-body">Distance (1–100 km/miles) or time (1–60 min), walking/cycling/driving. House sitting, drop-ins, walks each get their own area. Existing radius backfilled automatically.</div>
@@ -75,12 +80,13 @@
     <img src="../resources/service-areas-solution.png" alt="Solution" style="aspect-ratio: unset; height: 100%; min-height: 250px;">
   </div>
   <div class="card cs-text-card col-6">
+    <span class="cs-section-label">03 / Results</span>
     <h2>Validated &amp; Shipped Globally</h2>
-    <p>Two geographic A/B tests. Both waves: better matching, better conversion, strong sitter adoption. Committed to global rollout instead of extending the split.</p>
-    <p>Search-to-request +2–3% relative. Search-to-book +1.6–2.8%. Match quality +7%. Revenue per searcher +5–6% in US markets.</p>
+    <p>Two geographic A/B tests. Both waves showed better matching, better conversion, and strong sitter adoption. We committed to global rollout instead of extending the split.</p>
+    <p>Search-to-request +2–3%. Search-to-book +1.6–2.8%. Match quality +7%. Revenue per searcher +5–6% in US markets.</p>
     <details class="cs-detail">
       <summary>The initial conversion trade-off</summary>
-      <div class="cs-detail-body">Small initial dip (–1–2%) in new-owner conversion from stricter "outside service area" behaviour. The sitters who did show up were closer and more likely to accept. A good trade for better long-run quality.</div>
+      <div class="cs-detail-body">Small initial dip (–1–2%) in new-owner conversion from stricter "outside service area" behaviour. The sitters who did show up were closer and more likely to accept — a good trade for better long-run quality.</div>
     </details>
   </div>
   <div class="card card-dark cs-metric-card col-3">
@@ -96,7 +102,7 @@
 <div class="next-project"><a href="./project-graduated-fees.html">Next: Graduated Fees →</a></div>
 
 <footer>
-  <h2 class="footer-title">Let's talk<br><span>or connect in person</span></h2>
+  <h2 class="footer-title">Let's talk<br><span>or meet in person</span></h2>
   <div class="footer-links">
     <a href="https://www.linkedin.com/in/bernardoprd/" target="_blank">LinkedIn</a>
     <a href="../bernardo.prd.en.2026.pdf" target="_blank">CV</a>
@@ -104,11 +110,16 @@
   </div>
 </footer>
 
-<nav class="variant-switcher">
+<nav class="variant-switcher" aria-label="Design variants">
   <span class="vs-label">variant</span>
-  <a href="../variant-a/" class="vs-link">A</a><a href="../variant-b/" class="vs-link">B</a>
-  <a href="../variant-c/" class="vs-link">C</a><a href="../variant-d/" class="vs-link">D</a>
-  <a href="../variant-e/" class="vs-link vs-active">E</a><a href="../" class="vs-orig">↩</a>
+  <a href="../variant-a/" class="vs-link" aria-label="Variant A">A</a>
+  <a href="../variant-b/" class="vs-link" aria-label="Variant B">B</a>
+  <a href="../variant-c/" class="vs-link" aria-label="Variant C">C</a>
+  <a href="../variant-d/" class="vs-link" aria-label="Variant D">D</a>
+  <a href="../variant-e/" class="vs-link vs-active" aria-label="Variant E">E</a>
+  <a href="../variant-f/" class="vs-link" aria-label="Variant F">F</a>
+  <a href="../" class="vs-orig" aria-label="Original site">↩</a>
 </nav>
+
 </body>
 </html>
