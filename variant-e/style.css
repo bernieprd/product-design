@@ -1,0 +1,222 @@
+/* Variant E — Bento Gallery */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;1,400&display=swap');
+
+:root {
+  --bg: #F0F0EE;
+  --card: #FFFFFF;
+  --card-dark: #0F0F0F;
+  --text: #111111;
+  --text-light: #FFFFFF;
+  --muted: #6B7280;
+  --accent: #2563EB;
+  --accent-bg: #EEF2FF;
+  --border: #E5E7EB;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --radius: 12px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* ─── SITE HEADER ─── */
+.site-header {
+  position: sticky; top: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: rgba(240,240,238,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.site-header .logo { font-weight: 700; font-size: 0.95rem; }
+.site-header nav { display: flex; gap: 1.5rem; }
+.site-header nav a { font-size: 0.8rem; font-weight: 500; color: var(--muted); transition: color 0.2s; }
+.site-header nav a:hover { color: var(--accent); }
+
+/* ─── BENTO GRID ─── */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: minmax(80px, auto);
+  gap: 12px;
+  padding: 1.5rem;
+}
+
+/* card base */
+.card {
+  border-radius: var(--radius); overflow: hidden;
+  position: relative; background: var(--card);
+}
+.card-dark { background: var(--card-dark); color: var(--text-light); }
+.card-accent { background: var(--accent); color: #fff; }
+.card-image { background: #000; }
+
+/* spans */
+.col-3  { grid-column: span 3; }
+.col-4  { grid-column: span 4; }
+.col-5  { grid-column: span 5; }
+.col-6  { grid-column: span 6; }
+.col-7  { grid-column: span 7; }
+.col-8  { grid-column: span 8; }
+.col-12 { grid-column: span 12; }
+.row-2  { grid-row: span 2; }
+.row-3  { grid-row: span 3; }
+.row-4  { grid-row: span 4; }
+.row-5  { grid-row: span 5; }
+
+/* ─── CARD TYPES ─── */
+.name-card { padding: 2.5rem; display: flex; flex-direction: column; justify-content: flex-end; }
+.name-card h1 { font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; }
+.name-card .name-sub { font-size: 0.8rem; font-weight: 500; color: var(--muted); margin-top: 0.5rem; }
+
+.bio-card { padding: 1.75rem; }
+.bio-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+
+.metric-card { padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between; }
+.metric-card .mnum { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+.metric-card.card-dark .mnum { color: var(--accent); }
+.metric-card .mlabel { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.45); margin-top: 0.4rem; letter-spacing: 0.06em; }
+.metric-card .mproject { font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 0.25rem; }
+
+.exp-card { padding: 1.75rem; }
+.exp-card h3 { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1rem; }
+.exp-list { display: flex; flex-direction: column; gap: 0.65rem; }
+.exp-row { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; }
+.exp-co { font-size: 0.875rem; font-weight: 600; }
+.exp-yr { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); white-space: nowrap; }
+
+.contact-card { padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between; }
+.contact-card .ctag { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+.contact-card h3 { font-size: clamp(1.2rem, 2.5vw, 1.8rem); font-weight: 800; line-height: 1.1; }
+.contact-links { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+.contact-links a { font-size: 0.8rem; font-weight: 500; color: rgba(255,255,255,0.6); transition: color 0.2s; }
+.contact-links a:hover { color: #fff; }
+
+/* ─── IMAGE CARD (hover reveal) ─── */
+.image-card { position: relative; }
+.image-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease, filter 0.3s; }
+.image-card:hover img { transform: scale(1.04); filter: brightness(0.5); }
+.image-card-reveal {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 50%);
+  opacity: 1; transition: opacity 0.3s;
+}
+.icr-meta { font-family: var(--font-mono); font-size: 0.62rem; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+.icr-title { font-size: clamp(1rem, 1.8vw, 1.4rem); font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 0.4rem; }
+.icr-metric { font-size: clamp(1.2rem, 2.5vw, 2rem); font-weight: 800; color: var(--accent); line-height: 1; }
+.icr-hover { opacity: 0; transition: opacity 0.3s; }
+.image-card:hover .icr-hover { opacity: 1; }
+.icr-hover .icr-desc { font-size: 0.8rem; color: rgba(255,255,255,0.75); line-height: 1.5; margin-top: 0.5rem; }
+
+/* ─── YEARS CARD ─── */
+.years-card { padding: 1.5rem; display: flex; flex-direction: column; justify-content: flex-end; }
+.years-num { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1; letter-spacing: -0.03em; color: var(--accent); }
+.years-label { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-top: 0.3rem; }
+
+/* ─── CV CARD ─── */
+.cv-card { padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between; }
+.cv-card .cv-label { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; }
+.cv-card .cv-link { font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+
+/* ─── PROJECTS PAGE GRID ─── */
+.projects-header { padding: 2rem 1.5rem 0; }
+.projects-header h1 { font-size: clamp(2rem, 6vw, 5rem); font-weight: 800; letter-spacing: -0.03em; }
+.projects-bento { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 1.5rem; }
+.project-card-full { border-radius: var(--radius); overflow: hidden; background: #000; position: relative; aspect-ratio: 4/3; }
+.project-card-full img { transition: transform 0.5s, filter 0.3s; }
+.project-card-full:hover img { transform: scale(1.04); filter: brightness(0.4); }
+.pcf-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, transparent 55%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.75rem; }
+.pcf-meta { font-family: var(--font-mono); font-size: 0.62rem; color: rgba(255,255,255,0.45); letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+.pcf-title { font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 0.5rem; }
+.pcf-metric { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 800; color: var(--accent); line-height: 1; }
+.pcf-cta { opacity: 0; transform: translateY(6px); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-top: 0.75rem; transition: opacity 0.3s, transform 0.3s; }
+.project-card-full:hover .pcf-cta { opacity: 1; transform: translateY(0); }
+
+/* ─── CASE STUDY LAYOUT ─── */
+.cs-hero-card { background: #000; border-radius: var(--radius); overflow: hidden; position: relative; aspect-ratio: 21/9; margin: 1.5rem; }
+.cs-hero-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.55); }
+.cs-hero-card-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 2.5rem; }
+.cs-hero-card-overlay .cse { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+.cs-hero-card-overlay h1 { font-size: clamp(2rem, 5vw, 4.5rem); font-weight: 800; color: #fff; line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+.cs-hero-card-overlay .csh-metric { font-size: clamp(1.2rem, 2.5vw, 2rem); font-weight: 800; color: var(--accent); }
+
+/* ─── CS CONTENT BENTO ─── */
+.cs-bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; padding: 0 1.5rem 1.5rem; }
+.cs-text-card { padding: 2rem; }
+.cs-text-card h2 { font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 700; margin-bottom: 0.75rem; }
+.cs-text-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 0.75rem; }
+.cs-detail { margin-top: 0.75rem; }
+.cs-detail summary { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); cursor: pointer; list-style: none; }
+.cs-detail summary::-webkit-details-marker { display: none; }
+.cs-detail-body { padding-top: 0.75rem; font-size: 0.85rem; color: var(--muted); }
+.cs-metric-card { padding: 2rem; display: flex; flex-direction: column; justify-content: center; }
+.cs-metric-card .cmn { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 800; color: var(--accent); line-height: 1; letter-spacing: -0.03em; }
+.cs-metric-card .cml { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-top: 0.4rem; }
+.cs-image-card { border-radius: var(--radius); overflow: hidden; background: #000; }
+.cs-image-card img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ─── WIREFRAME CARD ─── */
+.wireframe-callout {
+  border-radius: var(--radius); overflow: hidden;
+  background: var(--card); border: 2px dashed var(--accent);
+  min-height: 240px; display: flex; flex-direction: column;
+  position: relative;
+  background-image: radial-gradient(circle, rgba(37,99,235,0.06) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+.wf-inner { padding: 1.75rem; display: flex; flex-direction: column; justify-content: center; height: 100%; }
+.wf-tag { font-family: var(--font-mono); font-size: 0.62rem; color: var(--accent); letter-spacing: 0.1em; display: block; margin-bottom: 0.75rem; }
+.wf-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+.wf-footer { font-family: var(--font-mono); font-size: 0.62rem; color: rgba(37,99,235,0.4); margin-top: 1rem; }
+
+/* ─── NEXT PROJECT ─── */
+.next-project { display: flex; justify-content: flex-end; padding: 1.5rem; }
+.next-project a { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+
+/* ─── FOOTER ─── */
+footer { background: var(--card-dark); color: #fff; padding: 4rem 1.5rem 2.5rem; }
+.footer-title { font-size: clamp(2rem, 7vw, 6rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.0; margin-bottom: 2.5rem; }
+.footer-title span { color: var(--accent); }
+.footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.footer-links a { font-size: 0.78rem; font-weight: 500; color: rgba(255,255,255,0.4); transition: color 0.2s; }
+.footer-links a:hover { color: #fff; }
+
+/* ─── VARIANT SWITCHER ─── */
+.variant-switcher {
+  position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  z-index: 1000; display: flex; align-items: center; gap: 0.25rem;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 100px; padding: 0.5rem 1rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+.vs-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding-right: 0.5rem; }
+.vs-link, .vs-orig {
+  font-size: 0.72rem; font-weight: 700;
+  width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; color: var(--muted); transition: all 0.2s;
+}
+.vs-link:hover { color: var(--accent); background: var(--accent-bg); }
+.vs-link.vs-active { background: var(--accent); color: #fff; }
+.vs-orig { border-left: 1px solid var(--border); margin-left: 0.25rem; border-radius: 0 100px 100px 0; width: auto; padding: 0 0.5rem; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1000px) {
+  .col-3, .col-4 { grid-column: span 6; }
+  .col-5 { grid-column: span 7; }
+  .col-7 { grid-column: span 12; }
+  .col-8 { grid-column: span 12; }
+}
+@media (max-width: 768px) {
+  .bento, .cs-bento { grid-template-columns: repeat(2, 1fr); }
+  .col-3, .col-4, .col-5, .col-6, .col-7, .col-8 { grid-column: span 2; }
+  .col-12 { grid-column: span 2; }
+  .projects-bento { grid-template-columns: 1fr; }
+}
+@media (max-width: 500px) {
+  .bento, .cs-bento { grid-template-columns: 1fr; }
+  .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-12 { grid-column: span 1; }
+}

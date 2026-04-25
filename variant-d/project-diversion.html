@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Reducing Platform Diversion · Bernardo Prudêncio</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="./index.html" class="logo">Bernardo Prudêncio</a>
+  <nav><a href="./index.html">Home</a><a href="./projects.html">Projects</a></nav>
+</header>
+
+<nav class="progress-dots" id="progress-dots">
+  <div class="dot active" data-target="ch-problem"></div>
+  <div class="dot" data-target="ch-solution"></div>
+  <div class="dot" data-target="ch-impact"></div>
+</nav>
+
+<div class="cs-hero">
+  <div class="cs-hero-bg"><img src="../resources/diversion-cover.png" alt="Diversion"></div>
+  <div class="cs-hero-content">
+    <p class="cs-eyebrow">Rover · 2022–2023 · Trust &amp; Safety</p>
+    <h1 class="cs-title">Reducing Platform<br>Diversion</h1>
+    <p class="cs-hero-metric">$5M+ in protected annual revenue</p>
+  </div>
+</div>
+
+<div class="scrolly-container">
+  <div class="scrolly-visual" id="scrolly-visual">
+    <img src="../resources/diversion-cover.png" alt="Diversion" id="scrolly-img">
+    <div class="visual-overlay"></div>
+  </div>
+
+  <div class="scrolly-narrative">
+
+    <div class="chapter" id="ch-problem" data-img="../resources/diversion-cover.png">
+      <p class="chapter-num">01 · The Problem</p>
+      <h2 class="chapter-title">The $5M Leak</h2>
+      <p>Rover estimated more than 20% of potential marketplace revenue was being lost to off-platform bookings — relationships that started on Rover but completed elsewhere, outside Rover's fee structure.</p>
+      <p>I led design on two complementary initiatives: a cross-platform phone number blocking system and an in-product Community Guidelines modal — addressing both the means and the motivation to leave the platform.</p>
+      <details class="chapter-detail">
+        <summary>Design bar we set</summary>
+        <div class="chapter-detail-body">Not chasing a headline lift. The bar was "do not hurt booking rates." Keeping people in the product is only worth it if they can still successfully book.</div>
+      </details>
+      <div class="wireframe-callout">
+        <div class="storyboard-inner">
+          <span class="frame-num">Frame 01</span>
+          <p class="frame-desc">Community Guidelines modal in three trigger states: existing users (next login), new owners (first request), new sitters (post-onboarding). Annotated to show the required "Got it" confirmation and re-appearance logic.</p>
+          <p class="frame-caption">The modal had to educate without feeling like a blocker.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter" id="ch-solution" data-img="../resources/diversion-blocking.png">
+      <p class="chapter-num">02 · Two Interventions</p>
+      <h2 class="chapter-title">Phone Blocking + Community Guidelines</h2>
+      <p>Phone blocking: any personal number shared before a booking was intercepted across all surfaces. On app/web, a modal explained why. On SMS, numbers were masked and both parties received an automated explanation. Once a booking was confirmed between that pair, the block lifted.</p>
+      <p>Community Guidelines modal: reached sitters and owners at critical moments. Required explicit "Got it" confirmation. Reappeared if the app was closed without confirming.</p>
+      <details class="chapter-detail">
+        <summary>Special rules</summary>
+        <div class="chapter-detail-body">Rover support numbers always allowed. Relay numbers blocked from re-sharing. Cross-surface consistency (iOS, web, SMS) required coordination across multiple engineering teams.</div>
+      </details>
+      <div class="wireframe-callout">
+        <div class="storyboard-inner">
+          <span class="frame-num">Frame 02</span>
+          <p class="frame-desc">Phone blocking flow across all three surfaces — app interception modal with "Edit message" CTA, web inline warning, and SMS masking notification. Shows unified but surface-appropriate execution.</p>
+          <p class="frame-caption">Designing the same intervention across three technically different surfaces was the central challenge.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter" id="ch-impact" data-img="../resources/diversion-results.png">
+      <p class="chapter-num">03 · Impact</p>
+      <h2 class="chapter-title">Neutral Broadly, Positive Where It Counts</h2>
+      <p>Across the marketplace, booking rates stayed neutral — we didn't make it harder to successfully book. In the high-risk segments for diversion, results were clear.</p>
+      <p>When both sides had seen Community Guidelines, booking odds were <strong>3.5% higher</strong> than control. Phone blocking contributed an estimated <strong>$3.6M annual upside</strong>. Community Guidelines contributed <strong>$2.2M annually</strong> in activated in-app bookings.</p>
+
+      <div class="chapter metric-chapter">
+        <div class="chapter-metric-num">$5M</div>
+        <p class="chapter-metric-label">combined protected revenue · $3.6M phone blocking · $2.2M community guidelines</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="next-project"><a href="./project-service-areas.html">Next: Service Areas →</a></div>
+
+<footer>
+  <h2 class="footer-title">Let's talk<br><em>or have a beer</em></h2>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/bernardoprd/" target="_blank">LinkedIn</a>
+    <a href="../bernardo.prd.en.2026.pdf" target="_blank">CV</a>
+    <a href="mailto:bernardo.prd@gmail.com">bernardo.prd@gmail.com</a>
+  </div>
+</footer>
+
+<nav class="variant-switcher">
+  <span class="vs-label">variant</span>
+  <a href="../variant-a/" class="vs-link">A</a><a href="../variant-b/" class="vs-link">B</a>
+  <a href="../variant-c/" class="vs-link">C</a><a href="../variant-d/" class="vs-link vs-active">D</a>
+  <a href="../variant-e/" class="vs-link">E</a><a href="../" class="vs-orig">↩</a>
+</nav>
+
+<script>
+  const chapters = document.querySelectorAll('[data-img]');
+  const scrollyImg = document.getElementById('scrolly-img');
+  const dots = document.querySelectorAll('.dot');
+  const chapterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const newSrc = entry.target.dataset.img;
+        if (newSrc) { scrollyImg.style.opacity='0'; setTimeout(()=>{scrollyImg.src=newSrc;scrollyImg.style.opacity='1';},250); }
+        const idx = Array.from(chapters).indexOf(entry.target);
+        dots.forEach((d,i) => d.classList.toggle('active', i===idx));
+      }
+    });
+  }, { threshold: 0.4 });
+  chapters.forEach(ch => chapterObserver.observe(ch));
+  dots.forEach((dot,i) => dot.addEventListener('click', ()=>chapters[i].scrollIntoView({behavior:'smooth',block:'center'})));
+</script>
+</body>
+</html>

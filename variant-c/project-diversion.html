@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Reducing Platform Diversion · Bernardo Prudêncio</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="./index.html" class="logo">Bernardo Prudêncio</a>
+  <nav><a href="./index.html">Home</a><a href="./projects.html">Work</a></nav>
+</header>
+
+<section class="cs-viewport">
+  <div class="vs-bg"><img src="../resources/diversion-cover.png" alt="Platform diversion"></div>
+  <div class="cs-hero-content">
+    <p class="cs-eyebrow">Rover · 2022–2023 · Trust &amp; Safety</p>
+    <h1 class="cs-title">REDUCING<br>PLATFORM<br>DIVERSION</h1>
+    <p class="cs-hero-metric">$5M+ in protected annual revenue</p>
+  </div>
+</section>
+
+<div class="metric-section">
+  <div class="metric-giant">$5M</div>
+  <p class="metric-label">combined protected revenue — $3.6M phone blocking · $2.2M community guidelines</p>
+</div>
+
+<section class="chapter-panel">
+  <div class="cp-bg"><img src="../resources/diversion-cover.png" alt="Overview"></div>
+  <div class="chapter-content">
+    <p class="chapter-num">01 · Overview</p>
+    <h2 class="chapter-title">THE $5M LEAK</h2>
+    <p class="chapter-text">Rover estimated more than 20% of potential marketplace revenue was being lost to off-platform bookings — relationships that started on Rover but completed elsewhere.</p>
+    <p class="chapter-text">Two complementary initiatives: a cross-platform phone number blocking system and an in-product Community Guidelines modal. Together: reduced the ability and incentive to move conversations off Rover.</p>
+    <details class="chapter-detail">
+      <summary>Design bar</summary>
+      <div class="detail-content">We set the bar as "do not hurt booking rates" — not chasing a headline lift. Keeping people in the product is only worth it if they can still successfully book.</div>
+    </details>
+  </div>
+</section>
+
+<div class="wireframe-callout">
+  <div class="slate-inner">
+    <span class="slate-badge">[ NOT YET FILMED · WF-01 ]</span>
+    <p class="slate-title">COMMUNITY GUIDELINES MODAL</p>
+    <p class="slate-desc">Three trigger states side by side: existing users (next login), new owners (first request), new sitters (post-onboarding). Annotated to show the required "Got it" confirmation and re-appearance logic.</p>
+  </div>
+</div>
+
+<section class="chapter-panel">
+  <div class="cp-bg"><img src="../resources/diversion-blocking.png" alt="Phone blocking"></div>
+  <div class="chapter-content" style="margin-left: auto; margin-right: 3rem;">
+    <p class="chapter-num">02 · What We Shipped</p>
+    <h2 class="chapter-title">TWO INTERVENTIONS</h2>
+    <p class="chapter-text">Phone blocking: any personal number shared before a booking was intercepted. On app/web, a modal explained why and returned users to edit their message. On SMS, numbers were masked with an automated explanation.</p>
+    <p class="chapter-text">Community Guidelines modal: sitters and owners reached at their most relevant moment. Users had to explicitly confirm — "Got it" — and the modal reappeared if dismissed by closing the app.</p>
+    <details class="chapter-detail">
+      <summary>Special rules &amp; edge cases</summary>
+      <div class="detail-content">Rover support numbers always allowed. Relay numbers blocked from re-sharing. The cross-surface consistency (iOS, web, SMS) required close coordination with multiple engineering teams.</div>
+    </details>
+  </div>
+</section>
+
+<div class="wireframe-callout">
+  <div class="slate-inner">
+    <span class="slate-badge">[ NOT YET FILMED · WF-02 ]</span>
+    <p class="slate-title">CROSS-SURFACE BLOCKING FLOW</p>
+    <p class="slate-desc">Phone blocking flow across all three surfaces — app interception modal with "Edit message" CTA, web inline number-sharing warning, and SMS masking notification. A unified but surface-appropriate experience.</p>
+  </div>
+</div>
+
+<section class="chapter-panel">
+  <div class="cp-bg"><img src="../resources/diversion-results.png" alt="Results"></div>
+  <div class="chapter-content">
+    <p class="chapter-num">03 · Impact</p>
+    <h2 class="chapter-title">NEUTRAL BROADLY, POSITIVE WHERE IT COUNTS</h2>
+    <p class="chapter-text">Across the marketplace, booking rates stayed neutral. In the high-risk segments: when both sides had seen Community Guidelines, booking odds were 3.5% higher than control.</p>
+    <p class="chapter-text">Phone blocking contributed an estimated $3.6M annual upside. Community Guidelines contributed $2.2M annually in activated in-app bookings.</p>
+  </div>
+</section>
+
+<div class="next-project"><a href="./project-service-areas.html">NEXT: SERVICE AREAS →</a></div>
+
+<footer>
+  <h2 class="footer-title">LET'S TALK<br><span>OR HAVE A BEER</span></h2>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/bernardoprd/" target="_blank">LinkedIn</a>
+    <a href="../bernardo.prd.en.2026.pdf" target="_blank">CV</a>
+    <a href="mailto:bernardo.prd@gmail.com">bernardo.prd@gmail.com</a>
+  </div>
+</footer>
+
+<nav class="variant-switcher">
+  <span class="vs-label">variant</span>
+  <a href="../variant-a/" class="vs-link">A</a><a href="../variant-b/" class="vs-link">B</a>
+  <a href="../variant-c/" class="vs-link vs-active">C</a><a href="../variant-d/" class="vs-link">D</a>
+  <a href="../variant-e/" class="vs-link">E</a><a href="../" class="vs-orig">↩</a>
+</nav>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Relationship-based Graduated Fees · Bernardo Prudêncio</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="./index.html" class="logo">Bernardo Prudêncio</a>
+  <nav>
+    <a href="./index.html#about">about</a>
+    <a href="./projects.html">projects</a>
+  </nav>
+</header>
+
+<section class="cs-hero">
+  <div class="cs-hero-image">
+    <img src="../resources/graduated-fees-cover.png" alt="Graduated fee model explorations">
+  </div>
+  <div class="cs-hero-content">
+    <p class="cs-hero-eyebrow">Rover · 2025 · Strategy · In Flight</p>
+    <h1 class="display">Relationship<br>Graduated<br>Fees</h1>
+    <p class="cs-hero-metric">~40% higher take if diverted revenue on platform · 23% take-per-relationship target</p>
+  </div>
+</section>
+
+<div class="metrics-row">
+  <div class="metric-item">
+    <span class="metric-value">~40%</span>
+    <span class="metric-label">Higher marketplace take if diversion captured</span>
+  </div>
+  <div class="metric-item">
+    <span class="metric-value">23%</span>
+    <span class="metric-label">Take-per-relationship growth target (multi-year)</span>
+  </div>
+  <div class="metric-item">
+    <span class="metric-value">in flight</span>
+    <span class="metric-label">Testing now in Canada</span>
+  </div>
+</div>
+
+<div class="cs-chapter">
+  <div class="cs-chapter-image">
+    <img src="../resources/graduated-fees-cover.png" alt="Fee model explorations">
+  </div>
+  <div class="cs-chapter-body">
+    <span class="cs-chapter-number mono">01 · strategy</span>
+    <h2 class="cs-chapter-title display">The Flat Fee Problem</h2>
+    <p>Today, Rover takes a flat percentage on every booking — the same fee for a first booking with a brand-new client and for a long-standing, trust-based relationship. Frustration about fees is a core driver of diversion: sitters feel that "paying the same fee forever" no longer matches the value Rover provides.</p>
+    <p>Internal analysis: if repeat-relationship diversion could be captured, Rover's take could be ~40% higher. The provider strategy North Star is to increase take per relationship by ~23% over the next few years — a flat fee doesn't map to that reality.</p>
+    <details class="cs-detail">
+      <summary class="mono">What this project is</summary>
+      <div class="cs-detail-content"><p>A strategic, in-flight project to rethink how Rover charges sitters: instead of a flat percentage, a model where the fee starts higher on first bookings with a client and decreases as that relationship grows. Goal: align fees with the value Rover actually provides.</p></div>
+    </details>
+  </div>
+</div>
+
+<div class="section" style="padding-top: 0; padding-bottom: 3rem;">
+  <div class="wireframe-callout">
+    <div class="wireframe-inner">
+      <span class="wireframe-tag">[ wireframe ]</span>
+      <p class="wireframe-desc">Model evaluation matrix — three models compared across 5 dimensions (comprehension, fairness, gaming risk, revenue impact, segment impact). New vs. repeat / Relationship-based GBV / Account-based GBV. Shows the evaluation framework used to select relationship-based as the test model.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cs-chapter reverse">
+  <div class="cs-chapter-image">
+    <img src="../resources/graduated-fees-strategy.png" alt="Model options">
+  </div>
+  <div class="cs-chapter-body">
+    <span class="cs-chapter-number mono">02 · model selection</span>
+    <h2 class="cs-chapter-title display">Three Models, One Test</h2>
+    <p>We mapped three possible models: new vs. repeat (lower fee on all repeat bookings); relationship-based GBV (fee drops as cumulative booking value with a specific client hits milestones); and account-based GBV (fee drops as total Rover earnings hit milestones).</p>
+    <p>We assessed each along: comprehension, fairness, gaming risk, revenue impact, and segment impact on top sitters who drive ~75% of earnings. We landed on relationship-based — best match to sitter mental models of "fair vs. unfair" fees. They think per client, not per year.</p>
+    <details class="cs-detail">
+      <summary class="mono">Why not new vs. repeat?</summary>
+      <div class="cs-detail-content"><p>Too easy to game, and weak at directing behaviour. Account-based was conceptually cleaner but less aligned with how sitters actually think about fairness.</p></div>
+    </details>
+  </div>
+</div>
+
+<div class="cs-chapter">
+  <div class="cs-chapter-image">
+    <img src="../resources/graduated-fees-relationship.png" alt="Relationship page design">
+  </div>
+  <div class="cs-chapter-body">
+    <span class="cs-chapter-number mono">03 · the relationship page</span>
+    <h2 class="cs-chapter-title display">A New Source of Truth</h2>
+    <p>The test model: higher fee on the first slice of relationship GBV (e.g. 28–35% up to a threshold), lower fee once the relationship hits that milestone (e.g. 10–15% after $X). Each owner–sitter pair has its own progress; once unlocked, the lower tier is permanent for future bookings.</p>
+    <p>Core design challenge: sitters currently cannot see GBV per client or how fees are calculated per relationship. I explored small tweaks to payment history and reworking Rebook into a client-centric view — but concluded that a dedicated Relationship page is necessary.</p>
+    <details class="cs-detail">
+      <summary class="mono">My contributions</summary>
+      <div class="cs-detail-content"><p>Co-creating the evaluation framework, leading the relationship-based experience exploration, writing the deep-dives that informed the 1-pager, and defining the MVP Relationship page scope and touchpoints needed to make the model explainable.</p></div>
+    </details>
+  </div>
+</div>
+
+<div class="section" style="padding-top: 0; padding-bottom: 3rem;">
+  <div class="wireframe-callout">
+    <div class="wireframe-inner">
+      <span class="wireframe-tag">[ wireframe ]</span>
+      <p class="wireframe-desc">MVP Relationship page — GBV progress tracker (milestone bar with current vs. threshold), current fee tier display (highlighted tier, locked future tier), transaction history per client. Shows how sitters understand their progress without needing to calculate GBV themselves.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cs-chapter reverse">
+  <div class="cs-chapter-image">
+    <img src="../resources/graduated-fees-challenges.png" alt="UX challenges">
+  </div>
+  <div class="cs-chapter-body">
+    <span class="cs-chapter-number mono">04 · ux challenges</span>
+    <h2 class="cs-chapter-title display">Hard Problems</h2>
+    <p>Model mechanics comprehension: sitters struggled with cumulative GBV, milestones, permanent reductions, and how they applied across services. We leaned on progressive disclosure and anchored everything around "this relationship with this client."</p>
+    <p>Sense of agency: sitters felt some parts depended heavily on owner behaviour. We focused UI on actions sitters control — rebooking on platform, keeping relationships active — and avoided over-promising on things outside their control.</p>
+    <details class="cs-detail">
+      <summary class="mono">Perceived inequality across services</summary>
+      <div class="cs-detail-content"><p>Earnings-based milestones naturally favour high-ticket boarding over low-ticket walking. We accepted this trade-off given boarding's revenue share, baked it into messaging, and considered longer-term point systems to rebalance.</p></div>
+    </details>
+  </div>
+</div>
+
+<!-- WHAT WE'RE MEASURING — the deliberate frame for an in-flight project -->
+<div class="section" style="background: var(--surface);">
+  <div class="section-label">05 · what we're measuring</div>
+  <div style="max-width: 700px;">
+    <h2 class="display" style="font-size: clamp(1.5rem, 3vw, 2.5rem); margin-bottom: 1.5rem;">Success Signals</h2>
+    <p style="color: rgba(240,237,230,0.75); margin-bottom: 1rem;">As a test-phase project, success isn't a single metric — it's a signal set. We're tracking:</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); margin-top: 1.5rem;">
+      <div style="background: var(--surface2); padding: 1.5rem;">
+        <p class="mono" style="font-size: 0.68rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem;">Comprehension</p>
+        <p style="font-size: 0.875rem; color: rgba(240,237,230,0.7);">High comprehension and perceived fairness among top sitters during the Canada test.</p>
+      </div>
+      <div style="background: var(--surface2); padding: 1.5rem;">
+        <p class="mono" style="font-size: 0.68rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem;">Diversion</p>
+        <p style="font-size: 0.875rem; color: rgba(240,237,230,0.7);">No material increase in new-relationship diversion despite higher upfront fees.</p>
+      </div>
+      <div style="background: var(--surface2); padding: 1.5rem;">
+        <p class="mono" style="font-size: 0.68rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem;">Repeat Behaviour</p>
+        <p style="font-size: 0.875rem; color: rgba(240,237,230,0.7);">Improved repeat booking behaviour on platform for eligible relationships over 90-day windows.</p>
+      </div>
+      <div style="background: var(--surface2); padding: 1.5rem;">
+        <p class="mono" style="font-size: 0.68rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem;">GBV Growth</p>
+        <p style="font-size: 0.875rem; color: rgba(240,237,230,0.7);">Per-relationship GBV growth versus control group. A clean signal on all four → broader rollout.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="next-project">
+  <a href="./project-star-sitter.html">next: Star Sitter Program →</a>
+</div>
+
+<footer>
+  <h2 class="footer-heading display">let's talk<br><span>or have a beer</span></h2>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/bernardoprd/" target="_blank">LinkedIn</a>
+    <a href="../bernardo.prd.en.2026.pdf" target="_blank">CV</a>
+    <a href="mailto:bernardo.prd@gmail.com">bernardo.prd@gmail.com</a>
+  </div>
+</footer>
+
+<nav class="variant-switcher" aria-label="Design variants">
+  <span class="vs-label">variant</span>
+  <a href="../variant-a/" class="vs-link vs-active" aria-label="Variant A">A</a>
+  <a href="../variant-b/" class="vs-link" aria-label="Variant B">B</a>
+  <a href="../variant-c/" class="vs-link" aria-label="Variant C">C</a>
+  <a href="../variant-d/" class="vs-link" aria-label="Variant D">D</a>
+  <a href="../variant-e/" class="vs-link" aria-label="Variant E">E</a>
+  <a href="../" class="vs-orig" aria-label="Original site">↩</a>
+</nav>
+
+</body>
+</html>
