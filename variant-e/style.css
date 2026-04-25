@@ -96,10 +96,17 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 .exp-card { padding: 1.75rem; }
 .exp-card h3 { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1rem; }
-.exp-list { display: flex; flex-direction: column; gap: 0.65rem; }
+.exp-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.exp-entry { display: flex; flex-direction: column; gap: 0.1rem; }
 .exp-row { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; }
 .exp-co { font-size: 0.875rem; font-weight: 600; }
 .exp-yr { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); white-space: nowrap; }
+.exp-role { font-size: 0.72rem; color: var(--muted); }
+.exp-detail { margin-top: 0.35rem; }
+.exp-detail summary { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); cursor: pointer; list-style: none; }
+.exp-detail summary::-webkit-details-marker { display: none; }
+.exp-detail ul { padding-top: 0.5rem; padding-left: 1rem; font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
+.exp-detail li { margin-bottom: 0.3rem; }
 
 .contact-card { padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between; }
 .contact-card .ctag { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.68); letter-spacing: 0.08em; margin-bottom: 0.75rem; }
@@ -281,4 +288,19 @@ footer { background: var(--card-dark); color: #fff; padding: 4rem 1.5rem 2.5rem;
   .bento, .cs-bento { grid-template-columns: 1fr; }
   .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-12 { grid-column: span 1; }
   .wm-grid { grid-template-columns: 1fr; }
+
+  /* Mobile narrative order: who → career → credibility → work → contact */
+  #card-name        { order: 1; }
+  #card-bio         { order: 2; }
+  #card-exp         { order: 3; }
+  #card-years       { order: 4; }
+  #card-starsitter  { order: 5; }
+  #card-metric-48   { order: 6; }
+  #card-gradfees    { order: 7; }
+  #card-serviceareas { order: 8; }
+  #card-metric-7    { order: 9; }
+  #card-diversion   { order: 10; }
+  #card-metric-5m   { order: 11; }
+  #card-contact     { order: 12; }
+  #card-cv          { order: 13; }
 }
