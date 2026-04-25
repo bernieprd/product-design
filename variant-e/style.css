@@ -34,12 +34,14 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .site-header nav { display: flex; gap: 1.5rem; }
 .site-header nav a { font-size: 0.8rem; font-weight: 500; color: var(--muted); transition: color 0.2s; }
 .site-header nav a:hover { color: var(--accent); }
+.site-header nav a.active { color: var(--text); }
 
 /* ─── BENTO GRID ─── */
 .bento {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-auto-rows: minmax(80px, auto);
+  grid-auto-flow: dense;
   gap: 12px;
   padding: 1.5rem;
 }
@@ -48,6 +50,9 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .card {
   border-radius: var(--radius); overflow: hidden;
   position: relative; background: var(--card);
+}
+.card:not(.card-dark):not(.card-accent):not(.card-image) {
+  border: 1px solid var(--border);
 }
 .card-dark { background: var(--card-dark); color: var(--text-light); }
 .card-accent { background: var(--accent); color: #fff; }
@@ -68,8 +73,17 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 /* ─── CARD TYPES ─── */
 .name-card { padding: 2.5rem; display: flex; flex-direction: column; justify-content: flex-end; }
+.name-role {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  display: block;
+  margin-bottom: 1rem;
+}
 .name-card h1 { font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; }
-.name-card .name-sub { font-size: 0.8rem; font-weight: 500; color: var(--muted); margin-top: 0.5rem; }
+.name-card .name-sub { font-size: 0.8rem; font-weight: 500; color: rgba(255,255,255,0.55); margin-top: 0.5rem; }
 
 .bio-card { padding: 1.75rem; }
 .bio-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
@@ -77,8 +91,8 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .metric-card { padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between; }
 .metric-card .mnum { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
 .metric-card.card-dark .mnum { color: var(--accent); }
-.metric-card .mlabel { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.45); margin-top: 0.4rem; letter-spacing: 0.06em; }
-.metric-card .mproject { font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 0.25rem; }
+.metric-card .mlabel { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.62); margin-top: 0.4rem; letter-spacing: 0.06em; }
+.metric-card .mproject { font-size: 0.75rem; color: rgba(255,255,255,0.48); margin-top: 0.25rem; }
 
 .exp-card { padding: 1.75rem; }
 .exp-card h3 { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1rem; }
@@ -88,10 +102,10 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .exp-yr { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); white-space: nowrap; }
 
 .contact-card { padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between; }
-.contact-card .ctag { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+.contact-card .ctag { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.68); letter-spacing: 0.08em; margin-bottom: 0.75rem; }
 .contact-card h3 { font-size: clamp(1.2rem, 2.5vw, 1.8rem); font-weight: 800; line-height: 1.1; }
 .contact-links { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
-.contact-links a { font-size: 0.8rem; font-weight: 500; color: rgba(255,255,255,0.6); transition: color 0.2s; }
+.contact-links a { font-size: 0.8rem; font-weight: 500; color: rgba(255,255,255,0.75); transition: color 0.2s; }
 .contact-links a:hover { color: #fff; }
 
 /* ─── IMAGE CARD (hover reveal) ─── */
@@ -105,7 +119,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 50%);
   opacity: 1; transition: opacity 0.3s;
 }
-.icr-meta { font-family: var(--font-mono); font-size: 0.62rem; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+.icr-meta { font-family: var(--font-mono); font-size: 0.62rem; color: rgba(255,255,255,0.68); letter-spacing: 0.08em; margin-bottom: 0.4rem; }
 .icr-title { font-size: clamp(1rem, 1.8vw, 1.4rem); font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 0.4rem; }
 .icr-metric { font-size: clamp(1.2rem, 2.5vw, 2rem); font-weight: 800; color: var(--accent); line-height: 1; }
 .icr-hover { opacity: 0; transition: opacity 0.3s; }
@@ -115,22 +129,31 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 /* ─── YEARS CARD ─── */
 .years-card { padding: 1.5rem; display: flex; flex-direction: column; justify-content: flex-end; }
 .years-num { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1; letter-spacing: -0.03em; color: var(--accent); }
-.years-label { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-top: 0.3rem; }
+.years-label { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.58); margin-top: 0.3rem; }
 
 /* ─── CV CARD ─── */
 .cv-card { padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between; }
-.cv-card .cv-label { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; }
+.cv-card .cv-label { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.58); letter-spacing: 0.08em; }
+.cv-card .cv-sub { font-family: var(--font-mono); font-size: 0.58rem; color: rgba(255,255,255,0.38); letter-spacing: 0.06em; margin-top: 0.25rem; }
 .cv-card .cv-link { font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
 
 /* ─── PROJECTS PAGE GRID ─── */
 .projects-header { padding: 2rem 1.5rem 0; }
 .projects-header h1 { font-size: clamp(2rem, 6vw, 5rem); font-weight: 800; letter-spacing: -0.03em; }
+.projects-sub {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  margin-top: 1rem;
+  padding-bottom: 0.5rem;
+}
 .projects-bento { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 1.5rem; }
 .project-card-full { border-radius: var(--radius); overflow: hidden; background: #000; position: relative; aspect-ratio: 4/3; }
 .project-card-full img { transition: transform 0.5s, filter 0.3s; }
 .project-card-full:hover img { transform: scale(1.04); filter: brightness(0.4); }
 .pcf-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, transparent 55%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.75rem; }
-.pcf-meta { font-family: var(--font-mono); font-size: 0.62rem; color: rgba(255,255,255,0.45); letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+.pcf-meta { font-family: var(--font-mono); font-size: 0.62rem; color: rgba(255,255,255,0.65); letter-spacing: 0.08em; margin-bottom: 0.4rem; }
 .pcf-title { font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 0.5rem; }
 .pcf-metric { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 800; color: var(--accent); line-height: 1; }
 .pcf-cta { opacity: 0; transform: translateY(6px); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-top: 0.75rem; transition: opacity 0.3s, transform 0.3s; }
@@ -139,13 +162,13 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 /* ─── CASE STUDY LAYOUT ─── */
 .cs-hero-card { background: #000; border-radius: var(--radius); overflow: hidden; position: relative; aspect-ratio: 21/9; margin: 1.5rem; }
 .cs-hero-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.55); }
-.cs-hero-card-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 2.5rem; }
-.cs-hero-card-overlay .cse { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+.cs-hero-card-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 2.5rem; background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.4) 55%, transparent 100%); }
+.cs-hero-card-overlay .cse { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.65); letter-spacing: 0.1em; margin-bottom: 0.75rem; }
 .cs-hero-card-overlay h1 { font-size: clamp(2rem, 5vw, 4.5rem); font-weight: 800; color: #fff; line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
 .cs-hero-card-overlay .csh-metric { font-size: clamp(1.2rem, 2.5vw, 2rem); font-weight: 800; color: var(--accent); }
 
 /* ─── CS CONTENT BENTO ─── */
-.cs-bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; padding: 0 1.5rem 1.5rem; }
+.cs-bento { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-flow: dense; gap: 12px; padding: 0 1.5rem 1.5rem; }
 .cs-text-card { padding: 2rem; }
 .cs-text-card h2 { font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 700; margin-bottom: 0.75rem; }
 .cs-text-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 0.75rem; }
@@ -155,9 +178,20 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .cs-detail-body { padding-top: 0.75rem; font-size: 0.85rem; color: var(--muted); }
 .cs-metric-card { padding: 2rem; display: flex; flex-direction: column; justify-content: center; }
 .cs-metric-card .cmn { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 800; color: var(--accent); line-height: 1; letter-spacing: -0.03em; }
-.cs-metric-card .cml { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-top: 0.4rem; }
+.cs-metric-card .cml { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.62); margin-top: 0.4rem; }
 .cs-image-card { border-radius: var(--radius); overflow: hidden; background: #000; }
 .cs-image-card img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ─── SECTION LABEL ─── */
+.cs-section-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.5rem;
+}
 
 /* ─── WIREFRAME CARD ─── */
 .wireframe-callout {
@@ -171,11 +205,36 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .wf-inner { padding: 1.75rem; display: flex; flex-direction: column; justify-content: center; height: 100%; }
 .wf-tag { font-family: var(--font-mono); font-size: 0.62rem; color: var(--accent); letter-spacing: 0.1em; display: block; margin-bottom: 0.75rem; }
 .wf-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
-.wf-footer { font-family: var(--font-mono); font-size: 0.62rem; color: rgba(37,99,235,0.4); margin-top: 1rem; }
+.wf-footer { font-family: var(--font-mono); font-size: 0.62rem; color: rgba(37,99,235,0.6); margin-top: 1rem; }
+
+/* ─── WHAT WE'RE MEASURING ─── */
+.wm-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+.wm-item { border-top: 2px solid var(--accent); padding-top: 1rem; }
+.wm-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.wm-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
 
 /* ─── NEXT PROJECT ─── */
-.next-project { display: flex; justify-content: flex-end; padding: 1.5rem; }
-.next-project a { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.next-project {
+  display: flex; justify-content: flex-end; align-items: center;
+  padding: 2rem 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.next-project a {
+  font-size: 0.85rem; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--text); transition: color 0.2s;
+}
+.next-project a:hover { color: var(--accent); }
 
 /* ─── FOOTER ─── */
 footer { background: var(--card-dark); color: #fff; padding: 4rem 1.5rem 2.5rem; }
@@ -209,14 +268,17 @@ footer { background: var(--card-dark); color: #fff; padding: 4rem 1.5rem 2.5rem;
   .col-5 { grid-column: span 7; }
   .col-7 { grid-column: span 12; }
   .col-8 { grid-column: span 12; }
+  .wm-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 768px) {
   .bento, .cs-bento { grid-template-columns: repeat(2, 1fr); }
   .col-3, .col-4, .col-5, .col-6, .col-7, .col-8 { grid-column: span 2; }
   .col-12 { grid-column: span 2; }
   .projects-bento { grid-template-columns: 1fr; }
+  .wm-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 500px) {
   .bento, .cs-bento { grid-template-columns: 1fr; }
   .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-12 { grid-column: span 1; }
+  .wm-grid { grid-template-columns: 1fr; }
 }
