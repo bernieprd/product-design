@@ -153,6 +153,200 @@
     @media (orientation: portrait) and (max-width: 768px) {
       .rotate-prompt { display: flex; }
     }
+
+    /* ─── SLIDE LAYOUTS ─── */
+    .s-cover {
+      display: flex;
+      position: relative;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 5vw 6vw;
+      background: #0F0F0F;
+      overflow: hidden;
+    }
+    .s-cover-bg {
+      position: absolute;
+      inset: 0;
+      background: url('../resources/graduated-fees-cover.png') center/cover;
+      filter: brightness(0.22);
+    }
+    .s-cover-content { position: relative; z-index: 1; }
+
+    .s-split { display: grid; grid-template-columns: 1fr 1fr; }
+    .s-split-left, .s-split-right {
+      padding: 5vw 4vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .s-stats {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4vw 5vw;
+      gap: 3vw;
+      flex-wrap: wrap;
+      background: #0F0F0F;
+      position: relative;
+    }
+    .s-grid {
+      background: #F0F0EE;
+      padding: 4vw 3vw;
+      display: flex;
+      flex-direction: column;
+      gap: 2vw;
+    }
+
+    .stat-card {
+      flex: 1;
+      min-width: 180px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: clamp(1.5rem, 2.5vw, 2.5rem);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .stat-num {
+      font-size: clamp(2.5rem, 6vw, 6rem);
+      font-weight: 800;
+      color: #2563EB;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+    .stat-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.1em;
+    }
+    .stat-desc {
+      font-size: clamp(0.75rem, 1vw, 0.875rem);
+      color: rgba(255,255,255,0.35);
+      line-height: 1.5;
+      margin-top: 0.25rem;
+    }
+    .stat-card.accent-green .stat-num { color: #6FCF97; }
+
+    .slide-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #2563EB;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .slide-label.dim { color: rgba(255,255,255,0.35); }
+
+    .slide-h2 {
+      font-size: clamp(1.4rem, 3vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+    }
+    .slide-h2.light { color: #fff; }
+    .slide-h2.dark { color: #111; }
+
+    .slide-body {
+      font-size: clamp(0.8rem, 1.2vw, 1rem);
+      color: #6B7280;
+      line-height: 1.7;
+      margin-top: 1rem;
+      max-width: 55ch;
+    }
+    .slide-body.light { color: rgba(255,255,255,0.55); }
+
+    .decision-box {
+      background: rgba(37,99,235,0.1);
+      border: 1px solid rgba(37,99,235,0.3);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .decision-box .decision-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      color: #2563EB;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+    .decision-box p {
+      font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+    }
+
+    .model-card {
+      border-radius: 12px;
+      padding: 1.5rem;
+      background: #fff;
+      border: 2px solid #E5E7EB;
+      cursor: pointer;
+      transition: all 0.25s;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .model-card.selected { border-color: #2563EB; background: #EEF2FF; }
+    .model-card .model-name { font-size: 0.875rem; font-weight: 700; color: #111; }
+    .model-card.selected .model-name { color: #2563EB; }
+    .model-card .model-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6B7280;
+    }
+    .model-card .model-check {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 50%;
+      background: #2563EB;
+      color: #fff;
+      font-size: 0.65rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .model-card.selected .model-check { opacity: 1; }
+
+    .eval-matrix { width: 100%; border-collapse: collapse; }
+    .eval-matrix thead th {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.4);
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      text-align: left;
+    }
+    .eval-matrix tbody td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.55);
+    }
+    .eval-matrix tbody td:first-child { color: rgba(255,255,255,0.8); font-weight: 600; }
+    .eval-row-winner { background: rgba(37,99,235,0.08); }
+    .eval-row-winner td:first-child { color: #2563EB; }
+    .eval-dots { display: flex; gap: 4px; }
+    .eval-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.15); }
+    .eval-dot.filled { background: #2563EB; }
+
+    @media (max-width: 768px) {
+      .s-split { grid-template-columns: 1fr; }
+      .s-stats { flex-direction: column; }
+    }
   </style>
 </head>
 <body>
@@ -180,12 +374,186 @@
 
   <!-- slides -->
   <div class="deck-viewport">
-    <section class="slide" data-slide="1"><h2>1</h2></section>
-    <section class="slide" data-slide="2"><h2>2</h2></section>
-    <section class="slide" data-slide="3"><h2>3</h2></section>
-    <section class="slide" data-slide="4"><h2>4</h2></section>
-    <section class="slide" data-slide="5"><h2>5</h2></section>
-    <section class="slide" data-slide="6"><h2>6</h2></section>
+    <section class="slide s-cover" data-slide="1">
+      <div class="s-cover-bg"></div>
+      <div class="s-cover-content">
+        <p class="slide-label">ROVER · PRODUCT DESIGN · 2025 · IN FLIGHT</p>
+        <h1 style="font-family: var(--font-body); font-size: clamp(2.5rem,6vw,6rem); font-weight: 800; color: #fff; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 1.5rem;">Relationship-Based<br>Graduated Fees</h1>
+        <p style="color: rgba(255,255,255,0.55); max-width: 55ch; line-height: 1.6; font-size: clamp(0.875rem,1.5vw,1.1rem);">Aligning sitter fees with relationship value to curb diversion and grow per-relationship revenue. A monetization and experience design problem.</p>
+        <div style="display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 2rem;">
+          <div>
+            <div style="font-size: clamp(1.5rem,3vw,2.5rem); font-weight: 800; color: #2563EB; line-height: 1;">~40%</div>
+            <div style="font-family: var(--font-mono); font-size: 0.6rem; color: rgba(255,255,255,0.4); letter-spacing: 0.1em;">higher take potential</div>
+          </div>
+          <div>
+            <div style="font-size: clamp(1.5rem,3vw,2.5rem); font-weight: 800; color: #2563EB; line-height: 1;">23%</div>
+            <div style="font-family: var(--font-mono); font-size: 0.6rem; color: rgba(255,255,255,0.4); letter-spacing: 0.1em;">per-relationship target</div>
+          </div>
+          <div>
+            <div style="font-size: clamp(1.5rem,3vw,2.5rem); font-weight: 800; color: #6FCF97; line-height: 1;">Canada</div>
+            <div style="font-family: var(--font-mono); font-size: 0.6rem; color: rgba(255,255,255,0.4); letter-spacing: 0.1em;">live pilot</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="slide s-split" data-slide="2" style="background: #0F0F0F;">
+      <div class="s-split-left" style="background: rgba(255,255,255,0.03);">
+        <span class="slide-label dim">01 / PROBLEM</span>
+        <h2 class="slide-h2 light">Same fee.<br>Very different value.</h2>
+        <p class="slide-body light">A flat 20% on booking 1 vs. booking 20 treats every transaction as if Rover's contribution is identical. It isn't.</p>
+        <p class="slide-body light" style="margin-top: 0.5rem;">The fee is the same. Rover's actual contribution isn't.</p>
+      </div>
+      <div style="background: #0F0F0F; padding: 5vw 4vw; display: flex; flex-direction: column; justify-content: center; gap: 1.5rem;">
+        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 1.25rem;">
+          <h4 style="color: rgba(255,255,255,0.8); font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem;">Booking #1 — New client</h4>
+          <p style="color: rgba(255,255,255,0.4); font-size: 0.75rem; line-height: 1.6;">Discovery, trust-building, payment infrastructure, protection. Rover earns its cut.</p>
+          <div style="margin-top: 1rem; font-size: 1.5rem; font-weight: 800; color: rgba(255,255,255,0.6);">20%</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 1.25rem;">
+          <h4 style="color: rgba(255,255,255,0.8); font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem;">Booking #20 — Trusted relationship</h4>
+          <p style="color: rgba(255,255,255,0.4); font-size: 0.75rem; line-height: 1.6;">Owner and sitter know each other. Rover is just the payment rail. Same cut anyway.</p>
+          <div style="margin-top: 1rem; font-size: 1.5rem; font-weight: 800; color: rgba(255,255,255,0.6);">20%</div>
+        </div>
+      </div>
+    </section>
+    <section class="slide s-stats" data-slide="3">
+      <div style="position: absolute; top: 4vw; left: 5vw;">
+        <span class="slide-label dim">02 / CONTEXT</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Revenue diverted off-platform</span>
+        <div class="stat-num">~20%</div>
+        <p class="stat-desc">of total revenue is lost to off-platform bookings. Fee frustration on repeat relationships is the primary driver.</p>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Higher take potential</span>
+        <div class="stat-num">~40%</div>
+        <p class="stat-desc">If diverted repeat-relationship revenue were captured, Rover's marketplace take could be ~40% higher.</p>
+      </div>
+      <div class="stat-card accent-green">
+        <span class="stat-label">Per-relationship growth target</span>
+        <div class="stat-num">23%</div>
+        <p class="stat-desc">The provider strategy North Star: increase take per relationship, not just per booking.</p>
+      </div>
+    </section>
+    <section class="slide s-split" data-slide="4">
+      <div class="s-split-left">
+        <span class="slide-label">03 / WHAT WE TRIED</span>
+        <h2 class="slide-h2 dark">The blunt tool<br>didn't work.</h2>
+        <p class="slide-body">A 5% fee test in ES+GB — flat reduction for daytime services — was the first hypothesis: lower the fee, reduce diversion. Simple. But the results were clear.</p>
+        <div class="decision-box" style="background: rgba(111,207,151,0.06); border-color: rgba(111,207,151,0.25);">
+          <span class="decision-label" style="color: #6FCF97;">WHAT WE LEARNED</span>
+          <p style="color: rgba(0,0,0,0.55);">No meaningful change in overall diversion. Material financial risk if scaled. Just lowering the fee is a blunt tool — it doesn't target the right relationship moments.</p>
+        </div>
+      </div>
+      <div class="s-split-right">
+        <div style="background: #fff; border: 1px solid #E5E7EB; border-radius: 12px; padding: 1.5rem;">
+          <div style="font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: #6B7280; margin-bottom: 0.75rem;">TESTED: ES + GB</div>
+          <div style="font-size: 2rem; font-weight: 800; color: #111; line-height: 1;">5%</div>
+          <div style="font-size: 0.75rem; color: #6B7280; margin-top: 0.25rem; margin-bottom: 1rem;">Flat fee for daytime services</div>
+          <div style="border-top: 1px solid #E5E7EB; padding-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; color: #6B7280; margin-bottom: 0.25rem;">DIVERSION CHANGE</div>
+              <div style="font-size: 1.25rem; font-weight: 800; color: #111;">~0</div>
+            </div>
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; color: #6B7280; margin-bottom: 0.25rem;">FINANCIAL RISK</div>
+              <div style="font-size: 1.25rem; font-weight: 800; color: #DC2626;">High</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="slide s-grid" data-slide="5">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; padding: 0 0 1rem;">
+        <div>
+          <span class="slide-label">04 / STRATEGY</span>
+          <h2 style="font-size: clamp(1.2rem,2.5vw,2rem); font-weight: 800; color: #111; letter-spacing: -0.02em;">Three models. One test.</h2>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 0.6rem; color: #6B7280; letter-spacing: 0.05em;">Click to explore →</div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; flex: 1;">
+        <div class="model-card" onclick="selectModel(this, 0)">
+          <span class="model-tag">Model A</span>
+          <span class="model-name">New vs. Repeat</span>
+          <p style="font-size: 0.78rem; color: #6B7280; line-height: 1.5;">Lower fee on all repeat bookings, flat on all first bookings.</p>
+          <span class="model-check">✓</span>
+        </div>
+        <div class="model-card selected" onclick="selectModel(this, 1)">
+          <span class="model-tag">Model B · Selected</span>
+          <span class="model-name">Relationship-Based GBV</span>
+          <p style="font-size: 0.78rem; color: #6B7280; line-height: 1.5;">Fee starts higher per client pair, drops as cumulative GBV hits milestones.</p>
+          <span class="model-check">✓</span>
+        </div>
+        <div class="model-card" onclick="selectModel(this, 2)">
+          <span class="model-tag">Model C</span>
+          <span class="model-name">Account-Based GBV</span>
+          <p style="font-size: 0.78rem; color: #6B7280; line-height: 1.5;">Fee starts higher overall, drops as sitter's total Rover earnings hit annual milestones.</p>
+          <span class="model-check">✓</span>
+        </div>
+      </div>
+      <div id="modelDetail" style="background: #fff; border: 1px solid #E5E7EB; border-radius: 12px; padding: 1.25rem 1.5rem; display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem;">
+        <div>
+          <div style="font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: #6B7280; margin-bottom: 0.4rem;">COMPREHENSION</div>
+          <p id="md-comp" style="font-size: 0.8rem; color: #111; line-height: 1.55;">High mental model match. Sitters track clients, not annual totals. 'This client, this relationship.'</p>
+        </div>
+        <div>
+          <div style="font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: #6B7280; margin-bottom: 0.4rem;">GAMING RISK</div>
+          <p id="md-game" style="font-size: 0.8rem; color: #111; line-height: 1.55;">Moderate. GBV-based threshold mitigates booking-split gaming vs. count-based thresholds.</p>
+        </div>
+        <div>
+          <div style="font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: #6B7280; margin-bottom: 0.4rem;">VERDICT</div>
+          <p id="md-verdict" style="font-size: 0.8rem; color: #2563EB; font-weight: 600; line-height: 1.55;">Best match to sitter mental models. Testing first in Canada.</p>
+        </div>
+      </div>
+    </section>
+    <section class="slide" data-slide="6" style="background: #0F0F0F; padding: 4vw 5vw; display: flex; flex-direction: column; justify-content: center;">
+      <span class="slide-label dim">05 / EVALUATION</span>
+      <h2 class="slide-h2 light" style="margin-bottom: 2rem;">How they scored.</h2>
+      <table class="eval-matrix">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>New vs. Repeat</th>
+            <th>Relationship-based</th>
+            <th>Account-based</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Comprehension</td>
+            <td><div class="eval-dots"><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot filled"></div></div></td>
+          </tr>
+          <tr class="eval-row-winner">
+            <td>Fairness match</td>
+            <td><div class="eval-dots"><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot filled"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+          </tr>
+          <tr>
+            <td>Gaming resistance</td>
+            <td><div class="eval-dots"><div class="eval-dot filled"></div><div class="eval-dot"></div><div class="eval-dot"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot"></div></div></td>
+          </tr>
+          <tr>
+            <td>Revenue upside</td>
+            <td><div class="eval-dots"><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot filled"></div></div></td>
+          </tr>
+          <tr>
+            <td>Top sitter impact</td>
+            <td><div class="eval-dots"><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot filled"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top: 1.5rem; font-family: var(--font-mono); font-size: 0.58rem; color: rgba(255,255,255,0.4); letter-spacing: 0.05em;">↑ Relationship-based wins on fairness match — the dimension that drives diversion behavior</p>
+    </section>
     <section class="slide" data-slide="7"><h2>7</h2></section>
     <section class="slide" data-slide="8"><h2>8</h2></section>
     <section class="slide" data-slide="9"><h2>9</h2></section>
@@ -264,6 +632,23 @@
     function onSlideEnter(idx) {
       // stub — fill per slide as content is added
     }
+
+    const modelData = [
+      { comp: "Simple but misaligned. Doesn't match how sitters think about fairness — per client, not per booking type.", game: "High gaming risk. Splitting a booking into two appears as 'new' every time.", verdict: "Too easy to game, weak at directing loyalty behaviour. Not selected." },
+      { comp: "High mental model match. Sitters track clients, not annual totals. 'This client, this relationship.'", game: "Moderate. GBV-based threshold mitigates booking-split gaming vs. count-based thresholds.", verdict: "Best match to sitter mental models. Testing first in Canada." },
+      { comp: "Conceptually cleaner — one annual number. But misaligned with how sitters describe unfairness.", game: "Low. Annual GBV is harder to game and more predictable.", verdict: "Good long-term complement. Backlogged as account-based layer after relationship model validates." }
+    ];
+    window.selectModel = function(el, idx) {
+      document.querySelectorAll('.model-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      const d = modelData[idx];
+      document.getElementById('md-comp').textContent = d.comp;
+      document.getElementById('md-game').textContent = d.game;
+      const v = document.getElementById('md-verdict');
+      v.textContent = d.verdict;
+      v.style.color = idx === 1 ? '#2563EB' : '#6B7280';
+      v.style.fontWeight = idx === 1 ? '600' : '400';
+    };
 
     // keyboard
     document.addEventListener('keydown', e => {
