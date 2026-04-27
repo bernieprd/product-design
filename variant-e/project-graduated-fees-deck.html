@@ -478,6 +478,71 @@
       padding: 5vw;
       text-align: center;
     }
+
+    /* ─── SLIDE 13–18 COMPONENTS ─── */
+    .measure-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      border-top: 3px solid #2563EB;
+    }
+    .measure-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: #2563EB;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .measure-title { font-size: clamp(0.875rem, 1.5vw, 1.1rem); font-weight: 700; color: #111; }
+    .measure-body { font-size: clamp(0.72rem, 1vw, 0.85rem); color: #6B7280; line-height: 1.6; }
+
+    .slide-tag {
+      display: inline-flex;
+      align-items: center;
+      background: #2563EB;
+      color: #fff;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.65rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+    .slide-tag.green { background: #1A2A1A; color: #6FCF97; border: 1px solid rgba(111,207,151,0.3); }
+
+    .s-closing { background: #0F0F0F; display: grid; grid-template-columns: 1fr 1fr; }
+    .s-closing-left {
+      padding: 6vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: rgba(255,255,255,0.03);
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .s-closing-right {
+      padding: 6vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .contact-item { display: flex; flex-direction: column; gap: 0.25rem; }
+    .contact-item-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .contact-item-val { font-size: clamp(0.8rem, 1.2vw, 1rem); color: rgba(255,255,255,0.65); font-weight: 500; }
+
+    @media (max-width: 768px) {
+      .s-closing { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -854,12 +919,203 @@
         </div>
       </div>
     </section>
-    <section class="slide" data-slide="13"><h2>13</h2></section>
-    <section class="slide" data-slide="14"><h2>14</h2></section>
-    <section class="slide" data-slide="15"><h2>15</h2></section>
-    <section class="slide" data-slide="16"><h2>16</h2></section>
-    <section class="slide" data-slide="17"><h2>17</h2></section>
-    <section class="slide" data-slide="18"><h2>18</h2></section>
+    <section class="slide s-split" data-slide="13">
+      <div class="s-split-left">
+        <span class="slide-label">CHALLENGE 04</span>
+        <h2 class="slide-h2 dark">Threshold crossings.</h2>
+        <p class="slide-body">When a single booking crosses the GBV milestone mid-transaction, how do you apply the fee? Two options were debated at length.</p>
+        <div class="decision-box">
+          <span class="decision-label">DECISION</span>
+          <p>Split-fee is the truthful model for the relationship test. Cashback is easier to display but feels delayed and transactional. Backlogged for when account-based layer is added.</p>
+        </div>
+      </div>
+      <div class="s-split-right" style="background: #F0F0EE; display: flex; flex-direction: column; justify-content: center; gap: 1.25rem; padding: 4vw;">
+        <div style="background: #fff; border: 2px solid #2563EB; border-radius: 12px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <span style="font-size: 0.875rem; font-weight: 700; color: #111;">Split-fee</span>
+            <span style="background: #2563EB; color: #fff; font-family: var(--font-mono); font-size: 0.55rem; padding: 0.2rem 0.5rem; border-radius: 100px; letter-spacing: 0.08em;">CHOSEN</span>
+          </div>
+          <p style="font-size: 0.75rem; color: var(--muted); line-height: 1.5;">First $X of booking: 28% fee. Remaining amount: 12% fee. Applied in the same transaction. Accurate and honest.</p>
+        </div>
+        <div style="background: #fff; border: 1px solid #E5E7EB; border-radius: 12px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; opacity: 0.6;">
+          <span style="font-size: 0.875rem; font-weight: 700; color: #111;">Cashback</span>
+          <p style="font-size: 0.75rem; color: var(--muted); line-height: 1.5;">Full 28% at booking time. Rebate issued after. Easier to display — but delayed reward feels arbitrary. Backlogged.</p>
+        </div>
+      </div>
+    </section>
+    <section class="slide" data-slide="14" style="background: #F0F0EE; padding: 4vw 5vw; display: flex; flex-direction: column; justify-content: center;">
+      <span class="slide-label">09 / KEY ARTIFACT</span>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3vw; align-items: start; margin-top: 1rem;">
+        <div>
+          <h2 class="slide-h2 dark" style="margin-bottom: 1rem;">The Relationship Page.</h2>
+          <p class="slide-body" style="margin-top: 0;">The central UX artifact that makes the model legible. Without it, sitters have no way to verify their tier, check progress, or understand why a fee changed.</p>
+          <ul class="slide-bullets dark">
+            <li>GBV progress tracker per client</li>
+            <li>Current fee tier badge</li>
+            <li>Locked next-tier preview</li>
+            <li>Per-client transaction history</li>
+            <li>Rebook CTA — keeps flow on-platform</li>
+          </ul>
+          <div style="margin-top: 1.5rem; background: #EEF2FF; border-radius: 12px; padding: 1rem 1.25rem;">
+            <div style="font-family: var(--font-mono); font-size: 0.58rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem;">DESIGN PRINCIPLE</div>
+            <p style="font-size: 0.875rem; color: #111; line-height: 1.5; font-weight: 500;">You don't need to understand the model to use it — you just need to see your progress.</p>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="background: #fff; border: 1px solid #E5E7EB; border-radius: 12px; padding: 1.5rem;">
+            <div style="font-family: var(--font-mono); font-size: 0.58rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem;">YOUR RELATIONSHIPS</div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 0.875rem; border-bottom: 1px solid #E5E7EB;">
+              <div>
+                <div style="font-size: 0.875rem; font-weight: 600; color: #111;">Sarah M.</div>
+                <div style="font-size: 0.65rem; color: var(--muted); margin-top: 0.1rem;">$340 of $500 · Tier 1</div>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-size: 1rem; font-weight: 800; color: var(--accent);">28%</div>
+                <div style="font-size: 0.6rem; color: var(--muted);">current fee</div>
+              </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.875rem 0; border-bottom: 1px solid #E5E7EB;">
+              <div>
+                <div style="font-size: 0.875rem; font-weight: 600; color: #111;">The Johnson Family</div>
+                <div style="font-size: 0.65rem; color: var(--muted); margin-top: 0.1rem;">$620 · Tier 2 unlocked</div>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-size: 1rem; font-weight: 800; color: #6FCF97;">12%</div>
+                <div style="font-size: 0.6rem; color: var(--muted);">unlocked</div>
+              </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 0.875rem;">
+              <div>
+                <div style="font-size: 0.875rem; font-weight: 600; color: #111;">Alice + Biscuit</div>
+                <div style="font-size: 0.65rem; color: var(--muted); margin-top: 0.1rem;">$85 of $500 · Tier 1</div>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-size: 1rem; font-weight: 800; color: var(--accent);">28%</div>
+                <div style="font-size: 0.6rem; color: var(--muted);">current fee</div>
+              </div>
+            </div>
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 0.58rem; color: var(--muted); text-align: center; letter-spacing: 0.06em;">[ relationship list concept ]</div>
+        </div>
+      </div>
+    </section>
+    <section class="slide s-split" data-slide="15">
+      <div class="s-split-left" style="background: rgba(255,255,255,0.03);">
+        <span class="slide-label dim">10 / IN FLIGHT</span>
+        <h2 class="slide-h2 light">Canada pilot.<br>Live now.</h2>
+        <p class="slide-body light">Testing relationship-based first in Canada — a proxy for the US market. Similar maturity and repeat patterns, lower financial exposure while we validate the model.</p>
+        <ul class="slide-bullets">
+          <li>3-tier GBV structure (exact thresholds under conjoint)</li>
+          <li>Relationship page MVP as primary touch-point</li>
+          <li>Contacts/clients list as entry point</li>
+          <li>Booking-level fee breakdowns per tier</li>
+          <li>System messages + landing page explainer</li>
+        </ul>
+      </div>
+      <div style="background: #0F0F0F; padding: 5vw 4vw; display: flex; flex-direction: column; justify-content: center; gap: 1.5rem;">
+        <div style="background: #1A2A1A; border: 1px solid rgba(111,207,151,0.2); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+          <div style="font-family: var(--font-mono); font-size: 0.58rem; color: #6FCF97; letter-spacing: 0.1em; text-transform: uppercase;">MARKET: CANADA</div>
+          <div style="font-size: 1.5rem; font-weight: 800; color: #fff; line-height: 1;">US proxy</div>
+          <div style="font-size: 0.8rem; color: rgba(255,255,255,0.45); line-height: 1.5;">Similar market maturity and repeat patterns. Lower financial risk during validation.</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+          <div style="font-family: var(--font-mono); font-size: 0.58rem; color: rgba(255,255,255,0.35); letter-spacing: 0.1em; text-transform: uppercase;">WHY NOT ES/GB AGAIN</div>
+          <div style="font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.55;">Different market dynamics and service mix would confound signals on repeat behaviour vs. the previous test.</div>
+        </div>
+      </div>
+    </section>
+    <section class="slide" data-slide="16" style="background: #F0F0EE; padding: 4vw 5vw; display: flex; flex-direction: column; justify-content: center;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; padding: 0 0 1.5rem;">
+        <div>
+          <span class="slide-label">11 / SUCCESS SIGNALS</span>
+          <h2 style="font-size: clamp(1.2rem,2.5vw,2rem); font-weight: 800; color: #111; letter-spacing: -0.02em;">What we're watching.</h2>
+        </div>
+        <span class="slide-tag green">In Flight</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; flex: 1;">
+        <div class="measure-card">
+          <span class="measure-label">01</span>
+          <span class="measure-title">Comprehension</span>
+          <span style="font-size: 0.72rem; color: #6B7280; font-style: italic;">Sitters understand and trust the model</span>
+          <p class="measure-body">High comprehension and perceived fairness among top sitters in Canada — particularly those in target deciles.</p>
+        </div>
+        <div class="measure-card">
+          <span class="measure-label">02</span>
+          <span class="measure-title">Diversion</span>
+          <span style="font-size: 0.72rem; color: #6B7280; font-style: italic;">No spike on new relationships</span>
+          <p class="measure-body">No material increase in diversion despite higher upfront fees on first bookings with new clients.</p>
+        </div>
+        <div class="measure-card">
+          <span class="measure-label">03</span>
+          <span class="measure-title">Repeat Bookings</span>
+          <span style="font-size: 0.72rem; color: #6B7280; font-style: italic;">More on-platform repeat behaviour</span>
+          <p class="measure-body">Improved on-platform repeat bookings for eligible relationships in a 90-day measurement window.</p>
+        </div>
+        <div class="measure-card">
+          <span class="measure-label">04</span>
+          <span class="measure-title">GBV Growth</span>
+          <span style="font-size: 0.72rem; color: #6B7280; font-style: italic;">Per-relationship GBV vs. control</span>
+          <p class="measure-body">Clean per-relationship GBV growth signal vs. control group gates broader rollout.</p>
+        </div>
+      </div>
+    </section>
+    <section class="slide" data-slide="17" style="background: #0F0F0F; padding: 4vw 5vw; display: flex; flex-direction: column; justify-content: center;">
+      <span class="slide-label dim">12 / NEXT MOVES</span>
+      <h2 class="slide-h2 light" style="margin-bottom: 2rem;">Two paths forward.</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div style="background: rgba(37,99,235,0.12); border: 1px solid rgba(37,99,235,0.3); border-radius: 12px; padding: 1.75rem;">
+          <div style="font-family: var(--font-mono); font-size: 0.58rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem;">IF SIGNALS ARE STRONG</div>
+          <ul class="slide-bullets">
+            <li>Tune GBV thresholds based on conjoint data</li>
+            <li>Broader rollout to US markets</li>
+            <li>Layer account-based track as a complementary loyalty signal</li>
+            <li>Explore point-based system to rebalance across service types</li>
+          </ul>
+        </div>
+        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.75rem;">
+          <div style="font-family: var(--font-mono); font-size: 0.58rem; color: rgba(255,255,255,0.35); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem;">IF SIGNALS ARE MIXED</div>
+          <ul class="slide-bullets">
+            <li>Explore point-based adjustments to rebalance across services</li>
+            <li>Consider a simpler account-based layer for overall loyalty</li>
+            <li>Iterate on Relationship page to close comprehension gaps</li>
+            <li>Revisit threshold mechanics based on sitter feedback</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top: 1.5rem; background: rgba(255,255,255,0.04); border-radius: 12px; padding: 1.25rem 1.5rem;">
+        <p style="font-size: 0.875rem; color: rgba(255,255,255,0.45); line-height: 1.6;">Long-term: account-based track as a complementary path — where a status model (like airlines) makes sense for sitters who want yearly loyalty rewards, without undermining the relationship-level mechanic.</p>
+      </div>
+    </section>
+    <section class="slide s-closing" data-slide="18">
+      <div class="s-closing-left">
+        <div style="margin-bottom: 3rem;">
+          <span class="slide-label dim" style="margin-bottom: 1.5rem;">REFLECTION</span>
+          <div class="slide-quote" style="font-size: clamp(1.4rem,3.5vw,3.5rem);">Fee design is <em>experience</em> design.</div>
+          <p class="slide-body light" style="margin-top: 1.5rem; max-width: 40ch;">A model that sitters can understand, track, and trust is as important as one that works financially. The Relationship page isn't a nice-to-have — it's what makes the model real.</p>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 0.58rem; color: rgba(255,255,255,0.2); letter-spacing: 0.1em;">Rover · Product Design · 2025</div>
+      </div>
+      <div class="s-closing-right">
+        <div>
+          <div style="font-family: var(--font-mono); font-size: 0.6rem; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem;">BERNARDO PRUDÊNCIO</div>
+          <div style="font-size: clamp(1.1rem,2.5vw,2rem); font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 2rem;">Senior Product Designer<br><span style="color: #2563EB;">Rover</span></div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <div class="contact-item">
+            <span class="contact-item-label">EMAIL</span>
+            <span class="contact-item-val">bernardo.prd@gmail.com</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-label">LINKEDIN</span>
+            <span class="contact-item-val">linkedin.com/in/bernardoprd</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-label">PORTFOLIO</span>
+            <a href="./project-graduated-fees.html" style="color: #2563EB; font-weight: 500; text-decoration: none; font-size: clamp(0.8rem,1.2vw,1rem);">← View case study</a>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
   <script>
