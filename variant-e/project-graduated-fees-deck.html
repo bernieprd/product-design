@@ -346,6 +346,137 @@
     @media (max-width: 768px) {
       .s-split { grid-template-columns: 1fr; }
       .s-stats { flex-direction: column; }
+      .step-flow { flex-direction: column; }
+    }
+
+    /* ─── SLIDE 7–12 COMPONENTS ─── */
+    .step-flow {
+      display: flex;
+      gap: 12px;
+      align-items: stretch;
+      width: 100%;
+      margin-top: 1.5rem;
+    }
+    .step-card {
+      flex: 1;
+      border-radius: 12px;
+      padding: 1.25rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .step-card:nth-child(1) { background: #1e3a5f; }
+    .step-card:nth-child(2) { background: #2563EB; }
+    .step-card:nth-child(3) { background: #1A2A1A; border: 1px solid rgba(111,207,151,0.2); }
+    .step-fee {
+      font-size: clamp(1.5rem, 3.5vw, 3rem);
+      font-weight: 800;
+      line-height: 1;
+    }
+    .step-card:nth-child(1) .step-fee { color: rgba(255,255,255,0.5); }
+    .step-card:nth-child(2) .step-fee { color: #fff; }
+    .step-card:nth-child(3) .step-fee { color: #6FCF97; }
+    .step-desc {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+    .step-sub {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.4;
+      margin-top: 0.25rem;
+    }
+    .step-connector {
+      display: flex;
+      align-items: center;
+      color: rgba(255,255,255,0.2);
+      font-family: 'Space Mono', monospace;
+      font-size: 1rem;
+      padding: 0 0.25rem;
+    }
+    .gbv-track {
+      background: rgba(255,255,255,0.08);
+      border-radius: 100px;
+      height: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+    .gbv-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: #2563EB;
+      width: 0;
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .slide-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+    .slide-bullets li {
+      display: flex;
+      gap: 0.75rem;
+      font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+      color: rgba(255,255,255,0.55);
+      line-height: 1.5;
+      align-items: flex-start;
+    }
+    .slide-bullets li::before {
+      content: '—';
+      color: #2563EB;
+      flex-shrink: 0;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8em;
+      margin-top: 0.1em;
+    }
+    .slide-bullets.dark li { color: #6B7280; }
+    .slide-bullets.dark li::before { color: #2563EB; }
+    .slide-quote {
+      font-size: clamp(1.1rem, 2.5vw, 2.2rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+    }
+    .slide-quote em { color: #2563EB; font-style: normal; }
+    .challenge-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .challenge-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: #2563EB;
+      letter-spacing: 0.1em;
+    }
+    .challenge-title {
+      font-size: clamp(0.875rem, 1.5vw, 1.1rem);
+      font-weight: 700;
+      color: #fff;
+    }
+    .challenge-body {
+      font-size: clamp(0.72rem, 1vw, 0.85rem);
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+    }
+    .s-center {
+      background: #0F0F0F;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 5vw;
+      text-align: center;
     }
   </style>
 </head>
@@ -554,12 +685,175 @@
       </table>
       <p style="margin-top: 1.5rem; font-family: var(--font-mono); font-size: 0.58rem; color: rgba(255,255,255,0.4); letter-spacing: 0.05em;">↑ Relationship-based wins on fairness match — the dimension that drives diversion behavior</p>
     </section>
-    <section class="slide" data-slide="7"><h2>7</h2></section>
-    <section class="slide" data-slide="8"><h2>8</h2></section>
-    <section class="slide" data-slide="9"><h2>9</h2></section>
-    <section class="slide" data-slide="10"><h2>10</h2></section>
-    <section class="slide" data-slide="11"><h2>11</h2></section>
-    <section class="slide" data-slide="12"><h2>12</h2></section>
+    <section class="slide s-split" data-slide="7">
+      <div class="s-split-left">
+        <span class="slide-label">06 / MODEL</span>
+        <h2 class="slide-h2 dark">The 3-tier<br>relationship model.</h2>
+        <p class="slide-body">Each owner–sitter pair has its own GBV track. Fee starts higher, drops once the relationship hits a milestone. Once unlocked, the lower tier is permanent.</p>
+        <ul class="slide-bullets dark">
+          <li>Per relationship: each owner–sitter pair tracked independently</li>
+          <li>GBV-based: cumulative booking value, not number of bookings</li>
+          <li>Permanent: milestone unlocked = lower tier forever</li>
+          <li>No recency in v1: no running-in-place pressure</li>
+        </ul>
+      </div>
+      <div class="s-split-right" style="display: flex; flex-direction: column; justify-content: center; padding: 5vw 4vw; gap: 1.5rem;">
+        <div style="font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35);">GBV TIERS — RELATIONSHIP LEVEL</div>
+        <div class="step-flow">
+          <div class="step-card">
+            <div class="step-fee">28–35%</div>
+            <div class="step-desc">TIER 1 · NEW</div>
+            <div class="step-sub">First slice of GBV with a new client. Rover earns acquisition value.</div>
+          </div>
+          <div class="step-connector">→</div>
+          <div class="step-card">
+            <div class="step-fee">10–15%</div>
+            <div class="step-desc">TIER 2 · GROWING</div>
+            <div class="step-sub">Milestone reached. Relationship on-track. Fee drops permanently.</div>
+          </div>
+          <div class="step-connector">→</div>
+          <div class="step-card">
+            <div class="step-fee">Loyal</div>
+            <div class="step-desc">TIER 3 · LOYAL</div>
+            <div class="step-sub">Optional 3rd tier at even lower rate for highest-value pairs.</div>
+          </div>
+        </div>
+        <div style="margin-top: 0.5rem;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+            <span style="font-family: var(--font-mono); font-size: 0.58rem; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; text-transform: uppercase;">GBV PROGRESS — EXAMPLE RELATIONSHIP</span>
+            <span style="font-family: var(--font-mono); font-size: 0.58rem; color: #2563EB; letter-spacing: 0.08em;">65% to milestone</span>
+          </div>
+          <div class="gbv-track"><div class="gbv-fill" id="gbvFill"></div></div>
+        </div>
+      </div>
+    </section>
+    <section class="slide s-center" data-slide="8">
+      <span class="slide-label dim" style="margin-bottom: 1.5rem;">07 / INSIGHT</span>
+      <div class="slide-quote" style="max-width: 28ch;">Sitters think about fees <em>per client</em>,<br>not per year.</div>
+      <p class="slide-body light" style="max-width: 50ch; text-align: center; margin-top: 1.5rem;">Account-based (annual GBV) is cleaner to implement. But when we talked to sitters, they track clients — not totals. 'I've been with this family for 3 years and I still pay 20%.' Relationship-based maps to how fairness actually feels.</p>
+      <div style="margin-top: 2.5rem; display: flex; justify-content: center;">
+        <div class="stat-card" style="flex: 0 1 auto;">
+          <div class="stat-label">Top sitter earnings share</div>
+          <div class="stat-num">~75%</div>
+          <div class="stat-desc">Top sitters drive ~75% of Rover's earnings. This model is designed to resonate with them.</div>
+        </div>
+      </div>
+    </section>
+    <section class="slide" data-slide="9" style="background: #0F0F0F; padding: 4vw 5vw; display: flex; flex-direction: column; justify-content: center;">
+      <span class="slide-label dim">08 / DESIGN</span>
+      <h2 class="slide-h2 light" style="margin-bottom: 2rem; max-width: 20ch;">Designing a regressive tax that feels transparent.</h2>
+      <div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 12px;">
+        <div class="challenge-card">
+          <span class="challenge-num">01</span>
+          <span class="challenge-title">Model Comprehension</span>
+          <p class="challenge-body">Cumulative GBV, milestones, permanent reductions — sitters struggled with all three at once.</p>
+        </div>
+        <div class="challenge-card">
+          <span class="challenge-num">02</span>
+          <span class="challenge-title">Perceived Fairness</span>
+          <p class="challenge-body">Boarding ($500/night) reaches milestones faster than walking ($20/walk). Is that fair?</p>
+        </div>
+        <div class="challenge-card">
+          <span class="challenge-num">03</span>
+          <span class="challenge-title">Sense of Agency</span>
+          <p class="challenge-body">Milestone progress depends on owner repeat behaviour, not just sitter effort. How do you design for that?</p>
+        </div>
+        <div class="challenge-card">
+          <span class="challenge-num">04</span>
+          <span class="challenge-title">Threshold Crossings</span>
+          <p class="challenge-body">A booking that crosses a tier boundary mid-transaction. Split fee vs. cashback — which is right?</p>
+        </div>
+      </div>
+    </section>
+    <section class="slide s-split" data-slide="10">
+      <div class="s-split-left">
+        <span class="slide-label">CHALLENGE 01</span>
+        <h2 class="slide-h2 dark">Comprehension.</h2>
+        <p class="slide-body">Sitters need to understand: what GBV is, how it accumulates, when the tier drops, and that it's permanent. That's four mental models at once.</p>
+        <div class="decision-box">
+          <span class="decision-label">DECISION</span>
+          <p>Progressive disclosure. Anchor everything on 'this relationship with [client name]', not abstract platform rules. The relationship page is the source of truth — you don't need to understand the model to use it.</p>
+        </div>
+      </div>
+      <div class="s-split-right" style="background: #F0F0EE; display: flex; flex-direction: column; justify-content: center; gap: 1.25rem; padding: 4vw;">
+        <div style="background: #fff; border: 1px solid #E5E7EB; border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+          <div style="font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent);">RELATIONSHIP · SARAH &amp; HER DOGS</div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-size: 1.5rem; font-weight: 800; color: #111; line-height: 1;">$340</div>
+              <div style="font-size: 0.72rem; color: var(--muted); margin-top: 0.15rem;">of $500 milestone</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 1.25rem; font-weight: 800; color: var(--accent); line-height: 1;">28%</div>
+              <div style="font-size: 0.72rem; color: var(--muted); margin-top: 0.15rem;">current fee</div>
+            </div>
+          </div>
+          <div style="background: #F0F0EE; height: 8px; border-radius: 100px; overflow: hidden;">
+            <div style="background: #2563EB; width: 68%; height: 100%; border-radius: 100px;"></div>
+          </div>
+          <div style="background: #EEF2FF; border-radius: 8px; padding: 0.75rem; font-size: 0.75rem; color: var(--accent);">$160 more to unlock 12% fee — permanently.</div>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 0.58rem; color: var(--muted); text-align: center; letter-spacing: 0.06em;">[ relationship page concept ]</div>
+      </div>
+    </section>
+    <section class="slide s-split" data-slide="11">
+      <div class="s-split-left">
+        <span class="slide-label">CHALLENGE 02</span>
+        <h2 class="slide-h2 dark">Perceived fairness.</h2>
+        <p class="slide-body">Milestone thresholds based on GBV naturally favour high-ticket services. A boarding sitter reaches $500 in 2–3 bookings. A walker needs 25+.</p>
+        <div class="decision-box">
+          <span class="decision-label">DECISION</span>
+          <p>Accepted in v1 given boarding's revenue share and top-sitter focus. Messaging anchors on the relationship, not the math. Longer term: point-based systems can rebalance across services.</p>
+        </div>
+      </div>
+      <div class="s-split-right" style="background: #F0F0EE; display: flex; flex-direction: column; justify-content: center; gap: 1rem; padding: 4vw;">
+        <div style="background: #fff; border: 1px solid #E5E7EB; border-radius: 12px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem;">
+          <div style="font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);">BOARDING · $300/STAY</div>
+          <div style="font-size: 0.85rem; font-weight: 600; color: #111;">~2 stays to first milestone</div>
+          <div style="background: #F0F0EE; height: 8px; border-radius: 100px; overflow: hidden;">
+            <div style="background: #2563EB; width: 80%; height: 100%; border-radius: 100px;"></div>
+          </div>
+        </div>
+        <div style="background: #fff; border: 1px solid #E5E7EB; border-radius: 12px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem;">
+          <div style="font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);">WALKING · $20/WALK</div>
+          <div style="font-size: 0.85rem; font-weight: 600; color: #111;">~25 walks to first milestone</div>
+          <div style="background: #F0F0EE; height: 8px; border-radius: 100px; overflow: hidden;">
+            <div style="background: #2563EB; width: 15%; height: 100%; border-radius: 100px;"></div>
+          </div>
+        </div>
+        <div style="background: #EEF2FF; border-radius: 8px; padding: 0.75rem; text-align: center; font-size: 0.75rem; color: var(--accent);">Asymmetry accepted in v1. Messaging focused on relationship, not math.</div>
+      </div>
+    </section>
+    <section class="slide s-split" data-slide="12">
+      <div class="s-split-left">
+        <span class="slide-label">CHALLENGE 03</span>
+        <h2 class="slide-h2 dark">Sense of agency.</h2>
+        <p class="slide-body">Reaching a GBV milestone depends partly on the owner repeating — not just sitter quality or effort. That felt unfair in research.</p>
+        <div class="decision-box">
+          <span class="decision-label">DECISION</span>
+          <p>Focus UI and messaging on what sitters control: booking on-platform, keeping relationships active, sending post-stay messages. Never show progress as purely dependent on owner behaviour.</p>
+        </div>
+      </div>
+      <div class="s-split-right" style="background: #F0F0EE; display: flex; flex-direction: column; justify-content: center; gap: 1rem; padding: 4vw;">
+        <div style="font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.25rem;">ACTIONS IN YOUR CONTROL</div>
+        <div style="background: #fff; border: 1px solid #E5E7EB; border-radius: 10px; padding: 0.875rem 1.1rem; display: flex; gap: 0.75rem; align-items: center;">
+          <div style="width: 8px; height: 8px; border-radius: 50%; background: #2563EB; flex-shrink: 0;"></div>
+          <span style="font-size: 0.85rem; color: #111;">Book this stay on Rover</span>
+        </div>
+        <div style="background: #fff; border: 1px solid #E5E7EB; border-radius: 10px; padding: 0.875rem 1.1rem; display: flex; gap: 0.75rem; align-items: center;">
+          <div style="width: 8px; height: 8px; border-radius: 50%; background: #2563EB; flex-shrink: 0;"></div>
+          <span style="font-size: 0.85rem; color: #111;">Remind client to rebook via Rover</span>
+        </div>
+        <div style="background: #fff; border: 1px solid #E5E7EB; border-radius: 10px; padding: 0.875rem 1.1rem; display: flex; gap: 0.75rem; align-items: center;">
+          <div style="width: 8px; height: 8px; border-radius: 50%; background: #2563EB; flex-shrink: 0;"></div>
+          <span style="font-size: 0.85rem; color: #111;">Send post-stay message to stay top of mind</span>
+        </div>
+        <div style="background: rgba(220,38,38,0.06); border: 1px solid rgba(220,38,38,0.15); border-radius: 10px; padding: 0.875rem 1.1rem; display: flex; gap: 0.75rem; align-items: center;">
+          <div style="width: 8px; height: 8px; border-radius: 50%; background: #DC2626; flex-shrink: 0;"></div>
+          <span style="font-size: 0.85rem; color: rgba(220,38,38,0.8);">Waiting for client to decide (not shown)</span>
+        </div>
+      </div>
+    </section>
     <section class="slide" data-slide="13"><h2>13</h2></section>
     <section class="slide" data-slide="14"><h2>14</h2></section>
     <section class="slide" data-slide="15"><h2>15</h2></section>
@@ -630,7 +924,16 @@
     }
 
     function onSlideEnter(idx) {
-      // stub — fill per slide as content is added
+      if (idx === 6) {
+        const fill = document.getElementById('gbvFill');
+        if (fill) {
+          fill.style.transition = 'none';
+          fill.style.width = '0%';
+          fill.offsetHeight;
+          fill.style.transition = 'width 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+          fill.style.width = '65%';
+        }
+      }
     }
 
     const modelData = [
