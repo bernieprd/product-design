@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Graduated Fees · Deck · Bernardo Prudêncio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ─── TOKENS ─── */
+    :root {
+      --bg: #F0F0EE;
+      --card: #FFFFFF;
+      --card-dark: #0F0F0F;
+      --text: #111111;
+      --text-light: #FFFFFF;
+      --muted: #6B7280;
+      --accent: #2563EB;
+      --accent-bg: #EEF2FF;
+      --border: #E5E7EB;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-mono: 'Space Mono', monospace;
+      --radius: 12px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      overflow: hidden;
+      height: 100%;
+      background: #0F0F0F;
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      color: var(--text-light);
+    }
+
+    /* ─── SLIDE ─── */
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ─── PROGRESS BAR ─── */
+    .deck-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: rgba(255,255,255,0.1);
+      z-index: 100;
+    }
+    .deck-progress-fill {
+      height: 100%;
+      background: var(--accent);
+      transition: width 0.35s ease;
+    }
+
+    /* ─── EXIT LINK ─── */
+    .deck-exit {
+      position: fixed;
+      top: 1.1rem;
+      right: 1.25rem;
+      z-index: 100;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .deck-exit:hover { color: rgba(255,255,255,0.75); }
+
+    /* ─── CONTROLS PILL ─── */
+    .deck-controls {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.75rem;
+      background: rgba(20,20,20,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 999px;
+    }
+    .deck-controls button {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.75);
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 0.15rem 0.35rem;
+      border-radius: 6px;
+      line-height: 1;
+      transition: color 0.15s, background 0.15s;
+    }
+    .deck-controls button:hover:not(:disabled) {
+      color: #fff;
+      background: rgba(255,255,255,0.1);
+    }
+    .deck-controls button:disabled {
+      color: rgba(255,255,255,0.2);
+      cursor: default;
+    }
+    #slideCounter {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.45);
+      min-width: 3.5rem;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── DECK VIEWPORT ─── */
+    .deck-viewport {
+      position: fixed;
+      inset: 0;
+    }
+
+    /* ─── ROTATE PROMPT ─── */
+    .rotate-prompt {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: #0F0F0F;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      color: rgba(255,255,255,0.6);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-align: center;
+    }
+    .rotate-prompt .rotate-icon {
+      font-size: 2.5rem;
+      animation: rotate-hint 2s ease-in-out infinite;
+    }
+    @keyframes rotate-hint {
+      0%, 100% { transform: rotate(0deg); }
+      40%       { transform: rotate(90deg); }
+      60%       { transform: rotate(90deg); }
+    }
+    @media (orientation: portrait) and (max-width: 768px) {
+      .rotate-prompt { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- rotate prompt -->
+  <div class="rotate-prompt">
+    <span class="rotate-icon">📱</span>
+    <span>Rotate your device</span>
+  </div>
+
+  <!-- progress bar -->
+  <div class="deck-progress">
+    <div class="deck-progress-fill" id="progressFill"></div>
+  </div>
+
+  <!-- exit link -->
+  <a class="deck-exit" href="./project-graduated-fees.html">← case study</a>
+
+  <!-- controls pill -->
+  <div class="deck-controls">
+    <button id="prevBtn" aria-label="Previous slide">&#8592;</button>
+    <span id="slideCounter">1 / 18</span>
+    <button id="nextBtn" aria-label="Next slide">&#8594;</button>
+  </div>
+
+  <!-- slides -->
+  <div class="deck-viewport">
+    <section class="slide" data-slide="1"><h2>1</h2></section>
+    <section class="slide" data-slide="2"><h2>2</h2></section>
+    <section class="slide" data-slide="3"><h2>3</h2></section>
+    <section class="slide" data-slide="4"><h2>4</h2></section>
+    <section class="slide" data-slide="5"><h2>5</h2></section>
+    <section class="slide" data-slide="6"><h2>6</h2></section>
+    <section class="slide" data-slide="7"><h2>7</h2></section>
+    <section class="slide" data-slide="8"><h2>8</h2></section>
+    <section class="slide" data-slide="9"><h2>9</h2></section>
+    <section class="slide" data-slide="10"><h2>10</h2></section>
+    <section class="slide" data-slide="11"><h2>11</h2></section>
+    <section class="slide" data-slide="12"><h2>12</h2></section>
+    <section class="slide" data-slide="13"><h2>13</h2></section>
+    <section class="slide" data-slide="14"><h2>14</h2></section>
+    <section class="slide" data-slide="15"><h2>15</h2></section>
+    <section class="slide" data-slide="16"><h2>16</h2></section>
+    <section class="slide" data-slide="17"><h2>17</h2></section>
+    <section class="slide" data-slide="18"><h2>18</h2></section>
+  </div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const total = slides.length;
+    const progressFill = document.getElementById('progressFill');
+    const slideCounter = document.getElementById('slideCounter');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let current = 0;
+
+    function goTo(idx, direction) {
+      const outgoing = slides[current];
+      const incoming = slides[idx];
+      const dir = direction ?? (idx >= current ? 1 : -1);
+
+      // animate outgoing
+      outgoing.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      outgoing.style.opacity = '0';
+      outgoing.style.transform = dir === 1 ? 'translateX(-60px)' : 'translateX(60px)';
+      outgoing.style.pointerEvents = 'none';
+
+      setTimeout(() => {
+        outgoing.style.transition = 'none';
+        outgoing.style.transform = dir === 1 ? 'translateX(60px)' : 'translateX(-60px)';
+      }, 420);
+
+      // prepare incoming off-screen
+      incoming.style.transition = 'none';
+      incoming.style.transform = dir === 1 ? 'translateX(60px)' : 'translateX(-60px)';
+      incoming.style.opacity = '0';
+      incoming.style.pointerEvents = 'none';
+
+      // force reflow
+      void incoming.offsetWidth;
+
+      // animate incoming
+      incoming.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      incoming.style.transform = 'translateX(0)';
+      incoming.style.opacity = '1';
+      incoming.style.pointerEvents = 'all';
+
+      current = idx;
+      updateUI();
+      onSlideEnter(idx);
+    }
+
+    function next() {
+      if (current < total - 1) goTo(current + 1, 1);
+    }
+
+    function prev() {
+      if (current > 0) goTo(current - 1, -1);
+    }
+
+    function updateUI() {
+      progressFill.style.width = ((current + 1) / total * 100) + '%';
+      slideCounter.textContent = (current + 1) + ' / ' + total;
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === total - 1;
+    }
+
+    function onSlideEnter(idx) {
+      // stub — fill per slide as content is added
+    }
+
+    // keyboard
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        next();
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        prev();
+      }
+    });
+
+    // touch swipe
+    let touchStartX = 0;
+    document.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+    document.addEventListener('touchend', e => {
+      const delta = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(delta) >= 50) {
+        delta > 0 ? next() : prev();
+      }
+    }, { passive: true });
+
+    // button clicks
+    nextBtn.addEventListener('click', next);
+    prevBtn.addEventListener('click', prev);
+
+    // init — activate first slide without animation
+    slides[0].style.opacity = '1';
+    slides[0].style.pointerEvents = 'all';
+    slides[0].style.transform = 'translateX(0)';
+    updateUI();
+  </script>
+</body>
+</html>
