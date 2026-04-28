@@ -324,15 +324,15 @@ footer {
   padding: 0.5rem 1rem;
 }
 .vs-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; padding-right: 0.5rem; }
-.vs-link, .vs-orig {
+.vs-link {
   font-family: var(--font-mono); font-size: 0.72rem;
   width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center;
   border-radius: 50%; color: var(--muted);
   transition: background 0.2s, color 0.2s;
 }
-.vs-link:hover, .vs-orig:hover { color: var(--text); background: var(--surface2); }
+.vs-link:hover { color: var(--text); background: var(--surface2); }
 .vs-link.vs-active { background: var(--accent); color: #000; }
-.vs-orig { border-left: 1px solid var(--border); margin-left: 0.25rem; border-radius: 0 100px 100px 0; width: auto; padding: 0 0.5rem; }
+.vs-link.vs-base { width: auto; padding: 0 0.5rem; border-radius: 100px; }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 900px) {
