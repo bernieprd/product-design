@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Static site (npx serve)",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", ".", "--listen", "3000"],
+      "port": 3000
+    },
+    {
+      "name": "SCSS watch (npx sass)",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["sass", "--watch", "scss:css"],
+      "port": 0
+    }
+  ]
+}
