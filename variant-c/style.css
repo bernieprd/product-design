@@ -200,14 +200,14 @@ footer { background: #000; padding: 5rem 2.5rem 3rem; border-top: 1px solid rgba
   padding: 0.5rem 1rem;
 }
 .vs-label { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.25); padding-right: 0.5rem; }
-.vs-link, .vs-orig {
+.vs-link {
   font-size: 0.72rem; font-weight: 500;
   width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center;
   border-radius: 50%; color: rgba(255,255,255,0.35); transition: all 0.2s;
 }
 .vs-link:hover { color: var(--text); background: rgba(255,255,255,0.08); }
 .vs-link.vs-active { background: var(--accent); color: #000; }
-.vs-orig { border-left: 1px solid rgba(255,255,255,0.1); margin-left: 0.25rem; border-radius: 0 100px 100px 0; width: auto; padding: 0 0.5rem; }
+.vs-link.vs-base { width: auto; padding: 0 0.5rem; border-radius: 100px; }
 
 /* ─── SCROLL REVEAL ─── */
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }

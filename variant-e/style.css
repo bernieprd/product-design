@@ -275,14 +275,14 @@ footer { background: var(--card-dark); color: #fff; padding: 4rem 1.5rem 2.5rem;
   box-shadow: 0 4px 24px rgba(0,0,0,0.08);
 }
 .vs-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding-right: 0.5rem; }
-.vs-link, .vs-orig {
+.vs-link {
   font-size: 0.72rem; font-weight: 700;
   width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center;
   border-radius: 50%; color: var(--muted); transition: all 0.2s;
 }
 .vs-link:hover { color: var(--accent); background: var(--accent-bg); }
 .vs-link.vs-active { background: var(--accent); color: #fff; }
-.vs-orig { border-left: 1px solid var(--border); margin-left: 0.25rem; border-radius: 0 100px 100px 0; width: auto; padding: 0 0.5rem; }
+.vs-link.vs-base { width: auto; padding: 0 0.5rem; border-radius: 100px; }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 1000px) {
