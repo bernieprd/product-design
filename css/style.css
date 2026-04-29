@@ -81,7 +81,7 @@
   right: 0;
   transition: all 1s ease-in;
 }
-.projects-page section#projects article {
+section#projects article {
   width: 100%;
   height: 12.5rem;
   display: flex;
@@ -89,39 +89,27 @@
   padding: 1.5rem;
   transition: all 1s ease;
   background-color: #191919;
-  background-size: cover;
-  background-position: center;
-  background-blend-mode: multiply;
+  overflow: hidden;
 }
-.projects-page section#projects article a.heading {
+section#projects article a.heading {
   display: contents;
 }
-.projects-page section#projects article:hover {
+section#projects article:hover {
   height: 25rem;
   transition: all 1s ease;
 }
-.projects-page section#projects article:not(:first-of-type) {
+section#projects article:not(:first-of-type) {
   margin-top: 80px;
 }
-.projects-page section#projects article.star-sitter {
-  background-image: url(../resources/star-sitter-cover.png);
-}
-.projects-page section#projects article.diversion {
-  background-image: url(../resources/diversion-cover.png);
-}
-.projects-page section#projects article.service-areas {
-  background-image: url(../resources/service-areas-cover.png);
-}
-.projects-page section#projects article.graduated-fees {
-  background-image: url(../resources/graduated-fees-cover.png);
-}
-.projects-page section#projects article h3 {
+section#projects article h3 {
   align-self: center;
   text-align: center;
   margin: 0 auto;
   font-size: 2.5rem;
+  position: relative;
+  z-index: 2;
 }
-.projects-page section#projects article a.link-type {
+section#projects article a.link-type {
   width: 1.5rem;
   height: 1.5rem;
   position: absolute;
@@ -130,33 +118,34 @@
   top: 1.5rem;
   background-size: cover;
 }
-.projects-page section#projects article a.link-type:nth-of-type(2) {
+section#projects article a.link-type:nth-of-type(2) {
   left: 4rem;
 }
-.projects-page section#projects article a.link-type:hover:not(.wip) {
+section#projects article a.link-type:hover:not(.wip) {
   animation: projects 1s ease-in-out infinite;
 }
-.projects-page section#projects article a.link-type.wip {
+section#projects article a.link-type.wip {
   width: 100%;
   background-color: transparent;
 }
-.projects-page section#projects article a.link-type.medium {
+section#projects article a.link-type.medium {
   background-image: url(../resources/medium.svg);
 }
-.projects-page section#projects article a.link-type.behance {
+section#projects article a.link-type.behance {
   background-image: url(../resources/behance.svg);
 }
-.projects-page section#projects article a.link-type.external-link {
+section#projects article a.link-type.external-link {
   background-image: url(../resources/external-link.svg);
 }
-.projects-page section#projects article a.link-type.link {
+section#projects article a.link-type.link {
   background-image: url(../resources/link.svg);
 }
-.projects-page section#projects article p {
+section#projects article p {
   position: absolute;
   bottom: 1.5rem;
   right: 1.5rem;
   column-count: 1;
+  z-index: 2;
 }
 
 html body.case-study-page .specific-project .image {
@@ -490,10 +479,10 @@ section article .description {
 section article .image {
   display: flex;
   justify-content: center;
-  background-size: cover;
-  background-position: center;
-  background-blend-mode: multiply;
   background-color: rgba(25, 25, 25, 0.8);
+  background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+  background-position: center;
   padding: 24px;
 }
 section article .image h3 {
@@ -796,12 +785,12 @@ footer section a:hover:before {
     right: 0;
     transition: all 1s ease-in;
   }
-  .projects-page section#projects article h3 {
+  section#projects article h3 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .projects-page section#projects article:hover h3 {
+  section#projects article:hover h3 {
     white-space: normal;
   }
   main {
@@ -826,3 +815,79 @@ footer section a:hover:before {
     margin-right: auto;
   }
 }
+
+/* ─── PROJECT COVER GIF ─── */
+section#projects article .project-cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 0.6s ease;
+}
+section#projects article:hover .project-cover {
+  transform: scale(1.03);
+}
+section#projects article .project-cover-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(25,25,25,0.6);
+  z-index: 1;
+}
+section#projects article a.heading {
+  z-index: 2;
+  position: relative;
+}
+
+/* ─── HERO EYEBROW ─── */
+.hero-content {
+  align-self: center;
+}
+.hero-eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.45;
+  margin: 0 0 1rem;
+  font-weight: 300;
+  width: 100%;
+  text-align: center;
+}
+
+/* ─── CASE STUDY HEADINGS ─── */
+.cs-heading {
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.75rem;
+}
+.cs-eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.45;
+  margin: 0 0 1.5rem;
+  font-weight: 300;
+}
+
+/* ─── VARIANT SWITCHER ─── */
+.variant-switcher {
+  position: fixed; top: auto; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  z-index: 1000; display: flex; align-items: center; gap: 0.25rem;
+  background: rgba(8,8,8,0.88); backdrop-filter: blur(12px);
+  border: 1px solid rgba(240,237,230,0.08); border-radius: 100px;
+  padding: 0.5rem 1rem;
+}
+.vs-label { font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 0.65rem; color: #666; letter-spacing: 0.1em; padding-right: 0.5rem; }
+.variant-switcher a:before,
+.variant-switcher a:after { content: none; display: none; }
+.vs-link {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 0.72rem;
+  width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; color: #666; text-decoration: none; margin: 0;
+  transition: background 0.2s, color 0.2s;
+}
+.vs-link:hover { color: #F0EDE6; background: #181818; }
+.vs-link.vs-active { background: #D4A843; color: #000; }
+.vs-link.vs-base { width: auto; padding: 0 0.5rem; border-radius: 100px; }
