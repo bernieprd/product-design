@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @keyframes arrow {
   0% {
     transform: translate(100%, 0);
@@ -72,6 +73,8 @@
 }
 .projects-page main h2 {
   align-self: center;
+  hyphens: none;
+  word-break: keep-all;
 }
 .projects-page main h2:hover:before {
   border-top: 2px solid yellow;
@@ -272,7 +275,7 @@ html body a:hover {
   color: yellow;
   transition: all 1s;
 }
-html body nav {
+html body nav:not(.variant-switcher) {
   display: flex;
   justify-content: flex-end;
   position: -webkit-sticky;
@@ -283,72 +286,72 @@ html body nav {
   top: 2.5rem;
   z-index: 9;
 }
-html body nav a {
+html body nav:not(.variant-switcher) a {
   margin: 0 0 0 5rem;
   position: relative;
 }
-html body nav a:first-of-type:before {
+html body nav:not(.variant-switcher) a:first-of-type:before {
   content: "";
   width: 16px;
   height: 16px;
   position: absolute;
 }
-html body nav a:first-of-type:hover:before {
+html body nav:not(.variant-switcher) a:first-of-type:hover:before {
   animation-duration: 2s;
   animation-iteration-count: infinite;
   animation-play-state: running;
 }
-html body nav a:last-of-type:before {
+html body nav:not(.variant-switcher) a:last-of-type:before {
   content: "";
   width: 16px;
   height: 16px;
   position: absolute;
 }
-html body nav a:last-of-type:hover:before {
+html body nav:not(.variant-switcher) a:last-of-type:hover:before {
   animation-duration: 2s;
   animation-iteration-count: infinite;
   animation-play-state: running;
 }
-html body.home-page nav a:first-of-type:before {
+html body.home-page nav:not(.variant-switcher) a:first-of-type:before {
   background-image: url(../resources/arrow.svg);
   transform: translate(0, 0);
   opacity: 1;
   transition: all 0.6666666667s;
   margin: 12px 0 0 -24px;
 }
-html body.home-page nav a:first-of-type:hover:before {
+html body.home-page nav:not(.variant-switcher) a:first-of-type:hover:before {
   transform: translate(0, 100%);
   opacity: 0;
   transition: all 0.6666666667s;
   animation-name: arrow;
   animation-delay: 0.6666666667s;
 }
-html body.home-page nav a:last-of-type:before {
+html body.home-page nav:not(.variant-switcher) a:last-of-type:before {
   background-image: url(../resources/arrow-right.svg);
   opacity: 0;
   right: 120%;
   margin: 4px 0 0 0;
 }
-html body.home-page nav a:last-of-type:hover:before {
+html body.home-page nav:not(.variant-switcher) a:last-of-type:hover:before {
   animation-name: arrow-right;
 }
-html body.projects-page nav a:first-of-type:before {
+html body.projects-page nav:not(.variant-switcher) a:first-of-type:before {
   background-image: url(../resources/arrow-right.svg);
   opacity: 0;
   right: 120%;
   margin: 4px 0 0 0;
 }
-html body.projects-page nav a:first-of-type:hover:before {
+html body.projects-page nav:not(.variant-switcher) a:first-of-type:hover:before {
   animation-name: arrow-right;
 }
-html body.projects-page nav a:last-of-type:before {
+html body.projects-page nav:not(.variant-switcher) a:last-of-type:before {
   background-image: url(../resources/arrow.svg);
   transform: translate(0, 0);
   opacity: 1;
   transition: all 0.6666666667s;
   margin: 12px 0 0 -24px;
 }
-html body.projects-page nav a:last-of-type:hover:before {
+html body.projects-page nav:not(.variant-switcher) a:last-of-type:hover:before {
   transform: translate(0, 100%);
   opacity: 0;
   transition: all 0.6666666667s;
@@ -522,7 +525,7 @@ section article .description .date {
   float: right;
   text-align: right;
 }
-.description h4 {
+section article .description h4 {
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -531,21 +534,21 @@ section article .description .date {
   margin: 40px 0 16px;
   padding: 0;
 }
-.description h4:first-child {
+section article .description h4:first-child {
   margin-top: 0;
 }
-.role-group {
+section article .description .role-group {
   margin-bottom: 32px;
   clear: both;
 }
-.role-group .company {
+section article .description .role-group .company {
   font-size: 18px;
   line-height: 28px;
   margin: 0 0 4px;
   float: none;
   width: 100%;
 }
-.role-group .role-item {
+section article .description .role-group .role-item {
   font-size: 16px;
   line-height: 26px;
   opacity: 0.7;
@@ -553,47 +556,18 @@ section article .description .date {
   float: none;
   width: 100%;
 }
-.role-group .role-item span {
+section article .description .role-group .role-item span {
   font-weight: 600;
 }
-.role-group ul {
+section article .description .role-group ul {
   margin: 8px 0 0;
   padding-left: 20px;
   font-size: 16px;
   line-height: 26px;
   opacity: 0.7;
 }
-.role-group ul li {
+section article .description .role-group ul li {
   margin-bottom: 4px;
-}
-
-.role-group details {
-  margin-top: 8px;
-}
-
-.role-group details summary {
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 300;
-  opacity: 0.45;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  list-style: none;
-  user-select: none;
-  display: inline-block;
-}
-
-.role-group details summary::-webkit-details-marker {
-  display: none;
-}
-
-.role-group details[open] summary {
-  opacity: 0.7;
-}
-
-.role-group details ul {
-  margin-top: 8px;
-  opacity: 0.7;
 }
 
 footer {
@@ -634,6 +608,90 @@ footer section a:before {
 footer section a:hover:before {
   left: 0;
   right: 0;
+}
+
+.role-group details {
+  margin-top: 8px;
+}
+
+.role-group details summary {
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 300;
+  opacity: 0.45;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  list-style: none;
+  user-select: none;
+  display: inline-block;
+}
+
+.role-group details summary::-webkit-details-marker {
+  display: none;
+}
+
+.role-group details[open] summary {
+  opacity: 0.7;
+}
+
+.role-group details ul {
+  margin-top: 8px;
+  opacity: 0.7;
+}
+
+/* ─── VARIANT SWITCHER ─── */
+.variant-switcher {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(8, 8, 8, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(240, 237, 230, 0.08);
+  border-radius: 100px;
+  padding: 0.5rem 1rem;
+}
+
+.vs-label {
+  font-family: "SF Mono", "Fira Code", "Courier New", monospace;
+  font-size: 0.65rem;
+  color: #666;
+  letter-spacing: 0.1em;
+  padding-right: 0.5rem;
+}
+
+.vs-link {
+  font-family: "SF Mono", "Fira Code", "Courier New", monospace;
+  font-size: 0.72rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #666;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.vs-link:hover {
+  color: #F0EDE6;
+  background: #181818;
+}
+
+.vs-link.vs-active {
+  background: #D4A843;
+  color: #000;
+}
+
+.vs-link.vs-o {
+  width: auto;
+  padding: 0 0.5rem;
+  border-radius: 100px;
 }
 
 @keyframes arrow {
@@ -713,18 +771,18 @@ footer section a:hover:before {
   html body:before {
     height: 10.5rem;
   }
-  html body nav {
+  html body nav:not(.variant-switcher) {
     justify-content: flex-start;
     top: 4.5rem;
     margin-left: -2.5rem;
   }
-  html body nav a {
+  html body nav:not(.variant-switcher) a {
     margin: 0 0 0 2.5rem;
   }
   html body.projects-page:before {
     height: 12.5rem;
   }
-  html body.projects-page nav {
+  html body.projects-page nav:not(.variant-switcher) {
     top: 6rem;
   }
   .projects-page main {
@@ -768,22 +826,3 @@ footer section a:hover:before {
     margin-right: auto;
   }
 }
-
-/* ─── VARIANT SWITCHER ─── */
-.variant-switcher {
-  position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
-  z-index: 1000; display: flex; align-items: center; gap: 0.25rem;
-  background: rgba(8,8,8,0.88); backdrop-filter: blur(12px);
-  border: 1px solid rgba(240,237,230,0.08); border-radius: 100px;
-  padding: 0.5rem 1rem;
-}
-.vs-label { font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 0.65rem; color: #666; letter-spacing: 0.1em; padding-right: 0.5rem; }
-.vs-link {
-  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 0.72rem;
-  width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center;
-  border-radius: 50%; color: #666; text-decoration: none;
-  transition: background 0.2s, color 0.2s;
-}
-.vs-link:hover { color: #F0EDE6; background: #181818; }
-.vs-link.vs-active { background: #D4A843; color: #000; }
-.vs-link.vs-base { width: auto; padding: 0 0.5rem; border-radius: 100px; }
