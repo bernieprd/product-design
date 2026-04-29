@@ -63,7 +63,7 @@
             &:before {
                 height: px(168);
             }
-            nav {
+            nav:not(.variant-switcher) {
                 justify-content: flex-start;
                 top: px(72);
                 margin-left: px(-40);
@@ -76,7 +76,7 @@
                 &:before {
                     height: px(200);
                 }
-                nav {
+                nav:not(.variant-switcher) {
                     top: px(96);
                 }
             }
