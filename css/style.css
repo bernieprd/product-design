@@ -880,6 +880,8 @@ section#projects article a.heading {
   padding: 0.5rem 1rem;
 }
 .vs-label { font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 0.65rem; color: #666; letter-spacing: 0.1em; padding-right: 0.5rem; }
+.variant-switcher a:before,
+.variant-switcher a:after { content: none; display: none; }
 .vs-link {
   font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 0.72rem;
   width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center;
