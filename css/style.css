@@ -873,7 +873,7 @@ section#projects article a.heading {
 
 /* ─── VARIANT SWITCHER ─── */
 .variant-switcher {
-  position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  position: fixed; top: auto; bottom: 2rem; left: 50%; transform: translateX(-50%);
   z-index: 1000; display: flex; align-items: center; gap: 0.25rem;
   background: rgba(8,8,8,0.88); backdrop-filter: blur(12px);
   border: 1px solid rgba(240,237,230,0.08); border-radius: 100px;
@@ -883,7 +883,7 @@ section#projects article a.heading {
 .vs-link {
   font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 0.72rem;
   width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center;
-  border-radius: 50%; color: #666; text-decoration: none;
+  border-radius: 50%; color: #666; text-decoration: none; margin: 0;
   transition: background 0.2s, color 0.2s;
 }
 .vs-link:hover { color: #F0EDE6; background: #181818; }
