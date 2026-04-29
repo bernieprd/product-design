@@ -34,7 +34,7 @@
                 <img src="./resources/service-area-animated-cover.gif" alt="Service area map — travel distance polygon vs straight-line radius">
             </div>
             <div class="description">
-                <p><strong>Rover · 2024–2025</strong></p>
+                <p class="cs-eyebrow">Rover · 2024–2025</p>
                 <p>On Rover, traveling services mean the sitter goes to the owner's home. Sitters historically set a simple circular radius — easy to build but it ignored real geography and travel patterns. Sitters repeatedly told us: "I'm getting requests that are technically within my radius but practically impossible or financially unreasonable." Owners felt it too — search showed sitters as available, only for them to decline because the trip was too long.</p>
                 <p>This work started as a Maker Days hackathon: a small team explored whether we could move beyond the "as-the-crow-flies" radius into something that reflected how sitters actually travel. That prototype became the foundation for the eventual product.</p>
                 <p>As lead product designer, I was responsible for the full travel-distance service area experience — from exploratory research through experiment design, rollout, and the underlying search integration.</p>
@@ -45,7 +45,7 @@
                 <img src="./resources/service-areas-research.png" alt="Research — sitters adjusting distance vs. time and travel mode in prototype sessions">
             </div>
             <div class="description">
-                <p><strong>Understanding what "distance" means to sitters</strong></p>
+                <h3 class="cs-heading">Understanding what "distance" means to sitters</h3>
                 <p>We started with a working prototype that translated each sitter's circular radius into a travel-distance polygon using Mapbox's isochrone API — drawing areas based on real roads and barriers instead of a perfect circle. In moderated sessions, sitters reacted to seeing their areas redrawn, adjusted distance vs. time and travel mode, and talked through how far they'd really go for different services.</p>
                 <p>Three design anchors came out of this: sitters think in both miles and minutes; irregular, road-based shapes feel more intuitive than circles; and they want different areas per traveling service — often wider for house sitting and more local for walks, especially in dense cities.</p>
                 <p>From there, we defined a single, coherent model. Sitters can define service areas by distance (1–100 km/miles) or estimated travel time (1–60 minutes), with support for walking, cycling, or driving. House sitting, drop-ins, and walks each get their own service area instead of sharing one radius. We backfilled everyone's initial polygon from their existing radius so no one started from scratch.</p>
@@ -56,7 +56,7 @@
                 <img src="./resources/service-areas-solution.png" alt="Service area settings — live map polygon with distance type and travel mode controls">
             </div>
             <div class="description">
-                <p><strong>Solution and impact</strong></p>
+                <h3 class="cs-heading">Solution and impact</h3>
                 <p>We validated in two geographic A/B tests — a smoke test in US, GB, and ES, then a larger rollout covering about 20% of addressable markets. When both waves showed better matching, better conversion, and strong sitter adoption, we committed to global rollout instead of a long 50/50 split.</p>
                 <p>Results across the two geo tests: for new owners, there was a small initial decrease in conversion (around –1–2% relative) driven by stricter "outside service area" behaviour when locations were imprecise — a few more owners hit "no sitters available here." But for everyone who did see sitters, those sitters were closer and more likely to accept the job.</p>
                 <p>Search-to-request improved by roughly <strong>+2–3% relative</strong> and search-to-book by roughly <strong>+1.6–2.8% relative</strong>. Our internal match-quality score improved by about <strong>7%</strong>. The maximum distance of page 1 results dropped by roughly 4–5 miles for walking and drop-ins. New revenue per searcher was positive in both geo sets, with point estimates around <strong>+5–6% in US markets</strong>.</p>
