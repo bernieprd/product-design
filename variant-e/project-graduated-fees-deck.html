@@ -844,6 +844,229 @@
       </div>
     </section>
 
+    <!-- ─── SLIDE 9 · FEE STRUCTURE + SIMULATOR ─── -->
+    <section class="slide s-split" data-slide="9" style="background:var(--bg);">
+      <div class="s-split-left" style="background:rgba(255,255,255,0.025); gap:1.25rem;">
+        <span class="slide-label dim">08 / THE MODEL</span>
+        <h2 class="slide-h2 light">The 3-tier<br>relationship model.</h2>
+        <div style="width:100%; border-collapse:collapse; display:table; margin-top:0.5rem;">
+          <div style="display:table; width:100%; border:1px solid rgba(255,255,255,0.1); border-radius:var(--r); overflow:hidden;">
+            <div style="display:table-row; background:rgba(255,255,255,0.06);">
+              <div style="display:table-cell; padding:0.5rem 0.875rem; font-family:var(--font-mono); font-size:0.56rem; color:rgba(255,255,255,0.3); letter-spacing:0.08em;">TIER</div>
+              <div style="display:table-cell; padding:0.5rem 0.875rem; font-family:var(--font-mono); font-size:0.56rem; color:rgba(255,255,255,0.3); letter-spacing:0.08em;">RELATIONSHIP GBV</div>
+              <div style="display:table-cell; padding:0.5rem 0.875rem; font-family:var(--font-mono); font-size:0.56rem; color:rgba(255,255,255,0.3); letter-spacing:0.08em;">SITTER FEE</div>
+            </div>
+            <div style="display:table-row; border-top:1px solid rgba(255,255,255,0.07);">
+              <div style="display:table-cell; padding:0.75rem 0.875rem; font-size:0.82rem; font-weight:600; color:rgba(255,255,255,0.5);">Tier 1</div>
+              <div style="display:table-cell; padding:0.75rem 0.875rem; font-size:0.82rem; color:rgba(255,255,255,0.4);">$0 – $499</div>
+              <div style="display:table-cell; padding:0.75rem 0.875rem; font-size:1.1rem; font-weight:800; color:rgba(255,255,255,0.5);">30%</div>
+            </div>
+            <div style="display:table-row; border-top:1px solid rgba(255,255,255,0.07);">
+              <div style="display:table-cell; padding:0.75rem 0.875rem; font-size:0.82rem; font-weight:600; color:rgba(255,255,255,0.7);">Tier 2</div>
+              <div style="display:table-cell; padding:0.75rem 0.875rem; font-size:0.82rem; color:rgba(255,255,255,0.5);">$500 – $999</div>
+              <div style="display:table-cell; padding:0.75rem 0.875rem; font-size:1.1rem; font-weight:800; color:var(--accent);">15%</div>
+            </div>
+            <div style="display:table-row; border-top:1px solid rgba(255,255,255,0.07); background:rgba(111,207,151,0.05);">
+              <div style="display:table-cell; padding:0.75rem 0.875rem; font-size:0.82rem; font-weight:600; color:var(--green);">Tier 3</div>
+              <div style="display:table-cell; padding:0.75rem 0.875rem; font-size:0.82rem; color:rgba(111,207,151,0.7);">$1,000+</div>
+              <div style="display:table-cell; padding:0.75rem 0.875rem; font-size:1.1rem; font-weight:800; color:var(--green);">10%</div>
+            </div>
+          </div>
+        </div>
+        <ul class="slide-bullets" style="margin-top:0.5rem;">
+          <li>Per relationship — each owner–sitter pair tracked independently</li>
+          <li>GBV = service total (sitter rate + fee, excl. owner fee &amp; tips)</li>
+          <li>Permanent — milestone unlocked means lower tier forever</li>
+          <li>Pro-rated fee when a single booking crosses a tier boundary</li>
+          <li>Backfilled at launch — sitters started at their already-earned tier</li>
+        </ul>
+      </div>
+      <div class="s-split-right" style="background:var(--bg); padding:4vw 4vw;">
+        <div style="font-family:var(--font-mono); font-size:0.58rem; color:rgba(255,255,255,0.3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1rem;">SIMULATE A RELATIONSHIP — $120/BOOKING</div>
+        <div class="sim-wrap">
+          <div class="sim-tiers">
+            <div class="sim-tier current" id="simT1">
+              <div class="sim-tier-fee">30%</div>
+              <div class="sim-tier-label">TIER 1</div>
+              <div class="sim-tier-range">$0 – $499</div>
+            </div>
+            <div class="sim-tier" id="simT2">
+              <div class="sim-tier-fee">15%</div>
+              <div class="sim-tier-label">TIER 2</div>
+              <div class="sim-tier-range">$500 – $999</div>
+            </div>
+            <div class="sim-tier" id="simT3">
+              <div class="sim-tier-fee">10%</div>
+              <div class="sim-tier-label">TIER 3</div>
+              <div class="sim-tier-range">$1,000+</div>
+            </div>
+          </div>
+          <div class="sim-gbv-display">
+            <div>
+              <div class="sim-gbv-val" id="simGbvVal">$0</div>
+              <div class="sim-gbv-sub">RELATIONSHIP GBV</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:clamp(1.5rem,3vw,2.5rem); font-weight:800; color:#fff; line-height:1;" id="simFeeVal">30%</div>
+              <div class="sim-gbv-sub">CURRENT FEE</div>
+            </div>
+          </div>
+          <div class="sim-track-wrap">
+            <div class="sim-track">
+              <div class="sim-fill" id="simFill"></div>
+              <div class="sim-markers">
+                <div class="sim-marker" style="left:45.5%;">
+                  <div class="sim-marker-label">$500</div>
+                </div>
+                <div class="sim-marker" style="left:90.9%;">
+                  <div class="sim-marker-label">$1,000</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sim-callout" id="simCallout">Pro-rated fee applied — part of this booking was at 30%, the rest at 15%.</div>
+          <div class="sim-btns">
+            <button class="sim-btn sim-btn-add" onclick="simAdd()">+ Add booking ($120)</button>
+            <button class="sim-btn sim-btn-reset" onclick="simReset()">Reset</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SLIDE 10 · TIMELINE ─── -->
+    <section class="slide s-dark" data-slide="10" style="overflow:hidden;">
+      <div style="display:grid; grid-template-columns:1fr 2fr; gap:4vw; height:100%; align-items:center;">
+        <div>
+          <span class="slide-label dim">09 / TIMELINE</span>
+          <h2 class="slide-h2 light">18 months,<br>start to live.</h2>
+          <p class="slide-body light">From the first analytics deep dive to a live pilot in Canada, then the US next. Click any milestone to expand detail.</p>
+        </div>
+        <div style="overflow-y:auto; max-height:calc(100vh - 8vw); padding-right:0.5rem;">
+          <div class="timeline" id="timeline">
+            <div class="tl-item" onclick="tlToggle(this)">
+              <div class="tl-date">Sep 2025</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">Analytics deep dive published</div>
+                <div class="tl-detail">David Argelich published the sitters' earnings distribution analysis — top 20% generate 73-77% of earnings; NA top sitters are repeat-driven (59-63%). This shaped everything that followed.</div>
+              </div>
+            </div>
+            <div class="tl-item" onclick="tlToggle(this)">
+              <div class="tl-date">Oct 2025</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">Design exploration + model evaluation</div>
+                <div class="tl-detail">Bernardo published the general design exploration and the alternative monetization evaluation framework. Three models assessed: new vs. repeat, relationship-based GBV, account-based GBV.</div>
+              </div>
+            </div>
+            <div class="tl-item" onclick="tlToggle(this)">
+              <div class="tl-date">Oct–Nov 2025</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">Concept test — 28 sitters, 4 segments</div>
+                <div class="tl-detail">Lizeth Herrera led qualitative concept testing across new, growing, established-loyal, and established-diverting sitters in Canada. Relationship-based GBV selected as the live test model based on findings.</div>
+              </div>
+            </div>
+            <div class="tl-item" onclick="tlToggle(this)">
+              <div class="tl-date">Nov 2025</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">Deep-dive pages published</div>
+                <div class="tl-detail">Bernardo published the relationship-based deep-dive (Nov 13) and the account-based deep-dive (Oct 31) — detailed analysis of mechanics, gaming risks, threshold options, and UX implications.</div>
+              </div>
+            </div>
+            <div class="tl-item" onclick="tlToggle(this)">
+              <div class="tl-date">Dec 2025</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">Fee transparency pre-req + workshop</div>
+                <div class="tl-detail">Fee transparency A/B test designed as a pre-requisite — to isolate the impact of showing sitters their payout before adding the tier structure. Cross-functional monetization workshop held with PM, design, analytics.</div>
+              </div>
+            </div>
+            <div class="tl-item" onclick="tlToggle(this)">
+              <div class="tl-date">Jan 2026</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">Landing page + comms design</div>
+                <div class="tl-detail">Bernardo shared landing page skeleton and Figma prototype. Brand Studio (Defne Kavas) delivered first round of copy for the landing page and launch email.</div>
+              </div>
+            </div>
+            <div class="tl-item" onclick="tlToggle(this)">
+              <div class="tl-date">Feb 2026</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">MVP relationship page spec finalised</div>
+                <div class="tl-detail">Bernardo published the relationship page MVP spec (Feb 9) — 3 core questions the page must answer, full MoSCoW component priority. Engineering planning begins.</div>
+              </div>
+            </div>
+            <div class="tl-item launch" onclick="tlToggle(this)">
+              <div class="tl-date">Mar 4, 2026</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">🚀 Smoke test live — 4 Canadian cities</div>
+                <div class="tl-detail">Launched in Nanaimo, Regina, Saskatoon, and Québec. Email + push notification sent to treatment sitters. 6+ bugs surfaced in the first week; all fixed within 2 weeks.</div>
+              </div>
+            </div>
+            <div class="tl-item active" onclick="tlToggle(this)">
+              <div class="tl-date">Mar 24, 2026</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">🚀 Full Canada test — Vancouver, Calgary, Ottawa</div>
+                <div class="tl-detail">Scaled to three major Canadian cities. Ongoing monitoring via DataDog and Mode dashboards. Social listening active. Results pending at end of 8–10 week test window.</div>
+              </div>
+            </div>
+            <div class="tl-item" onclick="tlToggle(this)">
+              <div class="tl-date">Apr 2026</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">Training/Grooming edge case resolved</div>
+                <div class="tl-detail">Average training relationship GBV is ~$500 — trainers would be stuck at 30% permanently. Decision: exclude Training and Grooming from the graduated take. Flat 20% applies; they don't count toward progress.</div>
+              </div>
+            </div>
+            <div class="tl-item upcoming" onclick="tlToggle(this)">
+              <div class="tl-date">Jun 16, 2026</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">US test — Chicago, Dallas, Seattle</div>
+                <div class="tl-detail">Tentative. Conjoint analysis for US tier values pending. Training and Grooming excluded from day one. Plan to update future bookings to lower tier fee immediately (unlike Canada).</div>
+              </div>
+            </div>
+            <div class="tl-item upcoming" onclick="tlToggle(this)">
+              <div class="tl-date">Q2 2026</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">UK MVP</div>
+                <div class="tl-detail">TBD. European market has a different acquisition vs. repeat split — learnings may not transfer directly. Translation and localisation work required before any European expansion.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SLIDE 11 · WHAT WE DESIGNED ─── -->
+    <section class="slide s-dark" data-slide="11">
+      <span class="slide-label dim">10 / SCOPE</span>
+      <h2 class="slide-h2 light" style="margin-bottom:0.5rem;">9 user stories.<br>One cohesive system.</h2>
+      <p class="slide-body light" style="margin-top:0; margin-bottom:1.25rem; max-width:60ch;">Every surface a sitter touches was considered — from the first announcement to a booking that crosses a tier mid-stay. Click any story to expand.</p>
+      <div class="story-chips" id="storyChips">
+        <div class="story-chip" onclick="selectStory(this,0)">US1 · Fee logic</div>
+        <div class="story-chip" onclick="selectStory(this,1)">US2 · Contacts page</div>
+        <div class="story-chip active" onclick="selectStory(this,2)">US3 · Relationship page</div>
+        <div class="story-chip" onclick="selectStory(this,3)">US4 · System messages</div>
+        <div class="story-chip" onclick="selectStory(this,4)">US5 · Earnings breakdown</div>
+        <div class="story-chip" onclick="selectStory(this,5)">US6 · Service settings</div>
+        <div class="story-chip" onclick="selectStory(this,6)">US7 · Announcements</div>
+        <div class="story-chip" onclick="selectStory(this,7)">US8 · Landing page</div>
+        <div class="story-chip" onclick="selectStory(this,8)">US9 · Payment history</div>
+      </div>
+      <div class="story-detail" id="storyDetail">
+        <span class="sd-tag">US3 · RELATIONSHIP PAGE</span>
+        <div class="sd-title">The source of truth for per-client GBV progress</div>
+        <p class="sd-body">5–6 sections: header (Rebook + Profile CTAs), progress (tier visualisation + progress bar + banner), upcoming bookings, completed bookings, archived, and pets. Entry points: Contacts tab, conversation header, conversation menu, and booking earnings breakdown. Dark green = completed GBV; light green = pending GBV.</p>
+      </div>
+    </section>
+
     <!-- SLIDES END -->
   </div><!-- /deck-viewport -->
 
@@ -865,6 +1088,79 @@
       v.textContent = d.verdict;
       v.style.color = idx === 1 ? 'var(--accent)' : 'var(--text-muted)';
       v.style.fontWeight = idx === 1 ? '600' : '400';
+    };
+
+    // ── GBV Simulator (slide 9) ──
+    let simGbv = 0;
+    const SIM_MAX = 1100, SIM_T2 = 500, SIM_T3 = 1000, SIM_STEP = 120;
+    let simLastTier = 1, simProrated = false;
+    function simUpdate() {
+      const pct = Math.min(simGbv / SIM_MAX * 100, 100);
+      const fill = document.getElementById('simFill');
+      if (fill) {
+        fill.style.width = pct + '%';
+        fill.className = 'sim-fill' + (simGbv >= SIM_T2 ? ' in-green' : '');
+      }
+      const gv = document.getElementById('simGbvVal');
+      const fv = document.getElementById('simFeeVal');
+      if (gv) gv.textContent = '$' + simGbv;
+      let tier = simGbv < SIM_T2 ? 1 : simGbv < SIM_T3 ? 2 : 3;
+      const fees = ['','30%','15%','10%'];
+      if (fv) fv.textContent = fees[tier];
+      ['simT1','simT2','simT3'].forEach((id,i) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.className = 'sim-tier';
+        if (i+1 === tier) el.classList.add('current');
+        else if (i+1 < tier) el.classList.add('unlocked');
+      });
+      const callout = document.getElementById('simCallout');
+      if (callout) {
+        callout.className = 'sim-callout' + (simProrated ? ' visible' : '');
+      }
+      simLastTier = tier; simProrated = false;
+    }
+    window.simAdd = function() {
+      const prev = simGbv, next = Math.min(simGbv + SIM_STEP, SIM_MAX);
+      const crossT2 = prev < SIM_T2 && next >= SIM_T2;
+      const crossT3 = prev < SIM_T3 && next >= SIM_T3;
+      simProrated = crossT2 || crossT3;
+      simGbv = next;
+      simUpdate();
+    };
+    window.simReset = function() {
+      simGbv = 0; simProrated = false; simUpdate();
+    };
+
+    // ── Timeline expand (slide 10) ──
+    window.tlToggle = function(el) {
+      const isOpen = el.classList.contains('open');
+      document.querySelectorAll('.tl-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) el.classList.add('open');
+    };
+
+    // ── Story chips (slide 11) ──
+    const storyData = [
+      { tag:'US1 · FEE LOGIC', title:'Core fee calculation', body:'Fee based on accumulated service total GBV with that specific client. Pro-rated fee applied when a single booking spans a tier boundary. Historical bookings backfilled at launch — sitters entered at their already-earned tier.' },
+      { tag:'US2 · CONTACTS PAGE', title:'Renamed Rebook tab — now a full CRM list', body:'Split into Clients (owners with at least one confirmed booking) and Sitters tabs. Each client shows: photo, name, pets, confirmed booking count, $ progress, and current tier. Sortable and searchable by name, pet name, or total bookings.' },
+      { tag:'US3 · RELATIONSHIP PAGE', title:'The source of truth for per-client GBV progress', body:'5–6 sections: header (Rebook + Profile CTAs), progress (tier visualisation + progress bar + banner), upcoming bookings, completed bookings, archived, and pets. Entry points: Contacts tab, conversation header, conversation menu, and booking earnings breakdown. Dark green = completed GBV; light green = pending GBV.' },
+      { tag:'US4 · SYSTEM MESSAGES', title:'Contextual tier updates in conversations', body:'System message appears in the conversation screen and as a banner in booking details. Content varies by relationship status: new, in-progress, tier-unlocking, and maxed out (Tier 3). Push notification sent when a service deposit completes and tier progress updates.' },
+      { tag:'US5 · EARNINGS BREAKDOWN', title:'"Your earnings" breakdown modal in booking details', body:'"Your earnings" link in the booking details ledger opens a bottom sheet. Shows breakdown by tier (how much was charged at each rate), total earnings, and a primary CTA linking to the relationship page.' },
+      { tag:'US6 · SERVICE SETTINGS', title:'Tier-aware rate display when sitters set prices', body:'Visual tiers component added to service settings (collapsed by default). Copy below the rate input updated to: "earn between $X and $Y" showing the Tier 1 to Tier 3 earnings range for that rate.' },
+      { tag:'US7 · ANNOUNCEMENTS', title:'Dashboard callout at first login post-launch', body:'Callout on the Daily Dashboard (apps) and sitter dashboard (web) and payment history page. Two versions: sitters with existing clients (you already have progress) and sitters with no clients yet. Learn More → interstitial bottom sheet → landing page.' },
+      { tag:'US8 · LANDING PAGE', title:'rover.com/long-term-relationships-on-rover', body:'Localised for en-ca and fr-ca. Carousel (4 stages showing the fee journey) + collapsible FAQs. Not indexed; auth-only for the US test. April 21 clarification push added FAQ: historical earnings count toward starting tier from day 1.' },
+      { tag:'US9 · PAYMENT HISTORY', title:'Fee model reflected in transaction ledgers', body:'Stay price, Rover fees, and Earnings updated in payment history to reflect the new tiered fee model. Sitters can verify the exact fee applied to each booking and cross-reference with their relationship page progress.' }
+    ];
+    window.selectStory = function(el, idx) {
+      document.querySelectorAll('.story-chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      const d = storyData[idx];
+      const det = document.getElementById('storyDetail');
+      if (det) {
+        det.querySelector('.sd-tag').textContent = d.tag;
+        det.querySelector('.sd-title').textContent = d.title;
+        det.querySelector('.sd-body').textContent = d.body;
+      }
     };
 
     // Temporary minimal script for navigation during build
