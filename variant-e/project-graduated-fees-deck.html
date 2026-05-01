@@ -722,11 +722,151 @@
       </div>
     </section>
 
+    <!-- ─── SLIDE 6 · THREE MODELS EVALUATED ─── -->
+    <section class="slide s-light" data-slide="6" style="justify-content:flex-start; gap:0;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 0 1.25rem;">
+        <div>
+          <span class="slide-label">05 / STRATEGY</span>
+          <h2 style="font-size:clamp(1.2rem,2.5vw,2rem); font-weight:800; color:var(--text); letter-spacing:-0.02em;">Three models. One test.</h2>
+        </div>
+        <div style="font-family:var(--font-mono); font-size:0.58rem; color:var(--text-muted); letter-spacing:0.05em;">Click to explore →</div>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px;">
+        <div class="model-card" onclick="selectModel(this,0)">
+          <span class="mc-tag">Model A</span>
+          <span class="mc-name">New vs. Repeat</span>
+          <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.5;">Lower fee on all repeat bookings, higher flat on all first bookings with any client.</p>
+          <span class="mc-check">✓</span>
+        </div>
+        <div class="model-card selected" onclick="selectModel(this,1)">
+          <span class="mc-tag">Model B · Selected</span>
+          <span class="mc-name">Relationship-Based GBV</span>
+          <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.5;">Fee drops as cumulative booking value with a <em>specific client</em> hits milestones.</p>
+          <span class="mc-check">✓</span>
+        </div>
+        <div class="model-card" onclick="selectModel(this,2)">
+          <span class="mc-tag">Model C</span>
+          <span class="mc-name">Account-Based GBV</span>
+          <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.5;">Fee drops as the sitter's total annual Rover earnings hit platform-wide milestones.</p>
+          <span class="mc-check">✓</span>
+        </div>
+      </div>
+      <div id="modelDetail" style="background:#fff; border:1px solid var(--border); border-radius:var(--r); padding:1.1rem 1.5rem; margin-top:10px; display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; flex:1; align-content:start;">
+        <div>
+          <div style="font-family:var(--font-mono); font-size:0.56rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.35rem;">COMPREHENSION</div>
+          <p id="md-comp" style="font-size:0.8rem; color:var(--text); line-height:1.55;">High mental model match. Sitters track clients, not annual totals. 'This client, this relationship.'</p>
+        </div>
+        <div>
+          <div style="font-family:var(--font-mono); font-size:0.56rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.35rem;">GAMING RISK</div>
+          <p id="md-game" style="font-size:0.8rem; color:var(--text); line-height:1.55;">Moderate. GBV threshold mitigates booking-split gaming better than count-based thresholds.</p>
+        </div>
+        <div>
+          <div style="font-family:var(--font-mono); font-size:0.56rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.35rem;">VERDICT</div>
+          <p id="md-verdict" style="font-size:0.8rem; color:var(--accent); font-weight:600; line-height:1.55;">Best match to sitter mental models. Testing first in Canada.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SLIDE 7 · EVALUATION MATRIX ─── -->
+    <section class="slide s-dark" data-slide="7" style="justify-content:center;">
+      <span class="slide-label dim">06 / EVALUATION</span>
+      <h2 class="slide-h2 light" style="margin-bottom:1.75rem;">How they scored.</h2>
+      <table class="eval-matrix">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>New vs. Repeat</th>
+            <th>Relationship-based GBV</th>
+            <th>Account-based GBV</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Comprehension</td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div></div></td>
+          </tr>
+          <tr class="eval-row-win">
+            <td>Fairness match</td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+          </tr>
+          <tr>
+            <td>Gaming resistance</td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot"></div><div class="eval-dot"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot"></div></div></td>
+          </tr>
+          <tr>
+            <td>Diversion reduction</td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+          </tr>
+          <tr>
+            <td>Revenue upside</td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div></div></td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top:1.25rem; font-family:var(--font-mono); font-size:0.56rem; color:rgba(255,255,255,0.3); letter-spacing:0.05em;">↑ Relationship-based wins on fairness match — the dimension most directly tied to diversion behaviour</p>
+    </section>
+
+    <!-- ─── SLIDE 8 · THE INSIGHT ─── -->
+    <section class="slide s-center" data-slide="8">
+      <span class="slide-label dim" style="margin-bottom:1.5rem;">07 / THE INSIGHT</span>
+      <div class="slide-quote" style="max-width:26ch; margin-bottom:1.5rem;">
+        Sitters think about fees <em>per client</em>,<br>not per year.
+      </div>
+      <p class="slide-body light" style="max-width:52ch; text-align:center;">
+        Account-based is operationally cleaner — one annual GBV number, simpler engineering. But when we talked to sitters, every grievance was relational: <em style="color:rgba(255,255,255,0.7); font-style:normal;">"I've cared for this family for 3 years and I still pay 20%."</em> Relationship-based maps to how unfairness actually feels.
+      </p>
+      <div style="display:flex; gap:1.25rem; flex-wrap:wrap; justify-content:center; margin-top:2rem;">
+        <div class="stat-card" style="flex:0 1 220px; text-align:left;">
+          <span class="stat-label">Concept test finding</span>
+          <div class="stat-num" style="font-size:clamp(1.5rem,3vw,3rem);">28</div>
+          <p class="stat-desc">Sitters across 4 segments confirmed: the per-client framing resonated more than an annual platform total.</p>
+        </div>
+        <div class="stat-card" style="flex:0 1 220px; text-align:left;">
+          <span class="stat-label">Account-based risk</span>
+          <div class="stat-num" style="font-size:clamp(1.5rem,3vw,3rem); color:rgba(255,255,255,0.3);">High</div>
+          <p class="stat-desc">Tenure-only incentives don't address diversion — sitters could use Rover to acquire clients then move them off-platform as their annual GBV grows.</p>
+        </div>
+        <div class="stat-card" style="flex:0 1 220px; text-align:left;">
+          <span class="stat-label">Account-based future</span>
+          <div class="stat-num" style="font-size:clamp(1.5rem,3vw,2.5rem); color:var(--green);">Layer</div>
+          <p class="stat-desc">Backlogged as a complementary loyalty track once the relationship model is validated. Not abandoned — sequenced.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- SLIDES END -->
   </div><!-- /deck-viewport -->
 
   <!-- JS placeholder — will be added in Chunk 8 -->
   <script>
+    // Model card data (slide 6)
+    const modelData = [
+      { comp: "Simple but misaligned. Doesn't match how sitters think — they track clients, not booking types. 'New' resets with every new client.", game: "High gaming risk. Splitting a booking into two makes each appear as 'new'. Easy to exploit.", verdict: "Too gameable and weak at directing loyalty behaviour. Not selected." },
+      { comp: "High mental model match. Sitters track clients, not annual totals. 'This client, this relationship.'", game: "Moderate. GBV threshold mitigates booking-split gaming better than count-based thresholds.", verdict: "Best match to sitter mental models. Testing first in Canada." },
+      { comp: "Conceptually cleaner — one annual number. But misaligned with how sitters describe unfairness: they talk about specific relationships.", game: "Low. Annual GBV is harder to game — harder to manipulate your total across all clients.", verdict: "Good long-term complement. Backlogged as an account-based layer once the relationship model validates." }
+    ];
+    window.selectModel = function(el, idx) {
+      document.querySelectorAll('.model-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      const d = modelData[idx];
+      document.getElementById('md-comp').textContent = d.comp;
+      document.getElementById('md-game').textContent = d.game;
+      const v = document.getElementById('md-verdict');
+      v.textContent = d.verdict;
+      v.style.color = idx === 1 ? 'var(--accent)' : 'var(--text-muted)';
+      v.style.fontWeight = idx === 1 ? '600' : '400';
+    };
+
     // Temporary minimal script for navigation during build
     const slides = Array.from(document.querySelectorAll('.slide'));
     const total = slides.length;
