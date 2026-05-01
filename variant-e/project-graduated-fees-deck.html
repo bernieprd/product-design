@@ -1178,6 +1178,97 @@
       </div>
     </section>
 
+    <!-- ─── SLIDE 14 · DESIGN CHALLENGES ─── -->
+    <section class="slide s-dark" data-slide="14">
+      <span class="slide-label dim">13 / DESIGN CHALLENGES</span>
+      <h2 class="slide-h2 light" style="margin-bottom:0.4rem;">Four hard problems.</h2>
+      <p class="slide-body light" style="margin-top:0; margin-bottom:1.25rem; max-width:60ch;">Click any card to see what we considered and what we decided.</p>
+      <div class="exp-grid">
+        <div class="exp-card" onclick="expToggle(this)">
+          <span class="exp-num">01</span>
+          <span class="exp-title">Model comprehension</span>
+          <p class="exp-lead">Cumulative GBV, milestones, permanent reductions — that's four mental models at once.</p>
+          <p class="exp-body">Options: (A) Show all the maths up front. (B) Progressive disclosure — anchor on 'this relationship with [client name]', reveal mechanics only when needed. (C) Full onboarding flow before first booking.</p>
+          <p class="exp-decision">→ Progressive disclosure. The relationship page is the source of truth; sitters don't need to understand the model to use it — they just need to see their progress. Avoided overwhelming with rules at announcement.</p>
+        </div>
+        <div class="exp-card" onclick="expToggle(this)">
+          <span class="exp-num">02</span>
+          <span class="exp-title">Perceived fairness across services</span>
+          <p class="exp-lead">GBV thresholds favour boarding ($300/stay) over walking ($20/walk). Is that fair?</p>
+          <p class="exp-body">Options: (A) Accept asymmetry in v1, anchor messaging on relationship not maths. (B) Service-specific thresholds. (C) Points-based system where different services earn at different rates. (D) Count-based milestones (5th booking) — equal across services but gameable.</p>
+          <p class="exp-decision">→ Accepted asymmetry in v1. Boarding drives 53% of top sitter earnings; it's the right place to test. Messaging focused on the relationship benefit, not the threshold value. Points system backlogged as a future iteration.</p>
+        </div>
+        <div class="exp-card" onclick="expToggle(this)">
+          <span class="exp-num">03</span>
+          <span class="exp-title">Sense of agency</span>
+          <p class="exp-lead">Progress toward a milestone depends partly on whether the owner chooses to rebook — not just sitter quality.</p>
+          <p class="exp-body">Options: (A) Surface progress as purely dependent on the relationship (honest but demotivating). (B) Focus UI exclusively on actions the sitter controls — booking on-platform, sending post-stay messages, rebooking nudge. (C) Explicitly tell sitters that owner repeat rate is a factor.</p>
+          <p class="exp-decision">→ Focus on sitter-controlled actions. Never show progress as dependent on owner behaviour. UI surfaces: "Book on Rover", "Remind client to rebook", "Send post-stay message" — avoid showing "waiting for client" as a progress state.</p>
+        </div>
+        <div class="exp-card" onclick="expToggle(this)">
+          <span class="exp-num">04</span>
+          <span class="exp-title">Threshold-crossing bookings</span>
+          <p class="exp-lead">A single booking crosses a tier boundary mid-transaction. How is the fee applied?</p>
+          <p class="exp-body">Options: (A) Split fee — first portion charged at old rate, remainder at new rate. Accurate and honest, but creates a blended fee on one ledger line. (B) Cashback — full booking at the old rate; credit issued for the next booking. Simpler ledger display but delayed reward, requires a credit wallet.</p>
+          <p class="exp-decision">→ Split fee. Most transparent — sitters get the benefit the instant they earn it. The ledger complexity is manageable with a clear breakdown modal (US5). Cashback backlogged; at relationship level threshold crossings are recurring, making it a meaningful future incentive loop.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SLIDE 15 · TRAINING / GROOMING EDGE CASE ─── -->
+    <section class="slide s-split" data-slide="15" style="background:var(--bg);">
+      <div class="s-split-left" style="background:rgba(255,255,255,0.025); gap:1.25rem;">
+        <span class="slide-label dim">14 / EDGE CASE</span>
+        <h2 class="slide-h2 light">Training &amp;<br>Grooming.</h2>
+        <p class="slide-body light">Average training relationship GBV is ~$500 — meaning virtually all trainers stay at 30% forever. Off-platform, trainers earn $300–350/client vs. $100–130 on Rover. A 30% Tier 1 makes that gap worse.</p>
+        <p class="slide-body light" style="margin-top:0.5rem;">Five paths were explored. Click each to read the trade-off.</p>
+        <div style="background:rgba(111,207,151,0.08); border:1px solid rgba(111,207,151,0.2); border-radius:var(--r); padding:0.875rem 1rem; margin-top:1rem;">
+          <div style="font-family:var(--font-mono); font-size:0.56rem; color:var(--green); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.3rem;">CHOSEN PATH</div>
+          <p style="font-size:0.82rem; color:rgba(255,255,255,0.65); line-height:1.55;">Training and Grooming excluded from the graduated take. Flat 20% applies; they don't count toward relationship GBV progress. No fee callouts in Training conversations. Mixed relationships (core + training) get two separate sections.</p>
+        </div>
+      </div>
+      <div class="s-split-right" style="background:var(--bg); padding:4vw; display:flex; flex-direction:column; gap:1rem; justify-content:center;">
+        <div class="path-grid" id="pathGrid">
+          <div class="path-card chosen" onclick="selectPath(this)">
+            <div class="path-id">Option A ✓</div>
+            <div class="path-name">Exclude Training &amp; Grooming</div>
+            <div class="path-tag">Complexity: Low</div>
+            <div class="path-desc">Flat 20% for Training and Grooming; these services don't count toward GBV progress. Already live in Canada. Clean, avoids permanent Tier 1 problem.</div>
+          </div>
+          <div class="path-card" onclick="selectPath(this)">
+            <div class="path-id">Option B</div>
+            <div class="path-name">Include as-is</div>
+            <div class="path-tag">Complexity: Very low</div>
+            <div class="path-desc">Same tiers, no exceptions. Trainers permanently stuck at 30%. Creates resentment; makes fee gap vs. off-platform worse.</div>
+          </div>
+          <div class="path-card" onclick="selectPath(this)">
+            <div class="path-id">Option C</div>
+            <div class="path-name">Service-specific thresholds</div>
+            <div class="path-tag">Complexity: Medium</div>
+            <div class="path-desc">Different GBV thresholds per service type — lower milestones for Training. Fair, but adds significant config complexity and comms burden.</div>
+          </div>
+          <div class="path-card" onclick="selectPath(this)">
+            <div class="path-id">Option D</div>
+            <div class="path-name">Service-specific fee %</div>
+            <div class="path-tag">Complexity: Medium</div>
+            <div class="path-desc">Same thresholds but lower Tier 1 fee for Training. Reduces the gap but doesn't solve the stuck-in-Tier-1 problem long-term.</div>
+          </div>
+          <div class="path-card" onclick="selectPath(this)">
+            <div class="path-id">Option E</div>
+            <div class="path-name">Points-based system</div>
+            <div class="path-tag">Complexity: Very high</div>
+            <div class="path-desc">GBV replaced by points accruing at different rates by service type. Most equitable across services — but a completely different model. Future iteration territory.</div>
+          </div>
+        </div>
+        <div class="img-frame" style="min-height:120px; flex:1;">
+          <img src="../notion_export_24042026/Relationship-based%20graduated%20fees/images/dd-training-mixed-rel.webp"
+               alt="Mixed relationship (core + training) design exploration"
+               style="object-fit:contain; width:100%; height:100%; background:#1a1a1a;">
+        </div>
+        <p style="font-family:var(--font-mono); font-size:0.55rem; color:rgba(255,255,255,0.2); letter-spacing:0.05em; text-align:center;">Mixed relationship (core + training) · design exploration · Apr 2026</p>
+      </div>
+    </section>
+
     <!-- SLIDES END -->
   </div><!-- /deck-viewport -->
 
@@ -1272,6 +1363,21 @@
         det.querySelector('.sd-title').textContent = d.title;
         det.querySelector('.sd-body').textContent = d.body;
       }
+    };
+
+    // ── Expandable challenge cards (slide 14) ──
+    window.expToggle = function(el) {
+      const isOpen = el.classList.contains('open');
+      document.querySelectorAll('.exp-card.open').forEach(c => c.classList.remove('open'));
+      if (!isOpen) el.classList.add('open');
+    };
+
+    // ── Training path selection (slide 15) ──
+    window.selectPath = function(el) {
+      document.querySelectorAll('.path-card').forEach(c => {
+        if (!c.classList.contains('chosen')) c.classList.remove('selected');
+      });
+      if (!el.classList.contains('chosen')) el.classList.add('selected');
     };
 
     // Temporary minimal script for navigation during build
