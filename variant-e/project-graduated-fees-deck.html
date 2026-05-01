@@ -73,20 +73,6 @@
     }
     .deck-viewport { position: fixed; inset: 0; }
 
-    /* ─── ROTATE PROMPT ─── */
-    .rotate-prompt {
-      display: none; position: fixed; inset: 0; z-index: 200;
-      background: var(--bg); flex-direction: column;
-      align-items: center; justify-content: center; gap: 1.25rem;
-      color: rgba(255,255,255,0.5); font-family: var(--font-mono);
-      font-size: 0.75rem; text-align: center;
-    }
-    .rotate-prompt .ri { font-size: 2.5rem; animation: rhint 2s ease-in-out infinite; }
-    @keyframes rhint {
-      0%,100% { transform: rotate(0deg); }
-      40%,60%  { transform: rotate(90deg); }
-    }
-    @media (orientation: portrait) and (max-width: 768px) { .rotate-prompt { display: flex; } }
 
     /* ─── SLIDE BASE ─── */
     .slide {
@@ -519,6 +505,9 @@
     .collab-names { font-size: clamp(0.78rem,1.1vw,0.9rem); color: rgba(255,255,255,0.65); line-height: 1.5; }
     .collab-note  { font-size: clamp(0.7rem,0.9vw,0.78rem); color: rgba(255,255,255,0.3); line-height: 1.5; margin-top: 0.1rem; }
 
+    /* ─── TWO-COL UTILITY ─── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
     /* ─── CLOSING (slide 24) ─── */
     .s-closing { background: var(--bg); display: grid; grid-template-columns: 1fr 1fr; }
     .s-closing-left {
@@ -532,14 +521,63 @@
     .contact-label { font-family: var(--font-mono); font-size: 0.56rem; color: rgba(255,255,255,0.25); letter-spacing: 0.1em; text-transform: uppercase; }
     .contact-val   { font-size: clamp(0.8rem,1.2vw,1rem); color: rgba(255,255,255,0.6); font-weight: 500; }
 
-    /* ─── RESPONSIVE · portrait mobile: collapse to single column ─── */
+    /* ─── RESPONSIVE · portrait mobile ─── */
     @media (max-width: 768px) and (orientation: portrait) {
-      .s-split        { grid-template-columns: 1fr; }
-      .s-closing      { grid-template-columns: 1fr; }
-      .sim-tiers      { flex-direction: column; }
-      .path-grid      { flex-direction: column; }
-      .exp-grid       { grid-template-columns: 1fr; }
-      .seg-grid       { grid-template-columns: 1fr; }
+
+      /* Allow each slide to scroll its own content */
+      .slide              { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
+      /* Split layout: stack vertically, natural row heights */
+      .s-split            { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .s-split-left,
+      .s-split-right      { padding: 7vw 6vw; min-height: auto; justify-content: flex-start; overflow-y: visible; }
+
+      /* Closing slide */
+      .s-closing          { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .s-closing-left,
+      .s-closing-right    { padding: 7vw 6vw; }
+
+      /* Full-bleed single-column slides */
+      .s-dark, .s-light,
+      .s-center           { padding: 6vw 5vw; overflow-y: auto; justify-content: flex-start; padding-top: 5vh; }
+      .s-cover            { padding: 7vh 6vw 6vw; }
+      .s-stats            { padding: 5vw; overflow-y: auto; }
+
+      /* Collapse components */
+      .sim-tiers          { flex-direction: column; }
+      .path-grid          { flex-direction: column; }
+      .exp-grid           { grid-template-columns: 1fr; }
+      .seg-grid           { grid-template-columns: 1fr; }
+      .two-col            { grid-template-columns: 1fr; }
+      .seg-detail         { grid-template-columns: 1fr; }
+
+      /* Typography — vw-based for narrow portrait viewports */
+      .slide-h1           { font-size: clamp(2rem, 9vw, 3.5rem); }
+      .slide-h2           { font-size: clamp(1.4rem, 7vw, 2.4rem); }
+      .slide-body         { font-size: clamp(0.82rem, 3.4vw, 1rem); margin-top: 0.75rem; }
+      .slide-label        { font-size: 0.6rem; margin-bottom: 0.5rem; }
+      .slide-bullets      { margin-top: 0.75rem; }
+      .slide-bullets li   { font-size: clamp(0.8rem, 3.2vw, 0.95rem); }
+      .slide-quote        { font-size: clamp(1.2rem, 5.5vw, 2rem); }
+
+      /* Stat cards: full-width in portrait */
+      .stat-card          { min-width: unset; width: 100%; }
+      .stat-num           { font-size: clamp(2.2rem, 9vw, 4rem); }
+
+      /* Image frames: natural height */
+      .img-frame          { height: auto !important; min-height: 180px; }
+
+      /* Deck chrome */
+      .deck-controls      { bottom: 0.75rem; padding: 0.35rem 0.65rem; }
+      .deck-exit          { top: 0.75rem; right: 1rem; font-size: 0.6rem; }
+      #slideCounter       { font-size: 0.62rem; min-width: 3rem; }
+
+      /* Simulator */
+      .sim-tier-fee       { font-size: clamp(1.4rem, 5vw, 2rem); }
+      .sim-gbv-val        { font-size: clamp(1.4rem, 5vw, 2rem); }
+
+      /* Decision box */
+      .decision-box       { margin-top: 1rem; }
     }
 
     /* ─── RESPONSIVE · landscape mobile: keep 2 cols, scale everything down ─── */
@@ -620,12 +658,6 @@
   </style>
 </head>
 <body>
-
-  <!-- rotate prompt -->
-  <div class="rotate-prompt">
-    <span class="ri">📱</span>
-    <span>Rotate your device</span>
-  </div>
 
   <!-- progress bar -->
   <div class="deck-progress">
@@ -735,7 +767,7 @@
         <span class="slide-label">03 / WHAT WE TRIED</span>
         <h2 class="slide-h2 dark">The blunt tool<br>didn't work.</h2>
         <p class="slide-body">A previous test cut the sitter fee from 15% to 5% for all recurring bookings in the UK and all dog walking in Spain. After 4 months:</p>
-        <div style="background:#fff; border:1px solid var(--border); border-radius:var(--r); padding:1.25rem; margin-top:1.25rem; display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+        <div class="two-col" style="background:#fff; border:1px solid var(--border); border-radius:var(--r); padding:1.25rem; margin-top:1.25rem; gap:1rem;">
           <div>
             <div style="font-family:var(--font-mono); font-size:0.55rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.25rem;">OVERALL DIVERSION</div>
             <div style="font-size:1.5rem; font-weight:800; color:var(--text);">No change</div>
@@ -785,7 +817,7 @@
             <p style="font-size:clamp(0.82rem,1.2vw,0.95rem); color:rgba(255,255,255,0.6); line-height:1.6;">Increase top sitter satisfaction and increase Rover take.</p>
           </div>
         </div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; text-align:left;">
+        <div class="two-col" style="text-align:left;">
           <div style="background:rgba(111,207,151,0.07); border:1px solid rgba(111,207,151,0.2); border-radius:var(--r); padding:1rem 1.1rem;">
             <div style="font-family:var(--font-mono); font-size:0.56rem; color:var(--green); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.35rem;">SITTER SUCCESS</div>
             <p style="font-size:0.8rem; color:rgba(255,255,255,0.55); line-height:1.55;">Most loyal sitters are better off financially and satisfied with the new structure.</p>
@@ -1163,7 +1195,7 @@
           </div>
         </div>
 
-        <div style="margin-top:1.25rem; display:grid; grid-template-columns:1fr 1fr; gap:0.5rem 1.5rem;">
+        <div class="two-col" style="margin-top:1.25rem; gap:0.5rem 1.5rem;">
           <div>
             <div style="font-family:var(--font-mono); font-size:0.55rem; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.4rem;">MUST HAVE</div>
             <ul style="list-style:none; display:flex; flex-direction:column; gap:0.2rem;">
@@ -1502,7 +1534,7 @@
       </div>
       <div class="s-split-right" style="background:var(--bg); gap:1rem;">
         <div style="font-family:var(--font-mono); font-size:0.56rem; color:rgba(255,255,255,0.3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.5rem;">FULL TEAM</div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem 1.5rem;">
+        <div class="two-col" style="gap:0.6rem 1.5rem;">
           <div class="collab-group">
             <span class="collab-label">Product</span>
             <span class="collab-names">Mégane Martinez</span>
@@ -1668,7 +1700,7 @@
         <div class="slide-label" style="margin-bottom:1.2rem;">22 / 24 · Measurement</div>
         <h2 class="slide-h2" style="margin-bottom:2rem;">Measuring Impact</h2>
 
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:1.5rem;">
+        <div class="two-col" style="gap:1.5rem; margin-bottom:1.5rem;">
           <div style="background:rgba(99,179,237,0.08); border:1px solid rgba(99,179,237,0.25); border-radius:10px; padding:1.4rem;">
             <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.08em; color:var(--accent); margin-bottom:0.6rem; text-transform:uppercase;">Primary metric</div>
             <div style="font-size:1rem; font-weight:600; color:var(--text); margin-bottom:0.5rem;">Per-relationship GBV growth</div>
@@ -1716,7 +1748,7 @@
         <h2 class="slide-h2" style="margin-bottom:0.5rem;">What I'd Do Differently</h2>
         <p class="slide-body" style="margin-bottom:1.8rem; color:var(--text-muted);">Four specific things — not regrets, but what I'd change if I ran this again.</p>
 
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+        <div class="two-col" style="gap:1rem;">
           <div style="background:var(--bg-light); border-radius:10px; padding:1.3rem 1.4rem; border-left:3px solid var(--accent);">
             <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.08em; color:var(--accent); margin-bottom:0.5rem; text-transform:uppercase;">01 · Test the fee numbers earlier</div>
             <p class="slide-body" style="font-size:0.82rem;">47% of concept test participants showed motivation collapse at a 47% starting fee. We knew this going into the Canada launch but treated it as a business constraint, not a design problem. I'd push for a joint design–finance session to stress-test rate options against comprehension data before they become locked inputs.</p>
