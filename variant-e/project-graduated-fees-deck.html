@@ -532,14 +532,90 @@
     .contact-label { font-family: var(--font-mono); font-size: 0.56rem; color: rgba(255,255,255,0.25); letter-spacing: 0.1em; text-transform: uppercase; }
     .contact-val   { font-size: clamp(0.8rem,1.2vw,1rem); color: rgba(255,255,255,0.6); font-weight: 500; }
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 768px) {
+    /* ─── RESPONSIVE · portrait mobile: collapse to single column ─── */
+    @media (max-width: 768px) and (orientation: portrait) {
       .s-split        { grid-template-columns: 1fr; }
       .s-closing      { grid-template-columns: 1fr; }
       .sim-tiers      { flex-direction: column; }
       .path-grid      { flex-direction: column; }
       .exp-grid       { grid-template-columns: 1fr; }
       .seg-grid       { grid-template-columns: 1fr; }
+    }
+
+    /* ─── RESPONSIVE · landscape mobile: keep 2 cols, scale everything down ─── */
+    @media (max-height: 480px) and (orientation: landscape) {
+
+      /* Chrome */
+      .deck-controls  { bottom: 0.35rem; padding: 0.28rem 0.6rem; gap: 0.35rem; }
+      #slideCounter   { font-size: 0.58rem; }
+      .deck-exit      { top: 0.5rem; right: 0.75rem; font-size: 0.58rem; }
+
+      /* Slide padding */
+      .s-cover        { padding: 2.5vh 5vw; }
+      .s-split-left,
+      .s-split-right  { padding: 2vh 2.5vw; overflow-y: auto; }
+      .s-dark         { padding: 2vh 3.5vw; overflow-y: auto; }
+      .s-light        { padding: 2vh 3.5vw; overflow-y: auto; }
+      .s-center       { padding: 2vh 3vw; }
+      .s-closing-left,
+      .s-closing-right { padding: 3vw; }
+
+      /* Typography scale-down */
+      .slide-h1       { font-size: clamp(1.6rem, 5vw, 3rem); }
+      .slide-h2       { font-size: clamp(1rem, 2.6vw, 1.6rem); margin-bottom: 0.5rem; }
+      .slide-body     { font-size: clamp(0.68rem, 1vw, 0.84rem); line-height: 1.55; margin-top: 0.5rem; }
+      .slide-label    { font-size: 0.55rem; margin-bottom: 0.4rem; }
+      .slide-bullets  { gap: 0.35rem; margin-top: 0.5rem; }
+      .slide-bullets li { font-size: clamp(0.68rem, 0.95vw, 0.82rem); }
+      .slide-quote    { font-size: clamp(1rem, 2.2vw, 1.8rem); }
+
+      /* Stat cards */
+      .stat-card      { padding: 0.75rem 0.875rem; min-width: 120px; }
+      .stat-num       { font-size: clamp(1.8rem, 4vw, 3.2rem); }
+
+      /* Simulator */
+      .sim-tier       { padding: 0.7rem 0.75rem; }
+      .sim-tier-fee   { font-size: clamp(1.1rem, 2.2vw, 1.8rem); }
+      .sim-tier-label { font-size: 0.52rem; }
+      .sim-tier-range { font-size: 0.62rem; }
+      .sim-gbv-val    { font-size: clamp(1.1rem, 2.2vw, 1.8rem); }
+      .sim-gbv-sub    { font-size: 0.55rem; }
+      .sim-btn        { padding: 0.45rem 0.4rem; font-size: 0.56rem; }
+      .sim-wrap       { gap: 0.6rem; }
+
+      /* Timeline */
+      .tl-item        { grid-template-columns: 5rem 1.25rem 1fr; padding: 0.3rem 0; }
+      .tl-date        { font-size: 0.55rem; }
+      .tl-title       { font-size: clamp(0.68rem, 0.95vw, 0.8rem); }
+      .tl-detail      { font-size: 0.62rem; }
+      .tl-line        { min-height: 0.8rem; }
+
+      /* Story chips */
+      .story-chips    { gap: 5px; }
+      .story-chip     { font-size: 0.52rem; padding: 0.22rem 0.55rem; }
+      .story-detail   { padding: 0.75rem 0.875rem; min-height: 3.5rem; margin-top: 0.75rem; }
+      .story-detail .sd-title { font-size: 0.8rem; }
+      .story-detail .sd-body  { font-size: 0.68rem; }
+
+      /* Exp / path / seg cards */
+      .exp-card       { padding: 0.875rem; }
+      .exp-title      { font-size: clamp(0.78rem, 1.2vw, 0.9rem); }
+      .path-card      { padding: 0.75rem 0.7rem; }
+      .path-name      { font-size: 0.7rem; }
+      .seg-card       { padding: 0.8rem; }
+      .seg-name       { font-size: 0.8rem; }
+
+      /* Measure table */
+      .measure-table th { padding: 0.4rem 0.6rem; font-size: 0.52rem; }
+      .measure-table td { padding: 0.4rem 0.6rem; font-size: 0.68rem; }
+
+      /* Collab */
+      .collab-names   { font-size: clamp(0.65rem, 0.9vw, 0.78rem); }
+      .collab-label   { font-size: 0.5rem; }
+
+      /* Decision box */
+      .decision-box   { padding: 0.65rem 0.875rem; margin-top: 0.875rem; }
+      .decision-box p { font-size: clamp(0.68rem, 0.95vw, 0.8rem); }
     }
   </style>
 </head>
