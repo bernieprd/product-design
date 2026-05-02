@@ -315,23 +315,31 @@ footer { background: var(--card-dark); color: #fff; padding: 4rem 1.5rem 2.5rem;
 .vs-link.vs-base { width: auto; padding: 0 0.5rem; border-radius: 100px; }
 
 /* ─── RESPONSIVE ─── */
-@media (min-width: 1280px) {
-  #card-bio       { grid-column: span 5; }
-  #card-metric-5m { grid-column: span 7; }
+
+/* Desktop: explicit 2-column placement, no reliance on dense auto-flow */
+@media (min-width: 1001px) {
+  #card-name    { grid-column: 1 / 9;  grid-row: 1 / 4; }
+  #card-years   { grid-column: 9 / 13; grid-row: 1 / 4; }
+  #card-bio     { grid-column: 1 / 9;  grid-row: 4 / 6; }
+  #card-cv      { grid-column: 9 / 13; grid-row: 4 / 6; }
+  #card-exp     { grid-column: 1 / 9;  grid-row: 6 / 9; }
+  #card-contact { grid-column: 9 / 13; grid-row: 6 / 9; }
 }
 
 @media (max-width: 1000px) {
-  .col-3 { grid-column: span 4; }
-  .col-4 { grid-column: span 6; }
-  .col-5 { grid-column: span 7; }
-  .col-7 { grid-column: span 12; }
-  .col-8 { grid-column: span 12; }
+  #card-name, #card-bio, #card-exp, #card-contact {
+    grid-column: 1 / -1; grid-row: auto;
+  }
+  #card-years { grid-column: 1 / 7;  grid-row: auto; }
+  #card-cv    { grid-column: 7 / 13; grid-row: auto; }
   .wm-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 768px) {
   .bento, .cs-bento { grid-template-columns: repeat(2, 1fr); }
   .col-3, .col-4, .col-5, .col-6, .col-7, .col-8 { grid-column: span 2; }
   .col-12 { grid-column: span 2; }
+  #card-name, #card-bio, #card-exp, #card-contact,
+  #card-years, #card-cv { grid-column: span 2; grid-row: auto; }
   .project-card-full.project-card-hero { aspect-ratio: 4/3; }
   .projects-secondary { grid-template-columns: 1fr 1fr; }
   .wm-grid { grid-template-columns: repeat(2, 1fr); }
@@ -339,17 +347,16 @@ footer { background: var(--card-dark); color: #fff; padding: 4rem 1.5rem 2.5rem;
 @media (max-width: 500px) {
   .bento, .cs-bento { grid-template-columns: 1fr; }
   .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-12 { grid-column: span 1; }
+  #card-name, #card-bio, #card-exp, #card-contact,
+  #card-years, #card-cv { grid-column: span 1; grid-row: auto; }
   .projects-secondary { grid-template-columns: 1fr; }
   .wm-grid { grid-template-columns: 1fr; }
 
-  /* Mobile narrative order: who → career → credibility → contact */
-  #card-name      { order: 1; }
-  #card-bio       { order: 2; }
-  #card-exp       { order: 3; }
-  #card-years     { order: 4; }
-  #card-metric-48 { order: 5; }
-  #card-metric-7  { order: 6; }
-  #card-metric-5m { order: 7; }
-  #card-contact   { order: 8; }
-  #card-cv        { order: 9; }
+  /* Mobile narrative order: who → career → credentials → contact */
+  #card-name    { order: 1; }
+  #card-bio     { order: 2; }
+  #card-exp     { order: 3; }
+  #card-years   { order: 4; }
+  #card-cv      { order: 5; }
+  #card-contact { order: 6; }
 }
