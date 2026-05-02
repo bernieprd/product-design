@@ -279,12 +279,14 @@ footer { background: var(--dark); color: #F7F3ED; padding: 5rem 2.5rem 3rem; }
 
 /* ─── VARIANT SWITCHER ─── */
 .variant-switcher {
+  display: none;
   position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
-  z-index: 1000; display: flex; align-items: center; gap: 0.25rem;
+  z-index: 1000; align-items: center; gap: 0.25rem;
   background: var(--surface); border: 1px solid var(--border);
   border-radius: 100px; padding: 0.5rem 1rem;
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
+.variant-switcher.is-visible { display: flex; }
 .vs-label { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding-right: 0.5rem; }
 .vs-link {
   font-size: 0.72rem; font-weight: 600;
