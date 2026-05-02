@@ -153,6 +153,9 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   align-items: center;
   padding: 0 1.5rem;
   margin-top: 0.5rem;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .work-section-label {
   font-family: var(--font-mono);
@@ -181,7 +184,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   margin-top: 1rem;
   padding-bottom: 0.5rem;
 }
-.projects-bento { display: flex; flex-direction: column; gap: 12px; padding: 1rem 1.5rem 1.5rem; }
+.projects-bento { display: flex; flex-direction: column; gap: 12px; padding: 1rem 1.5rem 1.5rem; max-width: 1400px; margin-left: auto; margin-right: auto; }
 .project-card-full { border-radius: var(--radius); overflow: hidden; background: #000; position: relative; aspect-ratio: 4/3; }
 .project-card-full.project-card-hero { aspect-ratio: 16/7; }
 .projects-secondary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
@@ -314,16 +317,25 @@ footer { background: var(--card-dark); color: #fff; padding: 4rem 1.5rem 2.5rem;
 .vs-link.vs-active { background: var(--accent); color: #fff; }
 .vs-link.vs-base { width: auto; padding: 0 0.5rem; border-radius: 100px; }
 
+/* ─── PROJECT CARD MOBILE READABILITY ─── */
+@media (hover: none) {
+  .project-card-full img { filter: brightness(0.55); }
+  .pcf-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.35) 65%, transparent 100%);
+  }
+  .pcf-cta { opacity: 1; transform: translateY(0); }
+}
+
 /* ─── RESPONSIVE ─── */
 
 /* Desktop: explicit 2-column placement, no reliance on dense auto-flow */
 @media (min-width: 1001px) {
   #card-name    { grid-column: 1 / 9;  grid-row: 1 / 4; }
   #card-years   { grid-column: 9 / 13; grid-row: 1 / 4; }
-  #card-bio     { grid-column: 1 / 9;  grid-row: 4 / 6; }
-  #card-cv      { grid-column: 9 / 13; grid-row: 4 / 6; }
-  #card-exp     { grid-column: 1 / 9;  grid-row: 6 / 9; }
-  #card-contact { grid-column: 9 / 13; grid-row: 6 / 9; }
+  #card-bio     { grid-column: 1 / 9;  grid-row: 4 / 7; }
+  #card-cv      { grid-column: 9 / 13; grid-row: 4 / 7; }
+  #card-exp     { grid-column: 1 / 9;  grid-row: 7 / 10; }
+  #card-contact { grid-column: 9 / 13; grid-row: 7 / 10; }
 }
 
 @media (max-width: 1000px) {
