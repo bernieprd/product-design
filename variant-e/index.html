@@ -209,11 +209,16 @@
 
 <nav class="variant-switcher" aria-label="Design variants">
   <span class="vs-label">variant</span>
-  <a href="../index.html" class="vs-link vs-o" aria-label="Variant O">O</a>
-  <a href="../variant-a/index.html" class="vs-link" aria-label="Variant A">A</a>
-  <a href="../variant-e/index.html" class="vs-link vs-active" aria-label="Variant E">E</a>
-  <a href="../variant-f/index.html" class="vs-link" aria-label="Variant F">F</a>
+  <a href="/variant-o/" class="vs-link" aria-label="Variant O">O</a>
+  <a href="/variant-a/" class="vs-link" aria-label="Variant A">A</a>
+  <a href="/" class="vs-link vs-active" aria-label="Variant E">E</a>
+  <a href="/variant-f/" class="vs-link" aria-label="Variant F">F</a>
 </nav>
+<script>
+  if (location.search.includes('variants')) {
+    document.querySelector('.variant-switcher').classList.add('is-visible');
+  }
+</script>
 
 </body>
 </html>

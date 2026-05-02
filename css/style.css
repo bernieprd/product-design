@@ -630,12 +630,12 @@ footer section a:hover:before {
 
 /* ─── VARIANT SWITCHER ─── */
 .variant-switcher {
+  display: none;
   position: fixed;
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
-  display: flex;
   align-items: center;
   gap: 0.25rem;
   background: rgba(8, 8, 8, 0.88);
@@ -644,6 +644,7 @@ footer section a:hover:before {
   border-radius: 100px;
   padding: 0.5rem 1rem;
 }
+.variant-switcher.is-visible { display: flex; }
 
 .vs-label {
   font-family: "SF Mono", "Fira Code", "Courier New", monospace;
@@ -873,12 +874,14 @@ section#projects article a.heading {
 
 /* ─── VARIANT SWITCHER ─── */
 .variant-switcher {
+  display: none;
   position: fixed; top: auto; bottom: 2rem; left: 50%; transform: translateX(-50%);
-  z-index: 1000; display: flex; align-items: center; gap: 0.25rem;
+  z-index: 1000; align-items: center; gap: 0.25rem;
   background: rgba(8,8,8,0.88); backdrop-filter: blur(12px);
   border: 1px solid rgba(240,237,230,0.08); border-radius: 100px;
   padding: 0.5rem 1rem;
 }
+.variant-switcher.is-visible { display: flex; }
 .vs-label { font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 0.65rem; color: #666; letter-spacing: 0.1em; padding-right: 0.5rem; }
 .variant-switcher a:before,
 .variant-switcher a:after { content: none; display: none; }

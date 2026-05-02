@@ -40,10 +40,13 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .bento {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: minmax(80px, auto);
+  grid-auto-rows: minmax(120px, auto);
   grid-auto-flow: dense;
   gap: 12px;
   padding: 1.5rem;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* card base */
@@ -72,7 +75,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .row-5  { grid-row: span 5; }
 
 /* ─── CARD TYPES ─── */
-.name-card { padding: 2.5rem; display: flex; flex-direction: column; justify-content: flex-end; }
+.name-card { padding: 2.5rem; display: flex; flex-direction: column; justify-content: flex-end; min-height: 340px; }
 .name-role {
   font-family: var(--font-mono);
   font-size: 0.62rem;
@@ -88,13 +91,13 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .bio-card { padding: 1.75rem; }
 .bio-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
 
-.metric-card { padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between; }
+.metric-card { padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between; min-height: 200px; }
 .metric-card .mnum { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
 .metric-card.card-dark .mnum { color: var(--accent); }
 .metric-card .mlabel { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.62); margin-top: 0.4rem; letter-spacing: 0.06em; }
 .metric-card .mproject { font-size: 0.75rem; color: rgba(255,255,255,0.48); margin-top: 0.25rem; }
 
-.exp-card { padding: 1.75rem; }
+.exp-card { padding: 1.75rem; min-height: 360px; }
 .exp-card h3 { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1rem; }
 .exp-list { display: flex; flex-direction: column; gap: 0.75rem; }
 .exp-entry { display: flex; flex-direction: column; gap: 0.1rem; }
@@ -108,7 +111,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .exp-detail ul { padding-top: 0.5rem; padding-left: 1rem; font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
 .exp-detail li { margin-bottom: 0.3rem; }
 
-.contact-card { padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between; }
+.contact-card { padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between; min-height: 280px; }
 .contact-card .ctag { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.68); letter-spacing: 0.08em; margin-bottom: 0.75rem; }
 .contact-card h3 { font-size: clamp(1.2rem, 2.5vw, 1.8rem); font-weight: 800; line-height: 1.1; }
 .contact-links { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
@@ -134,7 +137,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .icr-hover .icr-desc { font-size: 0.8rem; color: rgba(255,255,255,0.75); line-height: 1.5; margin-top: 0.5rem; }
 
 /* ─── YEARS CARD ─── */
-.years-card { padding: 1.5rem; display: flex; flex-direction: column; justify-content: flex-end; }
+.years-card { padding: 1.5rem; display: flex; flex-direction: column; justify-content: flex-end; min-height: 220px; }
 .years-num { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1; letter-spacing: -0.03em; color: var(--accent); }
 .years-label { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.58); margin-top: 0.3rem; }
 
@@ -293,12 +296,14 @@ footer { background: var(--card-dark); color: #fff; padding: 4rem 1.5rem 2.5rem;
 
 /* ─── VARIANT SWITCHER ─── */
 .variant-switcher {
+  display: none;
   position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
-  z-index: 1000; display: flex; align-items: center; gap: 0.25rem;
+  z-index: 1000; align-items: center; gap: 0.25rem;
   background: var(--card); border: 1px solid var(--border);
   border-radius: 100px; padding: 0.5rem 1rem;
   box-shadow: 0 4px 24px rgba(0,0,0,0.08);
 }
+.variant-switcher.is-visible { display: flex; }
 .vs-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding-right: 0.5rem; }
 .vs-link {
   font-size: 0.72rem; font-weight: 700;
@@ -310,8 +315,14 @@ footer { background: var(--card-dark); color: #fff; padding: 4rem 1.5rem 2.5rem;
 .vs-link.vs-base { width: auto; padding: 0 0.5rem; border-radius: 100px; }
 
 /* ─── RESPONSIVE ─── */
+@media (min-width: 1280px) {
+  #card-bio       { grid-column: span 5; }
+  #card-metric-5m { grid-column: span 7; }
+}
+
 @media (max-width: 1000px) {
-  .col-3, .col-4 { grid-column: span 6; }
+  .col-3 { grid-column: span 4; }
+  .col-4 { grid-column: span 6; }
   .col-5 { grid-column: span 7; }
   .col-7 { grid-column: span 12; }
   .col-8 { grid-column: span 12; }

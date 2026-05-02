@@ -130,11 +130,16 @@
 
 <nav class="variant-switcher" aria-label="Design variants">
   <span class="vs-label">variant</span>
-  <a href="../project-star-sitter.html" class="vs-link vs-o" aria-label="Variant O">O</a>
-  <a href="../variant-a/project-star-sitter.html" class="vs-link" aria-label="Variant A">A</a>
-  <a href="../variant-e/project-star-sitter.html" class="vs-link vs-active" aria-label="Variant E">E</a>
-  <a href="../variant-f/project-star-sitter.html" class="vs-link" aria-label="Variant F">F</a>
+  <a href="/variant-o/project-star-sitter.html" class="vs-link" aria-label="Variant O">O</a>
+  <a href="/variant-a/project-star-sitter.html" class="vs-link" aria-label="Variant A">A</a>
+  <a href="/variant-e/project-star-sitter.html" class="vs-link vs-active" aria-label="Variant E">E</a>
+  <a href="/variant-f/project-star-sitter.html" class="vs-link" aria-label="Variant F">F</a>
 </nav>
 
+<script>
+  if (location.search.includes('variants')) {
+    document.querySelector('.variant-switcher').classList.add('is-visible');
+  }
+</script>
 </body>
 </html>
