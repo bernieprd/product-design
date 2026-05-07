@@ -1,85 +1,119 @@
 <!DOCTYPE html>
 <html lang="en-US">
-
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143375865-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'UA-143375865-1');
-    </script>
-
-    <meta charset="utf-8">
-    <title>Service areas using travel distance · Bernardo Prudêncio</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta name="author" content="Bernardo Prudêncio">
-    <meta name="description" content="Increasing bookings by 4% through service area optimisation at Rover.">
-    <link href="https://fonts.googleapis.com/css?family=Fahkwang:300,600" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Service Areas · Bernardo Prudêncio</title>
+  <link rel="stylesheet" href="./style.css">
 </head>
+<body>
 
-<body class="projects-page case-study-page">
-    <h1><a href="./index.html">Bernardo Prudêncio</a></h1><span> &nbsp;/ product designer</span>
-    <main>
-        <h2><span>service areas</span><br><span>travel distance</span></h2>
-    </main>
-    <nav>
-        <a href="./index.html">about</a>
-        <a href="./projects.html">projects</a>
-    </nav>
-    <section id="about" class="specific-project">
-        <article class="serviceareas01">
-            <div class="image">
-                <img src="./resources/service-area-animated-cover.gif" alt="Service area map — travel distance polygon vs straight-line radius">
-            </div>
-            <div class="description">
-                <p class="cs-eyebrow">Rover · 2024–2025</p>
-                <p>On Rover, traveling services mean the sitter goes to the owner's home. Sitters historically set a simple circular radius — easy to build but it ignored real geography and travel patterns. Sitters repeatedly told us: "I'm getting requests that are technically within my radius but practically impossible or financially unreasonable." Owners felt it too — search showed sitters as available, only for them to decline because the trip was too long.</p>
-                <p>This work started as a Maker Days hackathon: a small team explored whether we could move beyond the "as-the-crow-flies" radius into something that reflected how sitters actually travel. That prototype became the foundation for the eventual product.</p>
-                <p>As lead product designer, I was responsible for the full travel-distance service area experience — from exploratory research through experiment design, rollout, and the underlying search integration.</p>
-            </div>
-        </article>
-        <article class="serviceareas02">
-            <div class="image">
-                <img src="./resources/service-areas-research.png" alt="Research — sitters adjusting distance vs. time and travel mode in prototype sessions">
-            </div>
-            <div class="description">
-                <h3 class="cs-heading">Understanding what "distance" means to sitters</h3>
-                <p>We started with a working prototype that translated each sitter's circular radius into a travel-distance polygon using Mapbox's isochrone API — drawing areas based on real roads and barriers instead of a perfect circle. In moderated sessions, sitters reacted to seeing their areas redrawn, adjusted distance vs. time and travel mode, and talked through how far they'd really go for different services.</p>
-                <p>Three design anchors came out of this: sitters think in both miles and minutes; irregular, road-based shapes feel more intuitive than circles; and they want different areas per traveling service — often wider for house sitting and more local for walks, especially in dense cities.</p>
-                <p>From there, we defined a single, coherent model. Sitters can define service areas by distance (1–100 km/miles) or estimated travel time (1–60 minutes), with support for walking, cycling, or driving. House sitting, drop-ins, and walks each get their own service area instead of sharing one radius. We backfilled everyone's initial polygon from their existing radius so no one started from scratch.</p>
-            </div>
-        </article>
-        <article class="serviceareas03">
-            <div class="image">
-                <img src="./resources/service-areas-solution.png" alt="Service area settings — live map polygon with distance type and travel mode controls">
-            </div>
-            <div class="description">
-                <h3 class="cs-heading">Solution and impact</h3>
-                <p>We validated in two geographic A/B tests — a smoke test in US, GB, and ES, then a larger rollout covering about 20% of addressable markets. When both waves showed better matching, better conversion, and strong sitter adoption, we committed to global rollout instead of a long 50/50 split.</p>
-                <p>Results across the two geo tests: for new owners, there was a small initial decrease in conversion (around –1–2% relative) driven by stricter "outside service area" behaviour when locations were imprecise — a few more owners hit "no sitters available here." But for everyone who did see sitters, those sitters were closer and more likely to accept the job.</p>
-                <p>Search-to-request improved by roughly <strong>+2–3% relative</strong> and search-to-book by roughly <strong>+1.6–2.8% relative</strong>. Our internal match-quality score improved by about <strong>7%</strong>. The maximum distance of page 1 results dropped by roughly 4–5 miles for walking and drop-ins. New revenue per searcher was positive in both geo sets, with point estimates around <strong>+5–6% in US markets</strong>.</p>
-                <p>We traded a small, understandable shift in one early metric for better search quality, shorter owner–sitter distances, and higher search-to-request and search-to-book — in a model that sitters liked and adopted.</p>
-            </div>
-        </article>
-    </section>
-    <footer>
-        <p style="text-align:right; padding: 1.5rem 1.5rem 0;"><a href="./project-graduated-fees.html">next project →</a></p>
-        <h2><span>let's talk</span><br> or connect in person</h2>
-        <section class="contacts">
-            <a href="https://www.linkedin.com/in/bernardoprd/" target="_blank">LinkedIn</a>
-            <a href="./bernardo.prd.en.2026.pdf" target="_blank">CV</a>
-            <a href="mailto:bernardo.prd@gmail.com">bernardo.prd@gmail.com</a>
-        </section>
-    </footer>
+<header class="site-header">
+  <a href="/" class="logo">Bernardo Prudêncio</a>
+  <nav>
+    <a href="/">Home</a>
+    <a href="./projects.html">Work</a>
+  </nav>
+</header>
+
+<div class="cs-hero-card">
+  <img src="./resources/service-area-animated-cover.gif" alt="Service areas map">
+  <div class="cs-hero-card-overlay">
+    <p class="cse">Rover · 2024–2025 · Search &amp; Supply</p>
+    <h1>Service Areas<br>&amp; Travel Distance</h1>
+    <p class="csh-metric">+4% bookings · +7% match quality</p>
+  </div>
+</div>
+
+<div class="cs-bento">
+  <div class="card cs-text-card col-6">
+    <span class="cs-section-label">01 / Origin</span>
+    <h2>From Hackathon to Product</h2>
+    <p>Sitters historically set a circular radius — blind to real geography. The feedback was consistent: "I'm getting requests within my radius that are practically impossible." This started at a Maker Days hackathon and became a global feature.</p>
+    <p>As lead product designer, I was responsible for the full travel-distance service area experience — from exploratory research through experiment design, global rollout, and search integration.</p>
+  </div>
+  <div class="card card-dark cs-metric-card col-3">
+    <div class="cmn">+7%</div>
+    <div class="cml">match quality score</div>
+  </div>
+  <div class="card card-dark cs-metric-card col-3">
+    <div class="cmn">+4%</div>
+    <div class="cml">search-to-book rate</div>
+  </div>
+</div>
+
+<div class="cs-bento">
+  <div class="card cs-image-card col-5 row-3" style="background: #f0f0f0;">
+    <img src="./notion_export_24042026/Service%20areas%20using%20travel%20distance/image%202.png" alt="Research prototype — travel-distance polygon" style="height: 100%; min-height: 240px; object-fit: contain;">
+  </div>
+  <div class="card cs-text-card col-7">
+    <span class="cs-section-label">02 / Research</span>
+    <h2>Understanding What "Distance" Means</h2>
+    <p>In moderated sessions, sitters reacted to their areas being redrawn, adjusted distance/time and travel mode, and talked through how far they'd go for different services.</p>
+    <p>Three design anchors: sitters think in miles <em>and</em> minutes; irregular road-based shapes feel more intuitive than circles; different services need different areas.</p>
+    <details class="cs-detail">
+      <summary>The unified model</summary>
+      <div class="cs-detail-body">Distance (1–100 km/miles) or time (1–60 min), walking/cycling/driving. House sitting, drop-ins, walks each get their own area. Existing radius backfilled automatically.</div>
+    </details>
+  </div>
+</div>
+
+<div class="cs-bento">
+  <div class="card cs-image-card col-7 row-4">
+    <img src="./resources/service-areas-research.png" alt="Research" style="aspect-ratio: unset; height: 100%; min-height: 300px;">
+  </div>
+  <div class="card cs-image-card col-5 row-4" style="background: #f0f0f0;">
+    <img src="./notion_export_24042026/Service%20areas%20using%20travel%20distance/image%204.png" alt="Service area settings UI" style="height: 100%; min-height: 280px; object-fit: contain;">
+  </div>
+</div>
+
+<div class="cs-bento">
+  <div class="card cs-image-card col-6 row-3">
+    <img src="./resources/service-areas-solution.png" alt="Solution" style="aspect-ratio: unset; height: 100%; min-height: 250px;">
+  </div>
+  <div class="card cs-text-card col-6">
+    <span class="cs-section-label">03 / Results</span>
+    <h2>Validated &amp; Shipped Globally</h2>
+    <p>Two geographic A/B tests. Both waves showed better matching, better conversion, and strong sitter adoption. We committed to global rollout instead of extending the split.</p>
+    <p>Search-to-request +2–3%. Search-to-book +1.6–2.8%. Match quality +7%. Revenue per searcher +5–6% in US markets.</p>
+    <details class="cs-detail">
+      <summary>The initial conversion trade-off</summary>
+      <div class="cs-detail-body">Small initial dip (–1–2%) in new-owner conversion from stricter "outside service area" behaviour. The sitters who did show up were closer and more likely to accept — a good trade for better long-run quality.</div>
+    </details>
+  </div>
+  <div class="card card-dark cs-metric-card col-3">
+    <div class="cmn">+6%</div>
+    <div class="cml">revenue per searcher US</div>
+  </div>
+  <div class="card card-dark cs-metric-card col-3">
+    <div class="cmn">4–5mi</div>
+    <div class="cml">avg distance drop page 1 results</div>
+  </div>
+</div>
+
+<div class="next-project"><a href="./project-graduated-fees.html">Next: Graduated Fees →</a></div>
+
+<footer>
+  <h2 class="footer-title">Let's talk<br><span>or meet in person</span></h2>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/bernardoprd/" target="_blank">LinkedIn</a>
+    <a href="./bernardo.prd.en.2026.pdf" target="_blank">CV</a>
+    <a href="mailto:bernardo.prd@gmail.com">bernardo.prd@gmail.com</a>
+  </div>
+</footer>
+
 <nav class="variant-switcher" aria-label="Design variants">
   <span class="vs-label">variant</span>
-  <a href="./project-service-areas.html" class="vs-link vs-o vs-active" aria-label="Variant O">O</a>
-  <a href="./variant-a/project-service-areas.html" class="vs-link" aria-label="Variant A">A</a>
-  <a href="./variant-e/project-service-areas.html" class="vs-link" aria-label="Variant E">E</a>
-  <a href="./variant-f/project-service-areas.html" class="vs-link" aria-label="Variant F">F</a>
+  <a href="/variant-o/project-service-areas.html" class="vs-link" aria-label="Variant O">O</a>
+  <a href="/variant-a/project-service-areas.html" class="vs-link" aria-label="Variant A">A</a>
+  <a href="/project-service-areas.html" class="vs-link vs-active" aria-label="Variant E">E</a>
+  <a href="/variant-f/project-service-areas.html" class="vs-link" aria-label="Variant F">F</a>
 </nav>
-</body>
 
+<script>
+  if (location.search.includes('variants')) {
+    document.querySelector('.variant-switcher').classList.add('is-visible');
+  }
+</script>
+</body>
 </html>
