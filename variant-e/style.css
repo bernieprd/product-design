@@ -198,10 +198,10 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .project-card-full:hover .pcf-cta { opacity: 1; transform: translateY(0); }
 
 /* ─── CASE STUDY LAYOUT ─── */
-.cs-hero-card { background: #000; border-radius: var(--radius); overflow: hidden; position: relative; aspect-ratio: 21/9; margin: 1.5rem; min-height: 340px; }
-.cs-hero-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.55); }
-.cs-hero-card-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 2.5rem; background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.4) 55%, transparent 100%); }
-.cs-hero-card-overlay .cse { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.65); letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+.cs-hero-card { background: #000; border-radius: var(--radius); overflow: hidden; position: relative; aspect-ratio: 16/9; margin: 1.5rem; min-height: 340px; }
+.cs-hero-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); }
+.cs-hero-card-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 3rem; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 50%, transparent 100%); }
+.cs-hero-card-overlay .cse { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.85); letter-spacing: 0.1em; margin-bottom: 0.75rem; }
 .cs-hero-card-overlay h1 { font-size: clamp(2rem, 5vw, 4.5rem); font-weight: 800; color: #fff; line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
 .cs-hero-card-overlay .csh-metric { font-size: clamp(1.2rem, 2.5vw, 2rem); font-weight: 800; color: var(--accent); }
 .cs-present-btn {
