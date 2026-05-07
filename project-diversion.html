@@ -1,85 +1,100 @@
 <!DOCTYPE html>
 <html lang="en-US">
-
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143375865-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'UA-143375865-1');
-    </script>
-
-    <meta charset="utf-8">
-    <title>Reducing platform diversion · Bernardo Prudêncio</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta name="author" content="Bernardo Prudêncio">
-    <meta name="description" content="Protecting $5M in revenue by enforcing platform communication at Rover.">
-    <link href="https://fonts.googleapis.com/css?family=Fahkwang:300,600" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Reducing Platform Diversion · Bernardo Prudêncio</title>
+  <link rel="stylesheet" href="./style.css">
 </head>
+<body>
 
-<body class="projects-page case-study-page">
-    <h1><a href="./index.html">Bernardo Prudêncio</a></h1><span> &nbsp;/ product designer</span>
-    <main>
-        <h2><span>reducing</span><br><span>platform diversion</span></h2>
-    </main>
-    <nav>
-        <a href="./index.html">about</a>
-        <a href="./projects.html">projects</a>
-    </nav>
-    <section id="about" class="specific-project">
-        <article class="diversion01">
-            <div class="image">
-                <img src="./resources/diversion-animated-cover.gif" alt="Platform diversion overview — Community Guidelines and phone blocking program">
-            </div>
-            <div class="description">
-                <p class="cs-eyebrow">Rover · 2022–2023</p>
-                <p>Rover estimated that more than 20% of potential marketplace revenue was being lost to off-platform bookings — relationships that started on Rover but completed elsewhere.</p>
-                <p>I led design on two complementary initiatives: a cross-platform phone number blocking system and an in-product Community Guidelines modal. Together, they reduced the ability and incentive to move conversations off Rover, delivering an estimated combined upside of roughly <strong>$5M+ in protected annual Rover revenue</strong> in the highest-risk segments.</p>
-                <p>We framed a simple program: use Community Guidelines inside the product to set expectations and tie behaviour to safety; use phone number blocking across app, web, and SMS to enforce those expectations at the moment of action — without harming overall booking rates.</p>
-            </div>
-        </article>
-        <article class="diversion02">
-            <div class="image">
-                <img src="./resources/diversion-blocking.png" alt="Phone number blocking — modal and SMS masking experience">
-            </div>
-            <div class="description">
-                <h3 class="cs-heading">What we shipped</h3>
-                <p>The Community Guidelines modal reached sitters and owners at critical moments: existing users on their next login, new owners when sending their first request, new sitters after completing booking onboarding. Users had to explicitly tap "Got it" to dismiss — if they closed the app instead, it re-appeared on the next trigger.</p>
-                <p>For phone blocking: on app and web, any personal phone number shared before a booking was intercepted and not delivered. A modal explained why, with a primary action returning the user to edit their message. On SMS, detected numbers were masked and both parties received an automated explanation. Once a booking was confirmed between that pair, the block was lifted.</p>
-                <p>We added special rules: Rover support numbers are always allowed; Rover relay numbers are blocked from being re-shared, since they're not functional for other users.</p>
-            </div>
-        </article>
-        <article class="diversion03">
-            <div class="image">
-                <img src="./resources/diversion-results.png" alt="Experiment results — booking rates and segment analysis">
-            </div>
-            <div class="description">
-                <h3 class="cs-heading">How we worked &amp; impact</h3>
-                <p>We deliberately set the bar as "do not hurt booking rates" rather than chasing a headline lift. Across the marketplace, booking rates stayed neutral — we didn't make it harder for people to successfully book.</p>
-                <p>In the segments that matter most for diversion risk, results were clear: the Community Guidelines modal increased the likelihood that conversations between experienced providers and repeat customers turned into bookings. Phone number blocking increased booking rates specifically in conversations where people tried to share their numbers and were stopped.</p>
-                <p>When both sides of a conversation had seen the Community Guidelines modal, the odds of a booking were roughly <strong>3.5% higher</strong> than control. Phone blocking contributed an estimated annual upside of <strong>$3.6M</strong> in conversations where numbers were shared. Community Guidelines contributed an estimated <strong>$2.2M</strong> annually in activated in-app bookings.</p>
-                <p>The simple story: by setting clearer expectations and enforcing on-platform communication, we kept money and relationships inside the product, at scale, without breaking the booking experience.</p>
-            </div>
-        </article>
-    </section>
-    <footer>
-        <p style="text-align:right; padding: 1.5rem 1.5rem 0;"><a href="./project-service-areas.html">next project →</a></p>
-        <h2><span>let's talk</span><br> or connect in person</h2>
-        <section class="contacts">
-            <a href="https://www.linkedin.com/in/bernardoprd/" target="_blank">LinkedIn</a>
-            <a href="./bernardo.prd.en.2026.pdf" target="_blank">CV</a>
-            <a href="mailto:bernardo.prd@gmail.com">bernardo.prd@gmail.com</a>
-        </section>
-    </footer>
-<nav class="variant-switcher" aria-label="Design variants">
-  <span class="vs-label">variant</span>
-  <a href="./project-diversion.html" class="vs-link vs-o vs-active" aria-label="Variant O">O</a>
-  <a href="./variant-a/project-diversion.html" class="vs-link" aria-label="Variant A">A</a>
-  <a href="./variant-e/project-diversion.html" class="vs-link" aria-label="Variant E">E</a>
-  <a href="./variant-f/project-diversion.html" class="vs-link" aria-label="Variant F">F</a>
-</nav>
+<header class="site-header">
+  <a href="/" class="logo">Bernardo Prudêncio</a>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/#projects-gallery">Work</a>
+  </nav>
+</header>
+
+<div class="cs-hero-card">
+  <img src="./resources/diversion-animated-cover.gif" alt="Platform diversion">
+  <div class="cs-hero-card-overlay">
+    <p class="cse">Rover · 2022–2023 · Trust &amp; Safety</p>
+    <h1>Reducing Platform<br>Diversion</h1>
+    <p class="csh-metric">$5M+ protected annual revenue</p>
+  </div>
+</div>
+
+<div class="cs-bento">
+  <div class="card cs-text-card col-5">
+    <span class="cs-section-label">01 / Problem</span>
+    <h2>The Problem</h2>
+    <p>Rover estimated 20%+ of potential revenue was lost to off-platform bookings — relationships starting on Rover, completing elsewhere. I led design on two complementary initiatives: phone blocking and a Community Guidelines modal.</p>
+    <p>The design constraint: do not hurt booking rates. Keeping people in the product only matters if they can still book.</p>
+  </div>
+  <div class="card card-dark cs-metric-card col-4">
+    <div class="cmn">$5M</div>
+    <div class="cml">combined protected revenue</div>
+  </div>
+  <div class="card card-dark cs-metric-card col-3">
+    <div class="cmn">3.5%</div>
+    <div class="cml">higher booking odds post-guidelines</div>
+  </div>
+</div>
+
+<div class="cs-bento">
+  <div class="card cs-image-card col-6 row-4">
+    <img src="./notion_export_24042026/Reducing%20platform%20diversion/Community%20guidelines/image.png" alt="Community Guidelines modal" style="height: 100%; min-height: 280px; object-fit: cover; object-position: center bottom;">
+  </div>
+  <div class="card cs-text-card col-6">
+    <span class="cs-section-label">02 / Design</span>
+    <h2>Phone Blocking & Community Guidelines</h2>
+    <p>Phone blocking: any personal number shared before a booking was intercepted. App and web showed a modal; SMS masked the number with an automated explanation. The block lifted once a booking was confirmed between that pair.</p>
+    <p>Community Guidelines modal: reached users at critical moments, required an explicit "Got it" confirmation, and reappeared if dismissed by closing the app.</p>
+    <details class="cs-detail">
+      <summary>Special rules &amp; edge cases</summary>
+      <div class="cs-detail-body">Support numbers always allowed. Relay numbers blocked from re-sharing. Cross-surface consistency across iOS, web, and SMS required coordination with multiple teams.</div>
+    </details>
+  </div>
+</div>
+
+<div class="cs-bento">
+  <div class="card cs-image-card col-6 row-4">
+    <img src="./resources/diversion-blocking.png" alt="Phone blocking" style="aspect-ratio: unset; height: 100%; min-height: 280px;">
+  </div>
+  <div class="card cs-image-card col-6 row-4" style="background: #f0f0f0;">
+    <img src="./notion_export_24042026/Reducing%20platform%20diversion/image%201.png" alt="Cross-surface phone blocking flow" style="height: 100%; min-height: 280px; object-fit: contain;">
+  </div>
+  <div class="card cs-image-card col-6 row-3">
+    <img src="./resources/diversion-results.png" alt="Results" style="aspect-ratio: unset; height: 100%; min-height: 250px;">
+  </div>
+</div>
+
+<div class="cs-bento">
+  <div class="card card-dark cs-metric-card col-3">
+    <div class="cmn">$3.6M</div>
+    <div class="cml">phone blocking annual upside</div>
+  </div>
+  <div class="card card-dark cs-metric-card col-3">
+    <div class="cmn">$2.2M</div>
+    <div class="cml">community guidelines annual</div>
+  </div>
+  <div class="card cs-text-card col-6">
+    <span class="cs-section-label">03 / Results</span>
+    <h2>Neutral Broadly, Positive Where It Counts</h2>
+    <p>Booking rates stayed neutral across the marketplace — we didn't make it harder to book. In the high-risk segments, booking odds were 3.5% higher when both sides had seen Community Guidelines.</p>
+  </div>
+</div>
+
+<div class="next-project"><a href="./project-service-areas.html">Next: Service Areas →</a></div>
+
+<footer>
+  <h2 class="footer-title">Let's talk<br><span>or meet in person</span></h2>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/bernardoprd/" target="_blank">LinkedIn</a>
+    <a href="./bernardo.prd.en.2026.pdf" target="_blank">CV</a>
+    <a href="mailto:bernardo.prd@gmail.com">bernardo.prd@gmail.com</a>
+  </div>
+</footer>
 </body>
-
 </html>

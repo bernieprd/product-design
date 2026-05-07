@@ -1,102 +1,154 @@
 <!DOCTYPE html>
 <html lang="en-US">
-
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143375865-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'UA-143375865-1');
-    </script>
-
-    <meta charset="utf-8">
-    <title>Relationship-based graduated fees · Bernardo Prudêncio</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta name="author" content="Bernardo Prudêncio">
-    <meta name="description" content="Aligning sitter fees with relationship value to curb diversion and grow per-relationship revenue at Rover.">
-    <link href="https://fonts.googleapis.com/css?family=Fahkwang:300,600" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Relationship-based Graduated Fees · Bernardo Prudêncio</title>
+  <link rel="stylesheet" href="./style.css">
 </head>
+<body>
 
-<body class="projects-page case-study-page">
-    <h1><a href="./index.html">Bernardo Prudêncio</a></h1><span> &nbsp;/ product designer</span>
-    <main>
-        <h2><span>relationship</span><br><span>graduated fees</span></h2>
-    </main>
-    <nav>
-        <a href="./index.html">about</a>
-        <a href="./projects.html">projects</a>
-    </nav>
-    <section id="about" class="specific-project">
-        <article class="gradfees01">
-            <div class="image">
-                <img src="./resources/graduated-fees-animated-cover.gif" alt="Early explorations — graduated fee model concepts">
-            </div>
-            <div class="description">
-                <p class="cs-eyebrow">Rover · 2025 · In Flight</p>
-                <p>Today, Rover takes a flat percentage of sitter earnings on every booking — the same fee for a first-ever booking with a brand-new client and for a long-standing relationship where owner and sitter know and trust each other. Frustration about fees is a core driver of diversion: sitters often feel that "paying the same fee forever" no longer matches the value they get.</p>
-                <p>Internal analysis shows that if we could keep diverted revenue on platform, Rover's marketplace take could be <strong>~40% higher</strong>, with repeat-relationship diversion as the biggest driver. The provider strategy North Star is to increase take per relationship by ~23% over the next few years, not just per booking — and a flat fee doesn't map to that reality.</p>
-                <p>Relationship-based graduated fees is a strategic, in-flight project to rethink how Rover charges sitters: instead of a flat percentage, we're testing a model where the platform fee starts higher on the first bookings with a client and decreases as that relationship grows. The goal is to better align fees with the value Rover actually provides, reduce off-platform bookings, and increase take per relationship, while still feeling fair to top sitters.</p>
-            </div>
-        </article>
-        <article class="gradfees02">
-            <div class="image">
-                <img src="./resources/graduated-fees-strategy.png" alt="Model evaluation — new vs repeat, relationship-based GBV, account-based GBV">
-            </div>
-            <div class="description">
-                <h3 class="cs-heading">Strategy and model options</h3>
-                <p>Before diving into UI, we mapped the space of possible models: new vs. repeat (lower fee on all repeat bookings); relationship-based GBV (fee drops as cumulative booking value with a specific client hits milestones); and account-based GBV (fee drops as a sitter's total Rover earnings hit milestones).</p>
-                <p>We assessed each along: comprehension (can sitters understand and track it?); fairness (does it match their mental model of when Rover adds value?); gaming risk; revenue impact; and segment impact on top sitters who drive ~75% of earnings.</p>
-                <p>We landed on relationship-based as the best match to sitter mental models and loyalty incentives. New vs. repeat was too easy to game and weak at directing behaviour. Account-based was conceptually cleaner but less aligned with how sitters talk about "fair vs. unfair" fees — they think per client, not per year. We decided to test relationship-based GBV first, in Canada as a proxy for the US, and keep account-based as a later complementary option.</p>
-            </div>
-        </article>
-        <article class="gradfees03">
-            <div class="image">
-                <img src="./resources/graduated-fees-relationship.png" alt="Relationship page — GBV progress tracker, fee tier, and transaction history">
-            </div>
-            <div class="description">
-                <h3 class="cs-heading">The Relationship page as source of truth</h3>
-                <p>At its simplest, the test model looks like: higher fee on the first slice of relationship GBV (e.g. 28–35% up to a threshold); lower fee once the relationship hits that milestone (e.g. 10–15% after $X); with the option of a third "loyal" tier. Each owner–sitter pair has its own progress; once you unlock a lower tier with that client, you keep it for future bookings.</p>
-                <p>That led to a core design challenge: sitters currently cannot see GBV per client or how fees are calculated per relationship. A multistep GBV model is conceptually more complex than "your fee is 20%". I explored several options — small tweaks to payment history, reworking Rebook into a client-centric view — but concluded that a dedicated Relationship page is necessary: a single source of truth for a sitter–client pair, with a GBV progress tracker, fee tier, and transaction history.</p>
-                <p>My contributions span co-creating the evaluation framework, leading the relationship-based experience exploration, writing the deep-dives that informed the 1-pager, and defining the MVP Relationship page scope and touchpoints needed to make the model explainable.</p>
-            </div>
-        </article>
-        <article class="gradfees04">
-            <div class="image">
-                <img src="./resources/graduated-fees-challenges.png" alt="Key UX challenges — comprehension, agency, and threshold-crossing decisions">
-            </div>
-            <div class="description">
-                <h3 class="cs-heading">Key UX challenges</h3>
-                <p>Design exploration, usability tests, and strategy reviews surfaced hard problems. Model mechanics comprehension: sitters struggled with cumulative GBV, milestones, permanent reductions, and how they applied across services. We decided to lean on progressive disclosure and anchor everything around "this relationship with this client," not the abstract platform model.</p>
-                <p>Perceived inequality between services: earnings-based milestones naturally favour high-ticket boarding vs. low-ticket walking and drop-ins. We accepted that trade-off given boarding's revenue share, but baked it into messaging and considered longer-term point systems to rebalance.</p>
-                <p>Sense of agency: sitters felt some parts of the model depended heavily on owner behaviour rather than their own effort. We focused UI and messaging on actions sitters control — rebooking on platform, keeping relationships active — and avoided over-promising.</p>
-                <p>The test is just beginning in Canada. I'll consider it successful if we see high comprehension and perceived fairness among top sitters, no material increase in new-relationship diversion despite higher upfront fees, and improved repeat behaviour on platform for eligible relationships.</p>
-            </div>
-        </article>
-        <article class="gradfees05">
-            <div class="description">
-                <h3 class="cs-heading">What we're measuring</h3>
-                <p>As a test-phase project, success isn't defined by a single metric — it's a signal set. We're tracking comprehension and perceived fairness among top sitters, diversion rates on new relationships (to confirm higher upfront fees don't push sitters off-platform), repeat booking behaviour over 90-day windows, and per-relationship GBV growth versus the control group. A clean signal on all four would green-light a broader rollout.</p>
-            </div>
-        </article>
-    </section>
-    <footer>
-        <p style="text-align:right; padding: 1.5rem 1.5rem 0;"><a href="./project-star-sitter.html">next project →</a></p>
-        <h2><span>let's talk</span><br> or connect in person</h2>
-        <section class="contacts">
-            <a href="https://www.linkedin.com/in/bernardoprd/" target="_blank">LinkedIn</a>
-            <a href="./bernardo.prd.en.2026.pdf" target="_blank">CV</a>
-            <a href="mailto:bernardo.prd@gmail.com">bernardo.prd@gmail.com</a>
-        </section>
-    </footer>
-<nav class="variant-switcher" aria-label="Design variants">
-  <span class="vs-label">variant</span>
-  <a href="./project-graduated-fees.html" class="vs-link vs-o vs-active" aria-label="Variant O">O</a>
-  <a href="./variant-a/project-graduated-fees.html" class="vs-link" aria-label="Variant A">A</a>
-  <a href="./variant-e/project-graduated-fees.html" class="vs-link" aria-label="Variant E">E</a>
-  <a href="./variant-f/project-graduated-fees.html" class="vs-link" aria-label="Variant F">F</a>
-</nav>
+<header class="site-header">
+  <a href="/" class="logo">Bernardo Prudêncio</a>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/#projects-gallery">Work</a>
+  </nav>
+</header>
+
+<div class="cs-hero-card">
+  <img src="./resources/graduated-fees-animated-cover.gif" alt="Graduated fees">
+  <div class="cs-hero-card-overlay">
+    <p class="cse">Rover · 2025 · Strategy · In Flight</p>
+    <h1>Relationship-based<br>Graduated Fees</h1>
+    <p class="csh-metric">~40% higher take · 23% take-per-relationship target</p>
+    <div style="display:flex; align-items:center; gap:0.75rem; margin-top:1.25rem;">
+      <a href="./project-graduated-fees-deck.html" class="cs-present-btn" style="margin-top:0;">Present deck →</a>
+      <span style="font-family:var(--font-mono); font-size:0.58rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,180,50,0.75);">WIP</span>
+    </div>
+  </div>
+</div>
+
+<div class="cs-bento">
+  <div class="card cs-text-card col-6">
+    <span class="cs-section-label">01 / Problem</span>
+    <h2>The Flat Fee Problem</h2>
+    <p>Today, Rover charges the same fee on a sitter's first booking with a new client as on their 20th booking with a long-term trusted relationship. Frustration about fees is a core driver of diversion.</p>
+    <p>Internal analysis showed that capturing repeat-relationship diversion could make Rover's take ~40% higher. The provider strategy targets ~23% take-per-relationship growth. A flat fee doesn't map to that reality.</p>
+  </div>
+  <div class="card card-dark cs-metric-card col-3">
+    <div class="cmn">~40%</div>
+    <div class="cml">higher take rate potential</div>
+  </div>
+  <div class="card card-dark cs-metric-card col-3" style="background: #1A2A1A;">
+    <div class="cmn" style="color: #6FCF97;">In Flight</div>
+    <div class="cml">testing in Canada now</div>
+  </div>
+</div>
+
+<div class="cs-bento">
+  <div class="card cs-image-card col-6">
+    <img src="./notion_export_24042026/Relationship-based%20graduated%20fees/images/de-gtr-exploration.png"
+         alt="Model evaluation — exploration"
+         style="aspect-ratio: unset; height: 100%; min-height: 280px;">
+  </div>
+  <div class="card cs-text-card col-6">
+    <span class="cs-section-label">02 / Approach</span>
+    <h2>Three Models, One Test</h2>
+    <p>We assessed three possible models against: comprehension, fairness, gaming risk, revenue impact, and segment impact on top sitters who drive ~75% of earnings.</p>
+    <p>Relationship-based was the best match to how sitters think. They track clients, not annual totals. Testing relationship-based GBV first in Canada as a proxy for the US market.</p>
+    <details class="cs-detail">
+      <summary>Why not the others?</summary>
+      <div class="cs-detail-body">New vs. repeat: too easy to game, weak at directing behaviour. Account-based: cleaner conceptually but misaligned with how sitters think about fairness.</div>
+    </details>
+  </div>
+  <div class="card cs-image-card col-12" style="background: #1a1a1a;">
+    <img src="./notion_export_24042026/Relationship-based%20graduated%20fees/images/dd-rb-touchpoints.webp"
+         alt="Relationship-based model — user flow and touchpoints"
+         style="aspect-ratio: unset; height: 100%; min-height: 320px;">
+  </div>
+</div>
+
+<div class="cs-bento">
+  <div class="card cs-text-card col-6">
+    <span class="cs-section-label">03 / Design</span>
+    <h2>The Relationship Page</h2>
+    <p>Higher fee on the first slice of relationship GBV (e.g. 28–35%), lower fee once the relationship hits a milestone (e.g. 10–15% after $X). Each owner–sitter pair has its own progress; once unlocked, the lower tier is permanent.</p>
+    <p>Sitters currently can't see GBV per client. A multi-step GBV model is complex to understand. A dedicated Relationship page is the solution — GBV progress tracker, fee tier, transaction history per client.</p>
+  </div>
+  <div class="card cs-image-card col-6">
+    <img src="./notion_export_24042026/Relationship-based%20graduated%20fees/images/rel-page-mvp.webp"
+         alt="Relationship page MVP"
+         style="aspect-ratio: unset; height: 100%; min-height: 280px;">
+  </div>
+  <div class="card cs-image-card col-4" style="background: #F5F5F3;">
+    <img src="./notion_export_24042026/Relationship-based%20graduated%20fees/images/dd-rb-rebook.webp"
+         alt="Per-relationship fee tiers — client list"
+         style="aspect-ratio: unset; height: 100%; min-height: 240px; object-fit: contain; padding: 1.5rem;">
+  </div>
+  <div class="card cs-image-card col-4" style="background: #F5F5F3;">
+    <img src="./notion_export_24042026/Relationship-based%20graduated%20fees/images/dd-rb-payment-history.webp"
+         alt="Transaction history per client"
+         style="aspect-ratio: unset; height: 100%; min-height: 240px; object-fit: contain; padding: 1.5rem;">
+  </div>
+  <div class="card cs-image-card col-4" style="background: #F5F5F3;">
+    <img src="./notion_export_24042026/Relationship-based%20graduated%20fees/images/dd-rb-two-mil.webp"
+         alt="Earn more with every relationship — milestone widget"
+         style="aspect-ratio: unset; height: 100%; min-height: 240px; object-fit: contain; padding: 1.5rem;">
+  </div>
+</div>
+
+<div class="cs-bento">
+  <div class="card cs-image-card col-6 row-3">
+    <img src="./resources/graduated-fees-challenges.png" alt="UX challenges" style="aspect-ratio: unset; height: 100%; min-height: 250px;">
+  </div>
+  <div class="card cs-text-card col-6">
+    <span class="cs-section-label">04 / Hard Problems</span>
+    <h2>Comprehension & Perceived Fairness</h2>
+    <p>Model mechanics comprehension: sitters struggled with cumulative GBV, milestones, permanent reductions. We leaned on progressive disclosure and anchored everything around "this relationship with this client."</p>
+    <p>Sense of agency: some milestones depended on owner behaviour. We focused UI on actions sitters control and avoided over-promising.</p>
+  </div>
+  <div class="card cs-image-card col-6 row-2" style="background: #F5F5F3;">
+    <img src="./notion_export_24042026/Relationship-based%20graduated%20fees/images/dd-rb-details.webp"
+         alt="Milestone surfacing in booking details — progressive disclosure"
+         style="aspect-ratio: unset; height: 100%; min-height: 240px; object-fit: contain; padding: 1.5rem;">
+  </div>
+</div>
+
+<div class="cs-bento">
+  <div class="card col-12" style="padding: 2rem;">
+    <span class="cs-section-label">05 / In Flight · Results Pending</span>
+    <h2 style="font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 700; margin-bottom: 1.5rem;">What We're Measuring</h2>
+    <div class="wm-grid">
+      <div class="wm-item">
+        <span class="wm-label">Comprehension</span>
+        <p class="wm-desc">High comprehension and perceived fairness among top sitters in Canada.</p>
+      </div>
+      <div class="wm-item">
+        <span class="wm-label">Diversion</span>
+        <p class="wm-desc">No material increase in diversion on new relationships despite higher upfront fees.</p>
+      </div>
+      <div class="wm-item">
+        <span class="wm-label">Repeat Bookings</span>
+        <p class="wm-desc">Improved on-platform repeat bookings for eligible relationships, 90-day window.</p>
+      </div>
+      <div class="wm-item">
+        <span class="wm-label">GBV Growth</span>
+        <p class="wm-desc">Per-relationship GBV growth vs. control. Clean signal → broader rollout.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="next-project"><a href="./project-star-sitter.html">Next: Star Sitter →</a></div>
+
+<footer>
+  <h2 class="footer-title">Let's talk<br><span>or meet in person</span></h2>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/bernardoprd/" target="_blank">LinkedIn</a>
+    <a href="./bernardo.prd.en.2026.pdf" target="_blank">CV</a>
+    <a href="mailto:bernardo.prd@gmail.com">bernardo.prd@gmail.com</a>
+  </div>
+</footer>
 </body>
-
 </html>

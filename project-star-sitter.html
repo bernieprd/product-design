@@ -1,95 +1,119 @@
 <!DOCTYPE html>
 <html lang="en-US">
-
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143375865-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'UA-143375865-1');
-    </script>
-
-    <meta charset="utf-8">
-    <title>Star Sitter program · Bernardo Prudêncio</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta name="author" content="Bernardo Prudêncio">
-    <meta name="description" content="Driving a 10% increase in requests to top-tier sitters at Rover.">
-    <link href="https://fonts.googleapis.com/css?family=Fahkwang:300,600" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Star Sitter Program · Bernardo Prudêncio</title>
+  <link rel="stylesheet" href="./style.css">
 </head>
+<body>
 
-<body class="projects-page case-study-page">
-    <h1><a href="./index.html">Bernardo Prudêncio</a></h1><span> &nbsp;/ product designer</span>
-    <main>
-        <h2><span>star</span><br><span>sitter program</span></h2>
-    </main>
-    <nav>
-        <a href="./index.html">about</a>
-        <a href="./projects.html">projects</a>
-    </nav>
-    <section id="about" class="specific-project">
-        <article class="starsitter01">
-            <div class="image">
-                <img src="./resources/star-sitter-animated-cover.gif" alt="Star Sitter badge displayed on sitter search results">
-            </div>
-            <div class="description">
-                <p class="cs-eyebrow">Rover · 2023–2025</p>
-                <p>Rover already had work in motion around successful sitters: onboarding best practices, booking walkthroughs, and a Sitter Insights dashboard. Despite that, three core gaps remained: owners had a hard time identifying our most reliable sitters in search; sitters saw metrics but didn't feel a strong motivation to change behaviour; and off-platform diversion remained a large, strategic revenue leak.</p>
-                <p>We built Star Sitter as a third lever — a provider-level status program that gamifies behaviours we care about, directs demand to our most reliable supply, and ties status to on-platform repeat behaviour. In experiments, it increased <strong>new-to-Rover revenue per customer by 4.8%</strong> and extrapolated to roughly <strong>$2.5M in incremental annual revenue</strong>.</p>
-                <p>As lead product designer, I co-led the design from first concept through global rollout and major iterations — including the end-to-end status model, owner and sitter surfaces, and the "explainability" layer in Sitter Insights.</p>
-            </div>
-        </article>
-        <article class="starsitter02">
-            <div class="image">
-                <img src="./resources/star-sitter-insights.png" alt="Sitter Insights dashboard — the data foundation for Star Sitter">
-            </div>
-            <div class="description">
-                <h3 class="cs-heading">Phase 1–2 · Foundation and beta</h3>
-                <p>We launched the Sitter Insights dashboard first — metrics like response rate, booking rate, calendar updates, and cancellations — establishing the mental model: "this is where I understand how my business is doing." Small but positive improvements in conversation booking rate (+0.6%) confirmed sitters responded to visibility.</p>
-                <p>With the data foundation in place, we introduced Star Sitter as a beta in limited markets. Key design choices: a provider-level, non-tiered status; qualification based on response rate, cancellation rate, star rating, new client booking rate, and repeat clients; badge surfacing on search cards and profiles; and a "Only show Star Sitters" owner filter.</p>
-                <p>The owner-side split test showed the badge meaningfully shifted behaviour — more conversations going to Star Sitters, higher conversion, and higher average booking values. At the same time, CX sentiment surfaced early cracks: confusion around booking rate, and pain around edge cases like long-tenured but low-activity sitters.</p>
-            </div>
-        </article>
-        <article class="starsitter03">
-            <div class="image">
-                <img src="./resources/star-sitter-tracking.png" alt="Star Sitter Insights tab — past snapshots and current-period metrics">
-            </div>
-            <div class="description">
-                <h3 class="cs-heading">Phase 3–4 · Understandable and fair</h3>
-                <p>We iterated on the public landing page and the Sitter Insights tracking tab. On the landing page, usability tests showed sitters skimmed past key rules. We tightened copy to use direct, instructive phrasing, pulled core rules into scannable bullets, and added a prominent "Check your progress" CTA sending sitters straight into Sitter Insights.</p>
-                <p>On tracking, we reshaped the tab: a clearer distinction between past snapshots and current-period metrics; a simple status message ("You are on track to get Star Sitter on {date}"); and tiered "Learn more" patterns for the hardest concepts.</p>
-                <p>We also made three major fairness changes: moved from lifetime to recent activity (5 recent clients and 2 repeat clients in 6 months); formalised legacying — sitters who met criteria last period but miss one metric can keep the badge for one grace period; and fixed a Contact More Sitters bias that was unfairly penalising high-value sitters' booking rate.</p>
-            </div>
-        </article>
-        <article class="starsitter04">
-            <div class="image">
-                <img src="./resources/star-sitter-live.png" alt="Live Star Sitter status in Sitter Insights — rolling model">
-            </div>
-            <div class="description">
-                <h3 class="cs-heading">Phase 5 · Rolling status and outcomes</h3>
-                <p>Quarterly refreshes gave us stability at launch, but over time the trade-offs became clear: long delays between behaviour change and status change; predictable CX ticket spikes around refresh days; and a fragile manual batch process. We moved to a rolling model where sitters earn Star Sitter as soon as they meet the criteria, and dropping below criteria puts them into a three-month grace period.</p>
-                <p>This allowed us to dramatically simplify the Sitter Insights UX: no more qualification period dropdowns, a single real-time picture of where sitters stand, and a status model that better matches sitter mental models.</p>
-                <p>Across experiments and rollouts: a <strong>4.8% increase in revenue per new-to-Rover customer</strong>, driven by higher average booking values and nearly 1 percentage point higher conversion. At full scale, the geo-split extrapolated to roughly <strong>$2.5M in incremental Rover revenue</strong>. Search behaviour shifted toward sitters with stronger reliability and on-platform habits as more owner conversations flowed to Star Sitters.</p>
-            </div>
-        </article>
-    </section>
-    <footer>
-        <p style="text-align:right; padding: 1.5rem 1.5rem 0;"><a href="./project-diversion.html">next project →</a></p>
-        <h2><span>let's talk</span><br> or connect in person</h2>
-        <section class="contacts">
-            <a href="https://www.linkedin.com/in/bernardoprd/" target="_blank">LinkedIn</a>
-            <a href="./bernardo.prd.en.2026.pdf" target="_blank">CV</a>
-            <a href="mailto:bernardo.prd@gmail.com">bernardo.prd@gmail.com</a>
-        </section>
-    </footer>
-<nav class="variant-switcher" aria-label="Design variants">
-  <span class="vs-label">variant</span>
-  <a href="./project-star-sitter.html" class="vs-link vs-o vs-active" aria-label="Variant O">O</a>
-  <a href="./variant-a/project-star-sitter.html" class="vs-link" aria-label="Variant A">A</a>
-  <a href="./variant-e/project-star-sitter.html" class="vs-link" aria-label="Variant E">E</a>
-  <a href="./variant-f/project-star-sitter.html" class="vs-link" aria-label="Variant F">F</a>
-</nav>
+<header class="site-header">
+  <a href="/" class="logo">Bernardo Prudêncio</a>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/#projects-gallery">Work</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="cs-hero-card">
+  <img src="./resources/star-sitter-animated-cover.gif" alt="Star Sitter">
+  <div class="cs-hero-card-overlay">
+    <p class="cse">Rover · 2023–2025 · Loyalty &amp; Incentives</p>
+    <h1>Star Sitter Program</h1>
+    <p class="csh-metric">4.8% revenue per new customer · ~$2.5M ARR</p>
+  </div>
+</div>
+
+<!-- INTRO BENTO -->
+<div class="cs-bento">
+  <div class="card cs-text-card col-5">
+    <span class="cs-section-label">01 / Problem</span>
+    <h2>The Problem</h2>
+    <p>Three gaps remained despite existing sitter tooling: owners couldn't identify the most reliable sitters; sitters saw metrics but lacked motivation; and off-platform diversion was a strategic revenue leak.</p>
+    <p>Star Sitter was a third lever — provider-level status that gamified supply-side behaviours, directed demand to reliable sitters, and tied status to on-platform repeat behaviour.</p>
+  </div>
+  <div class="card card-dark cs-metric-card col-4">
+    <div class="cmn">4.8%</div>
+    <div class="cml">revenue per new customer</div>
+  </div>
+  <div class="card card-dark cs-metric-card col-3">
+    <div class="cmn">$2.5M</div>
+    <div class="cml">incremental annual revenue</div>
+  </div>
+</div>
+
+<!-- PHASES 1-2 -->
+<div class="cs-bento">
+  <div class="card cs-image-card col-6 row-4">
+    <img src="./resources/star-sitter-insights.png" alt="Sitter Insights" style="aspect-ratio: unset; height: 100%; min-height: 300px;">
+  </div>
+  <div class="card cs-text-card col-6">
+    <span class="cs-section-label">02 / Foundation &amp; Beta</span>
+    <h2>Phases 1–2: Build the Mental Model First</h2>
+    <p>We launched Sitter Insights before introducing status — establishing the mental model before asking sitters to compete for a badge. The beta introduced provider-level, non-tiered status: badge on search cards, owner filter, qualification tracking.</p>
+    <p>The badge shifted owner behaviour. But CX surfaced early cracks: confusion around booking rate, frustration around edge cases.</p>
+    <details class="cs-detail">
+      <summary>Early signals detail</summary>
+      <div class="cs-detail-body">Confusion around booking rate calculation. Long-tenured but low-activity sitters felt unfairly excluded. These became the design brief for Phases 3–4.</div>
+    </details>
+  </div>
+  <div class="card cs-image-card col-6 row-3" style="background: #f5f5f5;">
+    <img src="./resources/star-sitter-beta.png" alt="Star Sitter badge on search card" style="height: 100%; min-height: 240px; object-fit: contain;">
+  </div>
+</div>
+
+<!-- PHASES 3-4 -->
+<div class="cs-bento">
+  <div class="card cs-image-card col-6 row-3" style="background: #f5f5f5;">
+    <img src="./notion_export_24042026/Star%20Sitter%20program/image%203.png" alt="Star Sitter earned and not-earned states" style="height: 100%; min-height: 240px; object-fit: contain;">
+  </div>
+  <div class="card cs-text-card col-6">
+    <span class="cs-section-label">03 / Understandable &amp; Fair</span>
+    <h2>Phases 3–4: Fixing What We Got Wrong</h2>
+    <p>Usability tests showed sitters skimmed past key rules. We tightened copy, added a "Check your progress" CTA, and made three major fairness changes: recent activity windows, grace periods, and fixing a booking-rate calculation bias.</p>
+    <details class="cs-detail">
+      <summary>The three fairness fixes</summary>
+      <div class="cs-detail-body">1. Moved from lifetime to recent activity. 2. Formalised legacying — one grace period if one metric is missed. 3. Fixed Contact More Sitters bias that was unfairly penalising booking rates.</div>
+    </details>
+  </div>
+  <div class="card cs-image-card col-12 row-3">
+    <img src="./resources/star-sitter-tracking.png" alt="Tracking tab" style="aspect-ratio: unset; height: 100%; min-height: 250px;">
+  </div>
+</div>
+
+<!-- PHASE 5 / IMPACT -->
+<div class="cs-bento">
+  <div class="card card-dark cs-metric-card col-4">
+    <div class="cmn">10%</div>
+    <div class="cml">more requests to top-tier sitters</div>
+  </div>
+  <div class="card cs-text-card col-8">
+    <span class="cs-section-label">04 / Simplification</span>
+    <h2>Phase 5: Rolling Status</h2>
+    <p>Moving to a rolling model eliminated quarterly batch refreshes and predictable CX spikes. Sitters earn Star Sitter as soon as they meet criteria. A three-month grace period handles drops.</p>
+    <p>The Sitter Insights UX simplified dramatically: no more qualification period dropdowns, a single real-time status view.</p>
+  </div>
+  <div class="card cs-image-card col-6 row-3">
+    <img src="./resources/star-sitter-live.png" alt="Live status" style="aspect-ratio: unset; height: 100%; min-height: 250px;">
+  </div>
+  <div class="card cs-image-card col-6 row-3" style="background: #f5f5f5;">
+    <img src="./notion_export_24042026/Star%20Sitter%20program/image%208.png" alt="Rolling status progression" style="height: 100%; min-height: 240px; object-fit: contain;">
+  </div>
+</div>
+
+<div class="next-project">
+  <a href="./project-diversion.html">Next: Reducing Platform Diversion →</a>
+</div>
+
+<footer>
+  <h2 class="footer-title">Let's talk<br><span>or meet in person</span></h2>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/bernardoprd/" target="_blank">LinkedIn</a>
+    <a href="./bernardo.prd.en.2026.pdf" target="_blank">CV</a>
+    <a href="mailto:bernardo.prd@gmail.com">bernardo.prd@gmail.com</a>
+  </div>
+</footer>
 </body>
-
 </html>
