@@ -363,6 +363,8 @@ footer { background: var(--card-dark); color: #fff; padding: 4rem 1.5rem 2.5rem;
   #card-years, #card-cv { grid-column: span 1; grid-row: auto; }
   .projects-secondary { grid-template-columns: 1fr; }
   .wm-grid { grid-template-columns: 1fr; }
+  .cs-hero-card { aspect-ratio: unset; min-height: 85svh; margin: 0.75rem; }
+  .cs-hero-card-overlay { padding: 1.5rem; }
 
   /* Mobile narrative order: who → career → credentials → contact */
   #card-name    { order: 1; }
