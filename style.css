@@ -346,10 +346,17 @@ footer { background: var(--card-dark); color: #fff; padding: 4rem 1.5rem 2.5rem;
   #card-cv    { grid-column: 7 / 13; grid-row: auto; }
   .wm-grid { grid-template-columns: repeat(2, 1fr); }
 }
+@media (min-width: 769px) and (max-width: 960px) {
+  .cs-bento { grid-template-columns: repeat(2, 1fr); }
+  .col-3, .col-4, .col-5, .col-6, .col-7, .col-8 { grid-column: span 1; }
+  .col-12 { grid-column: span 2; }
+  .row-2, .row-3, .row-4 { grid-row: auto; }
+}
 @media (max-width: 768px) {
   .bento, .cs-bento { grid-template-columns: repeat(2, 1fr); }
   .col-3, .col-4, .col-5, .col-6, .col-7, .col-8 { grid-column: span 2; }
   .col-12 { grid-column: span 2; }
+  .row-2, .row-3, .row-4 { grid-row: auto; }
   #card-name, #card-bio, #card-exp, #card-contact,
   #card-years, #card-cv { grid-column: span 2; grid-row: auto; }
   .project-card-full.project-card-hero { aspect-ratio: 4/3; }

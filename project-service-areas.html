@@ -32,13 +32,16 @@
     <p>Sitters historically set a circular radius — blind to real geography. The feedback was consistent: "I'm getting requests within my radius that are practically impossible." This started at a Maker Days hackathon and became a global feature.</p>
     <p>As lead product designer, I was responsible for the full travel-distance service area experience — from exploratory research through experiment design, global rollout, and search integration.</p>
   </div>
+  <div class="card cs-image-card col-6 row-2" style="background: #1c1c1e; min-height: 400px;">
+    <img src="./notion_export_24042026/Service%20areas%20using%20travel%20distance/image%201.png" alt="Facebook post: sitter reports distance mismatch between stated and actual travel" style="height: 100%; object-fit: contain;">
+  </div>
   <div class="card card-dark cs-metric-card col-3">
     <div class="cmn">+7%</div>
     <div class="cml">match quality score</div>
   </div>
   <div class="card card-dark cs-metric-card col-3">
     <div class="cmn">+4%</div>
-    <div class="cml">search-to-book rate</div>
+    <div class="cml">bookings</div>
   </div>
 </div>
 
@@ -59,20 +62,27 @@
 </div>
 
 <div class="cs-bento">
-  <div class="card cs-image-card col-7 row-4">
-    <img src="./resources/service-areas-research.png" alt="Research" style="aspect-ratio: unset; height: 100%; min-height: 300px;">
+  <div class="card cs-image-card col-7 row-3">
+    <img src="./resources/service-areas-research.png" alt="New service area settings UI on Rover" style="aspect-ratio: unset; height: 100%; min-height: 300px;">
   </div>
-  <div class="card cs-image-card col-5 row-4" style="background: #f0f0f0;">
-    <img src="./notion_export_24042026/Service%20areas%20using%20travel%20distance/image%204.png" alt="Service area settings UI" style="height: 100%; min-height: 280px; object-fit: contain;">
+  <div class="card cs-text-card col-5">
+    <span class="cs-section-label">03 / Solution</span>
+    <h2>A Model Sitters Could Trust</h2>
+    <p>Sitters can now define service areas by distance (1–100 km/mi) or estimated travel time (1–60 min), with walking, cycling, or driving modes. House sitting, drop-ins, and walks each get their own area — matching how sitters think about effort vs. reward.</p>
+    <p>Mapbox isochrones generate realistic polygons that respect roads, water, and barriers. Existing radii were backfilled automatically so sitters could refine rather than restart.</p>
+    <details class="cs-detail">
+      <summary>Search integration</summary>
+      <div class="cs-detail-body">Search now uses the new polygons instead of simple circles, stops surfacing sitters on the wrong side of major barriers, and weights travel-distance preferences in ranking alongside booking probability.</div>
+    </details>
   </div>
 </div>
 
 <div class="cs-bento">
-  <div class="card cs-image-card col-6 row-3">
-    <img src="./resources/service-areas-solution.png" alt="Solution" style="aspect-ratio: unset; height: 100%; min-height: 250px;">
+  <div class="card cs-image-card col-12" style="background: #f5f5f5;">
+    <img src="./resources/service-areas-solution.png" alt="A/B test grid: service area states across two test waves" style="width: 100%; height: auto; object-fit: initial; display: block;">
   </div>
   <div class="card cs-text-card col-6">
-    <span class="cs-section-label">03 / Results</span>
+    <span class="cs-section-label">04 / Results</span>
     <h2>Validated &amp; Shipped Globally</h2>
     <p>Two geographic A/B tests. Both waves showed better matching, better conversion, and strong sitter adoption. We committed to global rollout instead of extending the split.</p>
     <p>Search-to-request +2–3%. Search-to-book +1.6–2.8%. Match quality +7%. Revenue per searcher +5–6% in US markets.</p>
@@ -82,7 +92,7 @@
     </details>
   </div>
   <div class="card card-dark cs-metric-card col-3">
-    <div class="cmn">+6%</div>
+    <div class="cmn">+5–6%</div>
     <div class="cml">revenue per searcher US</div>
   </div>
   <div class="card card-dark cs-metric-card col-3">
