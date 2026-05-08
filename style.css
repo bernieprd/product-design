@@ -355,6 +355,7 @@ footer { background: var(--card-dark); color: #fff; padding: 4rem 1.5rem 2.5rem;
   .project-card-full.project-card-hero { aspect-ratio: 4/3; }
   .projects-secondary { grid-template-columns: 1fr 1fr; }
   .wm-grid { grid-template-columns: repeat(2, 1fr); }
+  .cs-bento .row-2, .cs-bento .row-3, .cs-bento .row-4, .cs-bento .row-5 { grid-row: span 1; }
 }
 @media (max-width: 500px) {
   .bento, .cs-bento { grid-template-columns: 1fr; }
