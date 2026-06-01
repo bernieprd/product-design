@@ -122,6 +122,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ─── Behavior 3a: Bio read-more visibility gate ─────────────────────────────
+
+  const bioCard = document.getElementById('card-bio');
+  if (bioCard) {
+    const bioInner = bioCard.querySelector('.card-inner');
+    const bioBtn = bioCard.querySelector('.overflow-readmore');
+
+    const syncBioReadmore = () => {
+      const overflowing = bioInner.scrollHeight > bioInner.clientHeight;
+      if (bioBtn) bioBtn.style.display = overflowing ? '' : 'none';
+      bioInner.classList.toggle('no-overflow', !overflowing);
+    };
+
+    syncBioReadmore();
+    new ResizeObserver(syncBioReadmore).observe(bioInner);
+  }
+
   // ─── Behavior 3: Overflow read-more ─────────────────────────────────────────
 
   document.querySelectorAll('.overflow-readmore').forEach(btn => {
@@ -139,7 +156,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const wrapper = document.createElement('div');
       wrapper.className = 'lightbox-text';
-      wrapper.appendChild(sourceCard.cloneNode(true));
+      const clone = sourceCard.cloneNode(true);
+      clone.querySelectorAll('.exp-detail-list').forEach(el => el.style.display = '');
+      wrapper.appendChild(clone);
       lightboxContent.appendChild(wrapper);
       openLightbox();
     });
