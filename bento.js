@@ -72,12 +72,12 @@ document.addEventListener('DOMContentLoaded', () => {
     calendar: {
       meta: 'Rover · 2023',
       title: 'Calendar',
-      images: []
+      images: ['./resources/calendar.png']
     },
     filters: {
       meta: 'Rover · 2021',
       title: 'Suggesting filters based on prompt',
-      images: []
+      images: ['./resources/filter.png']
     }
   };
 

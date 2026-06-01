@@ -305,7 +305,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .lightbox-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(15,15,15,0.75);
+  background: rgba(37,99,235,0.75);
   backdrop-filter: blur(4px);
 }
 .lightbox-panel {
@@ -357,7 +357,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .lightbox-text .exp-entry { margin-bottom: 1rem; }
 
 /* ─── CASE STUDY LAYOUT ─── */
-.cs-hero-card { background: #000; border-radius: var(--radius); overflow: hidden; position: relative; aspect-ratio: 21/9; margin: 1.5rem; min-height: 300px; }
+.cs-hero-card { background: #000; border-radius: var(--radius); overflow: hidden; position: relative; aspect-ratio: 21/9; max-width: 1400px; margin: 1.5rem auto; min-height: 300px; }
 .cs-hero-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); }
 .cs-hero-card-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 3rem; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 50%, transparent 100%); }
 .cs-hero-card-overlay .cse { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.85); letter-spacing: 0.1em; margin-bottom: 0.75rem; }
@@ -380,7 +380,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 }
 
 /* ─── CS CONTENT BENTO ─── */
-.cs-bento { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-flow: dense; gap: 12px; padding: 0 1.5rem 1.5rem; }
+.cs-bento { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-flow: dense; gap: 12px; max-width: 1400px; margin: 0 auto; padding: 0 1.5rem 1.5rem; }
 .cs-bento .col-3  { grid-column: span 3; }
 .cs-bento .col-4  { grid-column: span 4; }
 .cs-bento .col-5  { grid-column: span 5; }
@@ -448,6 +448,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 /* ─── NEXT PROJECT ─── */
 .next-project {
   display: flex; justify-content: flex-end; align-items: center;
+  max-width: 1400px; margin: 0 auto;
   padding: 2rem 1.5rem;
   border-top: 1px solid var(--border);
 }
@@ -458,7 +459,8 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .next-project a:hover { color: var(--accent); }
 
 /* ─── FOOTER ─── */
-footer { background: var(--card-dark); color: #fff; padding: 4rem 1.5rem 2.5rem; }
+footer { background: var(--card-dark); color: #fff; padding: 4rem 0 2.5rem; }
+.footer-inner { max-width: 1400px; margin: 0 auto; padding: 0 1.5rem; }
 .footer-title { font-size: clamp(2rem, 7vw, 6rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.0; margin-bottom: 2.5rem; }
 .footer-title span { color: var(--accent); }
 .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
@@ -560,14 +562,7 @@ footer { background: var(--card-dark); color: #fff; padding: 4rem 1.5rem 2.5rem;
     padding: 24px 24px 32px;
   }
   .lightbox-panel::before {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 4px;
-    background: var(--border);
-    border-radius: 2px;
-    align-self: center;
-    margin-bottom: 0.5rem;
+    content: none;
     flex-shrink: 0;
   }
 }
