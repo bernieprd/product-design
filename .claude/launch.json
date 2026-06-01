@@ -2,10 +2,16 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "Static site (python)",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4002", "--directory", "/Users/bernardoprudencio/Documents/product-design/.claude/worktrees/adoring-swanson-8f171d"],
+      "port": 4002
+    },
+    {
       "name": "Static site (ruby)",
       "runtimeExecutable": "ruby",
-      "runtimeArgs": ["-run", "-e", "httpd", ".", "-p", "4000"],
-      "port": 4000
+      "runtimeArgs": ["-run", "-e", "httpd", "/Users/bernardoprudencio/Documents/product-design/.claude/worktrees/adoring-swanson-8f171d", "-p", "4001"],
+      "port": 4001
     },
     {
       "name": "SCSS watch (npx sass)",
