@@ -5,6 +5,7 @@ npx staticrypt src/project-*.html \
   -p "$PASS" \
   --short \
   --remember false \
+  --template scripts/password_template.html \
   --template-color-primary "#111111" \
   --template-color-secondary "#ffffff" \
   --template-button "Enter" \

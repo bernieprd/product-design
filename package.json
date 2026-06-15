@@ -2,5 +2,8 @@
   "private": true,
   "scripts": {
     "encrypt": "bash scripts/encrypt.sh"
+  },
+  "devDependencies": {
+    "staticrypt": "3.5.4"
   }
 }
