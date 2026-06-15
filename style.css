@@ -379,6 +379,11 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   background: rgba(255,255,255,0.08);
 }
 
+/* ─── BENTO SPAN HELPERS (for use in .bento square grid) ─── */
+.col-1 { grid-column: span 1; }
+.col-2 { grid-column: span 2; }
+.row-2 { grid-row: span 2; }
+
 /* ─── CS CONTENT BENTO ─── */
 .cs-bento { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-flow: dense; gap: 12px; max-width: 1400px; margin: 0 auto; padding: 0 1.5rem 1.5rem; }
 .cs-bento .col-3  { grid-column: span 3; }
