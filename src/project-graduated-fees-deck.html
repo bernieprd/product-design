@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Graduated Fees · Deck · Bernardo Prudêncio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ─── TOKENS ─── */
+    :root {
+      --bg:         #0F0F0F;
+      --bg-light:   #F0F0EE;
+      --card:       #FFFFFF;
+      --text:       #111111;
+      --text-muted: #6B7280;
+      --accent:     #2563EB;
+      --accent-bg:  #EEF2FF;
+      --green:      #6FCF97;
+      --green-bg:   #1A2A1A;
+      --border:     #E5E7EB;
+      --font-body:  'Inter', system-ui, sans-serif;
+      --font-mono:  'Space Mono', monospace;
+      --r:          12px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      overflow: hidden;
+      height: 100%;
+      background: var(--bg);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      color: #fff;
+    }
+
+    /* ─── DECK CHROME ─── */
+    .deck-progress {
+      position: fixed; top: 0; left: 0; width: 100%; height: 3px;
+      background: rgba(255,255,255,0.08); z-index: 100;
+    }
+    .deck-progress-fill {
+      height: 100%; background: var(--accent); transition: width 0.35s ease;
+    }
+    .deck-exit {
+      position: fixed; top: 1.1rem; right: 1.25rem; z-index: 100;
+      font-family: var(--font-mono); font-size: 0.65rem;
+      color: rgba(255,255,255,0.3); text-decoration: none;
+      letter-spacing: 0.04em; transition: color 0.2s;
+    }
+    .deck-exit:hover { color: rgba(255,255,255,0.7); }
+    .deck-controls {
+      position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+      z-index: 100; display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.45rem 0.75rem;
+      background: rgba(20,20,20,0.85); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.1); border-radius: 999px;
+    }
+    .deck-controls button {
+      background: none; border: none; color: rgba(255,255,255,0.7);
+      font-size: 1rem; cursor: pointer; padding: 0.15rem 0.35rem;
+      border-radius: 6px; line-height: 1; transition: color 0.15s, background 0.15s;
+    }
+    .deck-controls button:hover:not(:disabled) { color: #fff; background: rgba(255,255,255,0.1); }
+    .deck-controls button:disabled { color: rgba(255,255,255,0.2); cursor: default; }
+    #slideCounter {
+      font-family: var(--font-mono); font-size: 0.65rem;
+      color: rgba(255,255,255,0.4); min-width: 3.5rem; text-align: center;
+      letter-spacing: 0.05em;
+    }
+    .deck-viewport { position: fixed; inset: 0; }
+
+
+    /* ─── SLIDE BASE ─── */
+    .slide {
+      position: absolute; inset: 0; opacity: 0; pointer-events: none;
+    }
+
+    /* ─── LAYOUT VARIANTS ─── */
+    .s-cover {
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      padding: 5vw 6vw; background: var(--bg); overflow: hidden; position: relative;
+      text-align: center;
+    }
+    .s-cover-bg {
+      position: absolute; inset: 0;
+      background: url('./resources/graduated-fees-animated-cover.gif') center/cover no-repeat;
+      background-size: cover;
+      filter: brightness(0.45);
+    }
+    .s-cover-content { position: relative; z-index: 1; max-width: 720px; width: 100%; }
+
+    .s-split { display: grid; grid-template-columns: 1fr 1fr; }
+    .s-split-left, .s-split-right {
+      padding: 5vw 4vw; display: flex; flex-direction: column; justify-content: center;
+    }
+
+    .s-dark {
+      background: var(--bg); padding: 4vw 5vw;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .s-light {
+      background: var(--bg-light); padding: 4vw 5vw;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .s-center {
+      background: var(--bg); padding: 5vw;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+    }
+    .s-stats {
+      background: var(--bg); padding: 4vw 5vw;
+      display: flex; align-items: center; justify-content: center;
+      gap: 2vw; flex-wrap: wrap; position: relative;
+    }
+
+    /* ─── TYPOGRAPHY ─── */
+    .slide-label {
+      font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 0.75rem;
+    }
+    .slide-label.dim   { color: rgba(255,255,255,0.3); }
+    .slide-label.dark  { color: var(--text-muted); }
+
+    .slide-h1 {
+      font-size: clamp(2.5rem, 6vw, 6rem); font-weight: 800; line-height: 1.04;
+      letter-spacing: -0.03em; color: #fff;
+    }
+    .slide-h2 {
+      font-size: clamp(1.4rem, 3vw, 2.8rem); font-weight: 800;
+      line-height: 1.08; letter-spacing: -0.025em;
+    }
+    .slide-h2.light { color: #fff; }
+    .slide-h2.dark  { color: var(--text); }
+
+    .slide-body {
+      font-size: clamp(0.8rem, 1.2vw, 1rem); line-height: 1.7; margin-top: 1rem;
+      max-width: 55ch;
+    }
+    .slide-body.light { color: rgba(255,255,255,0.55); }
+    .slide-body.dark  { color: var(--text-muted); }
+
+    .slide-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-top: 1.25rem; }
+    .slide-bullets li {
+      display: flex; gap: 0.75rem; font-size: clamp(0.8rem,1.15vw,0.95rem);
+      color: rgba(255,255,255,0.55); line-height: 1.5; align-items: flex-start;
+    }
+    .slide-bullets li::before {
+      content: '—'; color: var(--accent); flex-shrink: 0;
+      font-family: var(--font-mono); font-size: 0.8em; margin-top: 0.1em;
+    }
+    .slide-bullets.dark li { color: var(--text-muted); }
+
+    .slide-quote {
+      font-size: clamp(1.2rem, 2.8vw, 2.4rem); font-weight: 700; color: #fff;
+      line-height: 1.2; letter-spacing: -0.015em;
+    }
+    .slide-quote em { color: var(--accent); font-style: normal; }
+
+    /* ─── STAT CARDS ─── */
+    .stat-card {
+      flex: 1; min-width: 180px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--r); padding: clamp(1.25rem,2.5vw,2rem);
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .stat-num {
+      font-size: clamp(2.5rem, 5.5vw, 5.5rem); font-weight: 800;
+      color: var(--accent); line-height: 1; letter-spacing: -0.04em;
+    }
+    .stat-num.green { color: var(--green); }
+    .stat-label {
+      font-family: var(--font-mono); font-size: 0.6rem;
+      color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .stat-desc {
+      font-size: clamp(0.72rem,1vw,0.85rem); color: rgba(255,255,255,0.35); line-height: 1.5;
+    }
+
+    /* ─── DECISION BOX ─── */
+    .decision-box {
+      background: rgba(37,99,235,0.1); border: 1px solid rgba(37,99,235,0.25);
+      border-radius: var(--r); padding: 1rem 1.25rem; margin-top: 1.5rem;
+    }
+    .decision-box .dlabel {
+      font-family: var(--font-mono); font-size: 0.58rem; color: var(--accent);
+      letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.35rem; display: block;
+    }
+    .decision-box p { font-size: clamp(0.78rem,1.1vw,0.9rem); color: rgba(255,255,255,0.65); line-height: 1.6; }
+
+    /* ─── MODEL CARDS (slide 6) ─── */
+    .model-card {
+      border-radius: var(--r); padding: 1.25rem; background: #fff;
+      border: 2px solid var(--border); cursor: pointer;
+      transition: all 0.25s; position: relative;
+      display: flex; flex-direction: column; gap: 0.65rem;
+    }
+    .model-card.selected { border-color: var(--accent); background: var(--accent-bg); }
+    .model-card .mc-name { font-size: 0.875rem; font-weight: 700; color: var(--text); }
+    .model-card.selected .mc-name { color: var(--accent); }
+    .model-card .mc-tag {
+      font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .model-card .mc-check {
+      position: absolute; top: 0.875rem; right: 0.875rem;
+      width: 1.25rem; height: 1.25rem; border-radius: 50%;
+      background: var(--accent); color: #fff; font-size: 0.6rem;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .model-card.selected .mc-check { opacity: 1; }
+
+    /* ─── EVAL MATRIX (slide 7) ─── */
+    .eval-matrix { width: 100%; border-collapse: collapse; }
+    .eval-matrix thead th {
+      font-family: var(--font-mono); font-size: 0.58rem; color: rgba(255,255,255,0.35);
+      padding: 0.75rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.07); text-align: left;
+    }
+    .eval-matrix tbody td {
+      padding: 0.75rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.78rem; color: rgba(255,255,255,0.5);
+    }
+    .eval-matrix tbody td:first-child { color: rgba(255,255,255,0.8); font-weight: 600; }
+    .eval-row-win { background: rgba(37,99,235,0.07); }
+    .eval-row-win td:first-child { color: var(--accent); }
+    .eval-dots { display: flex; gap: 4px; }
+    .eval-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.12); }
+    .eval-dot.on { background: var(--accent); }
+
+    /* ─── GBV TRACK (slides 9) ─── */
+    .gbv-track {
+      background: rgba(255,255,255,0.08); border-radius: 100px;
+      height: 10px; overflow: hidden; position: relative;
+    }
+    .gbv-fill {
+      height: 100%; border-radius: 100px; background: var(--accent);
+      width: 0; transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+    }
+    .gbv-fill.green { background: var(--green); }
+
+    /* ─── TIMELINE (slide 10) ─── */
+    .timeline { display: flex; flex-direction: column; gap: 0; width: 100%; }
+    .tl-item {
+      display: grid; grid-template-columns: 7rem 1.5rem 1fr;
+      gap: 0 1rem; align-items: start; cursor: pointer;
+      padding: 0.6rem 0;
+    }
+    .tl-item:hover .tl-title { color: #fff; }
+    .tl-date {
+      font-family: var(--font-mono); font-size: 0.6rem; color: rgba(255,255,255,0.3);
+      letter-spacing: 0.06em; padding-top: 0.1rem; text-align: right;
+    }
+    .tl-dot-col { display: flex; flex-direction: column; align-items: center; }
+    .tl-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.2);
+      flex-shrink: 0; margin-top: 0.1rem; transition: background 0.2s;
+    }
+    .tl-item.active   .tl-dot { background: var(--green); border-color: var(--green); }
+    .tl-item.upcoming .tl-dot { background: var(--accent); border-color: var(--accent); }
+    .tl-item.launch   .tl-dot { background: var(--green); border-color: var(--green); width: 14px; height: 14px; margin-top: -0.05rem; }
+    .tl-line {
+      flex: 1; width: 2px; background: rgba(255,255,255,0.07);
+      margin-top: 3px; min-height: 1.4rem;
+    }
+    .tl-item:last-child .tl-line { display: none; }
+    .tl-right { padding-bottom: 0.25rem; }
+    .tl-title {
+      font-size: clamp(0.78rem,1.1vw,0.9rem); font-weight: 600;
+      color: rgba(255,255,255,0.65); line-height: 1.4; transition: color 0.2s;
+    }
+    .tl-item.active   .tl-title { color: var(--green); }
+    .tl-item.upcoming .tl-title { color: rgba(37,99,235,0.85); }
+    .tl-item.launch   .tl-title { color: #fff; font-weight: 700; }
+    .tl-detail {
+      font-size: clamp(0.7rem,0.95vw,0.8rem); color: rgba(255,255,255,0.35);
+      line-height: 1.5; margin-top: 0.3rem; max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease, opacity 0.3s ease; opacity: 0;
+    }
+    .tl-item.open .tl-detail { max-height: 5rem; opacity: 1; }
+
+    /* ─── STORY CHIPS (slide 11) ─── */
+    .story-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .story-chip {
+      font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.07em;
+      text-transform: uppercase; padding: 0.35rem 0.75rem;
+      border-radius: 999px; border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.04);
+      cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    }
+    .story-chip:hover { border-color: var(--accent); color: var(--accent); }
+    .story-chip.active {
+      background: var(--accent); border-color: var(--accent);
+      color: #fff;
+    }
+    .story-detail {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--r); padding: 1.1rem 1.25rem; margin-top: 1.25rem;
+      min-height: 5rem;
+    }
+    .story-detail .sd-tag {
+      font-family: var(--font-mono); font-size: 0.58rem; color: var(--accent);
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; display: block;
+    }
+    .story-detail .sd-title { font-size: 0.9rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem; }
+    .story-detail .sd-body { font-size: clamp(0.75rem,1vw,0.85rem); color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+    /* ─── EXPANDABLE CHALLENGE CARDS (slide 14) ─── */
+    .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .exp-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--r); padding: 1.25rem; cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      display: flex; flex-direction: column; gap: 0.4rem;
+    }
+    .exp-card:hover { border-color: rgba(37,99,235,0.4); }
+    .exp-card.open  { border-color: var(--accent); background: rgba(37,99,235,0.06); }
+    .exp-num { font-family: var(--font-mono); font-size: 0.58rem; color: var(--accent); letter-spacing: 0.1em; }
+    .exp-title { font-size: clamp(0.875rem,1.4vw,1.05rem); font-weight: 700; color: #fff; }
+    .exp-lead { font-size: clamp(0.72rem,1vw,0.82rem); color: rgba(255,255,255,0.4); line-height: 1.5; }
+    .exp-body {
+      font-size: clamp(0.72rem,0.95vw,0.82rem); color: rgba(255,255,255,0.35);
+      line-height: 1.6; max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease, opacity 0.3s; opacity: 0; margin-top: 0;
+    }
+    .exp-card.open .exp-body { max-height: 10rem; opacity: 1; margin-top: 0.5rem; }
+    .exp-decision {
+      font-size: clamp(0.7rem,0.9vw,0.8rem); color: rgba(37,99,235,0.8);
+      font-weight: 600; line-height: 1.5; max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease, opacity 0.3s; opacity: 0; margin-top: 0;
+    }
+    .exp-card.open .exp-decision { max-height: 6rem; opacity: 1; margin-top: 0.4rem; }
+
+    /* ─── TRAINING PATH CARDS (slide 15) ─── */
+    .path-grid { display: flex; gap: 8px; }
+    .path-card {
+      flex: 1; border-radius: var(--r); padding: 1rem 0.875rem;
+      border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03);
+      cursor: pointer; transition: all 0.2s; display: flex; flex-direction: column; gap: 0.4rem;
+    }
+    .path-card:hover { border-color: rgba(255,255,255,0.25); }
+    .path-card.chosen { border-color: var(--green); background: rgba(111,207,151,0.07); }
+    .path-card.selected { border-color: var(--accent); background: rgba(37,99,235,0.07); }
+    .path-id {
+      font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.3); text-transform: uppercase;
+    }
+    .path-card.chosen   .path-id { color: var(--green); }
+    .path-card.selected .path-id { color: var(--accent); }
+    .path-name { font-size: 0.78rem; font-weight: 700; color: rgba(255,255,255,0.7); line-height: 1.3; }
+    .path-card.chosen   .path-name { color: var(--green); }
+    .path-card.selected .path-name { color: #fff; }
+    .path-tag {
+      font-family: var(--font-mono); font-size: 0.55rem; color: rgba(255,255,255,0.25);
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .path-desc {
+      font-size: 0.7rem; color: rgba(255,255,255,0.3); line-height: 1.5; margin-top: 0.25rem;
+      max-height: 0; overflow: hidden; transition: max-height 0.3s ease, opacity 0.3s; opacity: 0;
+    }
+    .path-card.chosen .path-desc, .path-card.selected .path-desc { max-height: 6rem; opacity: 1; }
+
+    /* ─── SEGMENT CARDS (slide 16) ─── */
+    .seg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .seg-card {
+      border-radius: var(--r); padding: 1.1rem; cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03);
+      transition: all 0.2s; display: flex; flex-direction: column; gap: 0.35rem;
+    }
+    .seg-card:hover { border-color: rgba(37,99,235,0.4); }
+    .seg-card.open  { border-color: var(--accent); background: rgba(37,99,235,0.06); }
+    .seg-name { font-size: 0.9rem; font-weight: 700; color: #fff; }
+    .seg-tagline { font-size: 0.75rem; color: rgba(255,255,255,0.4); line-height: 1.4; }
+    .seg-detail {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 0.75rem;
+      margin-top: 0.5rem; max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease, opacity 0.3s; opacity: 0;
+    }
+    .seg-card.open .seg-detail { max-height: 12rem; opacity: 1; }
+    .seg-kv { display: flex; flex-direction: column; gap: 0.15rem; }
+    .seg-k { font-family: var(--font-mono); font-size: 0.55rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; }
+    .seg-v { font-size: 0.72rem; color: rgba(255,255,255,0.5); line-height: 1.45; }
+
+    /* ─── GBV SIMULATOR (slide 9) ─── */
+    .sim-wrap { display: flex; flex-direction: column; gap: 1rem; }
+    .sim-tiers { display: flex; gap: 8px; }
+    .sim-tier {
+      flex: 1; border-radius: var(--r); padding: 1rem;
+      border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03);
+      display: flex; flex-direction: column; gap: 0.35rem;
+      transition: border-color 0.4s, background 0.4s;
+    }
+    .sim-tier.unlocked { border-color: var(--green); background: rgba(111,207,151,0.08); }
+    .sim-tier.current  { border-color: var(--accent); background: rgba(37,99,235,0.08); }
+    .sim-tier-fee {
+      font-size: clamp(1.5rem,3vw,2.5rem); font-weight: 800; line-height: 1;
+      color: rgba(255,255,255,0.3); transition: color 0.4s;
+    }
+    .sim-tier.current  .sim-tier-fee { color: #fff; }
+    .sim-tier.unlocked .sim-tier-fee { color: var(--green); }
+    .sim-tier-label { font-family: var(--font-mono); font-size: 0.58rem; color: rgba(255,255,255,0.3); letter-spacing: 0.08em; text-transform: uppercase; }
+    .sim-tier.current  .sim-tier-label { color: rgba(255,255,255,0.6); }
+    .sim-tier.unlocked .sim-tier-label { color: var(--green); }
+    .sim-tier-range { font-size: 0.7rem; color: rgba(255,255,255,0.25); }
+
+    .sim-track-wrap { position: relative; padding-bottom: 1.25rem; }
+    .sim-track {
+      background: rgba(255,255,255,0.08); border-radius: 100px;
+      height: 12px; overflow: visible; position: relative;
+    }
+    .sim-fill {
+      height: 100%; border-radius: 100px;
+      background: linear-gradient(90deg, rgba(37,99,235,0.8), var(--accent));
+      width: 0; transition: width 0.5s cubic-bezier(0.4,0,0.2,1), background 0.4s;
+    }
+    .sim-fill.in-green { background: linear-gradient(90deg, var(--accent), var(--green)); }
+    .sim-markers { position: absolute; top: 0; left: 0; right: 0; height: 100%; pointer-events: none; }
+    .sim-marker {
+      position: absolute; top: -3px; width: 2px; height: 18px;
+      background: rgba(255,255,255,0.25); transform: translateX(-50%);
+    }
+    .sim-marker-label {
+      position: absolute; top: 20px; font-family: var(--font-mono); font-size: 0.55rem;
+      color: rgba(255,255,255,0.3); transform: translateX(-50%); white-space: nowrap;
+      letter-spacing: 0.04em;
+    }
+    .sim-gbv-display {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-top: 0.5rem;
+    }
+    .sim-gbv-val { font-size: clamp(1.5rem,3vw,2.5rem); font-weight: 800; color: #fff; line-height: 1; }
+    .sim-gbv-sub { font-family: var(--font-mono); font-size: 0.6rem; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; }
+    .sim-callout {
+      background: rgba(111,207,151,0.08); border: 1px solid rgba(111,207,151,0.2);
+      border-radius: 8px; padding: 0.65rem 0.875rem;
+      font-size: 0.78rem; color: var(--green); line-height: 1.5;
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .sim-callout.visible { opacity: 1; }
+    .sim-btns { display: flex; gap: 8px; }
+    .sim-btn {
+      flex: 1; padding: 0.6rem 0.5rem; border-radius: 8px; border: none;
+      font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em;
+      text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s;
+    }
+    .sim-btn-add  { background: var(--accent); color: #fff; }
+    .sim-btn-add:hover  { background: #1d4ed8; }
+    .sim-btn-reset { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.5); }
+    .sim-btn-reset:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+    /* ─── MEASURE TABLE (slide 22) ─── */
+    .measure-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+    .measure-table th {
+      font-family: var(--font-mono); font-size: 0.58rem; color: rgba(255,255,255,0.3);
+      padding: 0.6rem 0.875rem; border-bottom: 1px solid rgba(255,255,255,0.07);
+      text-align: left; letter-spacing: 0.07em;
+    }
+    .measure-table td {
+      padding: 0.6rem 0.875rem; border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: clamp(0.72rem,0.95vw,0.82rem); color: rgba(255,255,255,0.5); vertical-align: top;
+    }
+    .measure-table td:first-child { color: rgba(255,255,255,0.8); font-weight: 600; }
+    .measure-table td .tag-primary {
+      display: inline-block; background: var(--accent); color: #fff;
+      font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.08em;
+      padding: 0.15rem 0.45rem; border-radius: 999px; text-transform: uppercase;
+      vertical-align: middle; margin-left: 0.4rem;
+    }
+
+    /* ─── TAG BADGE ─── */
+    .slide-tag {
+      display: inline-flex; align-items: center;
+      background: var(--accent); color: #fff;
+      font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.3rem 0.65rem; border-radius: 999px;
+    }
+    .slide-tag.green { background: var(--green-bg); color: var(--green); border: 1px solid rgba(111,207,151,0.25); }
+    .slide-tag.outline { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.5); }
+
+    /* ─── IMAGE FRAME ─── */
+    .img-frame {
+      border-radius: var(--r); overflow: hidden; background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .img-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .img-placeholder {
+      border-radius: var(--r); background: rgba(255,255,255,0.04);
+      border: 1px dashed rgba(255,255,255,0.15);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.5rem; padding: 2rem;
+    }
+    .img-placeholder .ph-tag {
+      font-family: var(--font-mono); font-size: 0.6rem; color: rgba(255,255,255,0.2);
+      letter-spacing: 0.1em; text-transform: uppercase; text-align: center;
+    }
+
+    /* ─── COLLAB ROLES (slide 19) ─── */
+    .collab-group { display: flex; flex-direction: column; gap: 0.35rem; }
+    .collab-label {
+      font-family: var(--font-mono); font-size: 0.58rem; color: var(--accent);
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .collab-names { font-size: clamp(0.78rem,1.1vw,0.9rem); color: rgba(255,255,255,0.65); line-height: 1.5; }
+    .collab-note  { font-size: clamp(0.7rem,0.9vw,0.78rem); color: rgba(255,255,255,0.3); line-height: 1.5; margin-top: 0.1rem; }
+
+    /* ─── TWO-COL UTILITY ─── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    /* ─── CLOSING (slide 24) ─── */
+    .s-closing { background: var(--bg); display: grid; grid-template-columns: 1fr 1fr; }
+    .s-closing-left {
+      padding: 6vw; display: flex; flex-direction: column; justify-content: flex-end;
+      background: rgba(255,255,255,0.02); border-right: 1px solid rgba(255,255,255,0.05);
+    }
+    .s-closing-right {
+      padding: 6vw; display: flex; flex-direction: column; justify-content: center; gap: 1.5rem;
+    }
+    .contact-item { display: flex; flex-direction: column; gap: 0.2rem; }
+    .contact-label { font-family: var(--font-mono); font-size: 0.56rem; color: rgba(255,255,255,0.25); letter-spacing: 0.1em; text-transform: uppercase; }
+    .contact-val   { font-size: clamp(0.8rem,1.2vw,1rem); color: rgba(255,255,255,0.6); font-weight: 500; }
+
+    /* ─── RESPONSIVE · portrait mobile ─── */
+    @media (max-width: 768px) and (orientation: portrait) {
+
+      /* Allow each slide to scroll its own content */
+      .slide              { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
+      /* Split layout: stack vertically, natural row heights */
+      .s-split            { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .s-split-left,
+      .s-split-right      { padding: 7vw 6vw; min-height: auto; justify-content: flex-start; overflow-y: visible; }
+
+      /* Closing slide */
+      .s-closing          { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .s-closing-left,
+      .s-closing-right    { padding: 7vw 6vw; }
+
+      /* Full-bleed single-column slides */
+      .s-dark, .s-light,
+      .s-center           { padding: 6vw 5vw; overflow-y: auto; justify-content: flex-start; padding-top: 5vh; }
+      .s-cover            { padding: 7vh 6vw 6vw; }
+      .s-stats            { padding: 5vw; overflow-y: auto; }
+
+      /* Collapse components */
+      .sim-tiers          { flex-direction: column; }
+      .path-grid          { flex-direction: column; }
+      .exp-grid           { grid-template-columns: 1fr; }
+      .seg-grid           { grid-template-columns: 1fr; }
+      .two-col            { grid-template-columns: 1fr; }
+      .seg-detail         { grid-template-columns: 1fr; }
+
+      /* Typography — vw-based for narrow portrait viewports */
+      .slide-h1           { font-size: clamp(2rem, 9vw, 3.5rem); }
+      .slide-h2           { font-size: clamp(1.4rem, 7vw, 2.4rem); }
+      .slide-body         { font-size: clamp(0.82rem, 3.4vw, 1rem); margin-top: 0.75rem; }
+      .slide-label        { font-size: 0.6rem; margin-bottom: 0.5rem; }
+      .slide-bullets      { margin-top: 0.75rem; }
+      .slide-bullets li   { font-size: clamp(0.8rem, 3.2vw, 0.95rem); }
+      .slide-quote        { font-size: clamp(1.2rem, 5.5vw, 2rem); }
+
+      /* Stat cards: full-width in portrait */
+      .stat-card          { min-width: unset; width: 100%; }
+      .stat-num           { font-size: clamp(2.2rem, 9vw, 4rem); }
+
+      /* Image frames: natural height */
+      .img-frame          { height: auto !important; min-height: 180px; }
+
+      /* Deck chrome */
+      .deck-controls      { bottom: 0.75rem; padding: 0.35rem 0.65rem; }
+      .deck-exit          { top: 0.75rem; right: 1rem; font-size: 0.6rem; }
+      #slideCounter       { font-size: 0.62rem; min-width: 3rem; }
+
+      /* Simulator */
+      .sim-tier-fee       { font-size: clamp(1.4rem, 5vw, 2rem); }
+      .sim-gbv-val        { font-size: clamp(1.4rem, 5vw, 2rem); }
+
+      /* Decision box */
+      .decision-box       { margin-top: 1rem; }
+    }
+
+    /* ─── RESPONSIVE · landscape mobile: keep 2 cols, scale everything down ─── */
+    @media (max-height: 480px) and (orientation: landscape) {
+
+      /* Chrome */
+      .deck-controls  { bottom: 0.35rem; padding: 0.28rem 0.6rem; gap: 0.35rem; }
+      #slideCounter   { font-size: 0.58rem; }
+      .deck-exit      { top: 0.5rem; right: 0.75rem; font-size: 0.58rem; }
+
+      /* Slide padding */
+      .s-cover        { padding: 2.5vh 5vw; }
+      .s-split-left,
+      .s-split-right  { padding: 2vh 2.5vw; overflow-y: auto; }
+      .s-dark         { padding: 2vh 3.5vw; overflow-y: auto; }
+      .s-light        { padding: 2vh 3.5vw; overflow-y: auto; }
+      .s-center       { padding: 2vh 3vw; }
+      .s-closing-left,
+      .s-closing-right { padding: 3vw; }
+
+      /* Typography scale-down */
+      .slide-h1       { font-size: clamp(1.6rem, 5vw, 3rem); }
+      .slide-h2       { font-size: clamp(1rem, 2.6vw, 1.6rem); margin-bottom: 0.5rem; }
+      .slide-body     { font-size: clamp(0.68rem, 1vw, 0.84rem); line-height: 1.55; margin-top: 0.5rem; }
+      .slide-label    { font-size: 0.55rem; margin-bottom: 0.4rem; }
+      .slide-bullets  { gap: 0.35rem; margin-top: 0.5rem; }
+      .slide-bullets li { font-size: clamp(0.68rem, 0.95vw, 0.82rem); }
+      .slide-quote    { font-size: clamp(1rem, 2.2vw, 1.8rem); }
+
+      /* Stat cards */
+      .stat-card      { padding: 0.75rem 0.875rem; min-width: 120px; }
+      .stat-num       { font-size: clamp(1.8rem, 4vw, 3.2rem); }
+
+      /* Simulator */
+      .sim-tier       { padding: 0.7rem 0.75rem; }
+      .sim-tier-fee   { font-size: clamp(1.1rem, 2.2vw, 1.8rem); }
+      .sim-tier-label { font-size: 0.52rem; }
+      .sim-tier-range { font-size: 0.62rem; }
+      .sim-gbv-val    { font-size: clamp(1.1rem, 2.2vw, 1.8rem); }
+      .sim-gbv-sub    { font-size: 0.55rem; }
+      .sim-btn        { padding: 0.45rem 0.4rem; font-size: 0.56rem; }
+      .sim-wrap       { gap: 0.6rem; }
+
+      /* Timeline */
+      .tl-item        { grid-template-columns: 5rem 1.25rem 1fr; padding: 0.3rem 0; }
+      .tl-date        { font-size: 0.55rem; }
+      .tl-title       { font-size: clamp(0.68rem, 0.95vw, 0.8rem); }
+      .tl-detail      { font-size: 0.62rem; }
+      .tl-line        { min-height: 0.8rem; }
+
+      /* Story chips */
+      .story-chips    { gap: 5px; }
+      .story-chip     { font-size: 0.52rem; padding: 0.22rem 0.55rem; }
+      .story-detail   { padding: 0.75rem 0.875rem; min-height: 3.5rem; margin-top: 0.75rem; }
+      .story-detail .sd-title { font-size: 0.8rem; }
+      .story-detail .sd-body  { font-size: 0.68rem; }
+
+      /* Exp / path / seg cards */
+      .exp-card       { padding: 0.875rem; }
+      .exp-title      { font-size: clamp(0.78rem, 1.2vw, 0.9rem); }
+      .path-card      { padding: 0.75rem 0.7rem; }
+      .path-name      { font-size: 0.7rem; }
+      .seg-card       { padding: 0.8rem; }
+      .seg-name       { font-size: 0.8rem; }
+
+      /* Measure table */
+      .measure-table th { padding: 0.4rem 0.6rem; font-size: 0.52rem; }
+      .measure-table td { padding: 0.4rem 0.6rem; font-size: 0.68rem; }
+
+      /* Collab */
+      .collab-names   { font-size: clamp(0.65rem, 0.9vw, 0.78rem); }
+      .collab-label   { font-size: 0.5rem; }
+
+      /* Decision box */
+      .decision-box   { padding: 0.65rem 0.875rem; margin-top: 0.875rem; }
+      .decision-box p { font-size: clamp(0.68rem, 0.95vw, 0.8rem); }
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- progress bar -->
+  <div class="deck-progress">
+    <div class="deck-progress-fill" id="progressFill"></div>
+  </div>
+
+  <!-- exit link -->
+  <a class="deck-exit" href="./project-graduated-fees.html">← case study</a>
+
+  <!-- controls pill -->
+  <div class="deck-controls">
+    <button id="prevBtn" aria-label="Previous">&#8592;</button>
+    <span id="slideCounter">1 / 24</span>
+    <button id="nextBtn" aria-label="Next">&#8594;</button>
+  </div>
+
+  <!-- deck viewport -->
+  <div class="deck-viewport">
+
+    <!-- ─── SLIDE 1 · COVER ─── -->
+    <section class="slide s-cover" data-slide="1">
+      <div class="s-cover-bg"></div>
+      <div class="s-cover-content">
+        <p class="slide-label" style="justify-content:center; display:flex;">ROVER · PRODUCT DESIGN · 2025–26 · IN FLIGHT</p>
+        <h1 class="slide-h1" style="margin-bottom:1.25rem;">Relationship-Based<br>Graduated Fees</h1>
+        <p style="color:rgba(255,255,255,0.6); max-width:52ch; line-height:1.65; font-size:clamp(0.875rem,1.4vw,1.05rem); margin-bottom:2rem; margin-left:auto; margin-right:auto;">
+          Aligning sitter fees with how and when Rover delivers value — to curb diversion and grow per-relationship revenue.
+        </p>
+        <div style="display:flex; gap:2.5rem; flex-wrap:wrap; justify-content:center;">
+          <div>
+            <div style="font-size:clamp(1.5rem,3vw,2.5rem); font-weight:800; color:var(--green); line-height:1;">Live</div>
+            <div style="font-family:var(--font-mono); font-size:0.58rem; color:rgba(255,255,255,0.45); letter-spacing:0.1em; margin-top:0.2rem;">Canada · March 2026</div>
+          </div>
+          <div>
+            <div style="font-size:clamp(1.5rem,3vw,2.5rem); font-weight:800; color:var(--accent); line-height:1;">~40%</div>
+            <div style="font-family:var(--font-mono); font-size:0.58rem; color:rgba(255,255,255,0.45); letter-spacing:0.1em; margin-top:0.2rem;">higher take potential</div>
+          </div>
+          <div>
+            <div style="font-size:clamp(1.5rem,3vw,2.5rem); font-weight:800; color:var(--accent); line-height:1;">US</div>
+            <div style="font-family:var(--font-mono); font-size:0.58rem; color:rgba(255,255,255,0.45); letter-spacing:0.1em; margin-top:0.2rem;">targeting June '26</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SLIDE 2 · THE FLAT FEE PROBLEM ─── -->
+    <section class="slide s-split" data-slide="2" style="background:var(--bg);">
+      <div class="s-split-left" style="background:rgba(255,255,255,0.025);">
+        <span class="slide-label dim">01 / NARRATIVE</span>
+        <h2 class="slide-h2 light">Same fee.<br>Very different<br>value.</h2>
+        <p class="slide-body light">Rover charges a flat 20% (15% in Europe) on every booking — whether it's the first ever with a new client or the 20th with a long-term trusted relationship.</p>
+        <p class="slide-body light" style="margin-top:0.5rem;">Our internal assessment found Rover delivers <strong style="color:#fff;">~76% of booking value</strong> on a new relationship — but only <strong style="color:#fff;">~18%</strong> on an established one. The fee doesn't reflect this.</p>
+      </div>
+      <div class="s-split-right" style="background:var(--bg); gap:1.25rem;">
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:var(--r); padding:1.25rem 1.5rem;">
+          <div style="font-family:var(--font-mono); font-size:0.58rem; color:rgba(255,255,255,0.3); letter-spacing:0.1em; margin-bottom:0.75rem;">BOOKING #1 — NEW CLIENT</div>
+          <p style="font-size:0.8rem; color:rgba(255,255,255,0.45); line-height:1.6; margin-bottom:1rem;">Discovery, trust-building, insurance, payment infrastructure, profile visibility. Rover earns its cut.</p>
+          <div style="display:flex; align-items:baseline; gap:0.5rem;">
+            <span style="font-size:2rem; font-weight:800; color:#fff;">20%</span>
+            <span style="font-family:var(--font-mono); font-size:0.58rem; color:rgba(255,255,255,0.3);">~76% value delivered</span>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:var(--r); padding:1.25rem 1.5rem;">
+          <div style="font-family:var(--font-mono); font-size:0.58rem; color:rgba(255,255,255,0.3); letter-spacing:0.1em; margin-bottom:0.75rem;">BOOKING #20 — TRUSTED RELATIONSHIP</div>
+          <p style="font-size:0.8rem; color:rgba(255,255,255,0.45); line-height:1.6; margin-bottom:1rem;">Owner and sitter know each other well. Rover is mostly the payment rail and safety net. Same cut anyway.</p>
+          <div style="display:flex; align-items:baseline; gap:0.5rem;">
+            <span style="font-size:2rem; font-weight:800; color:rgba(255,255,255,0.4);">20%</span>
+            <span style="font-family:var(--font-mono); font-size:0.58rem; color:rgba(255,255,255,0.3);">~18% value delivered</span>
+          </div>
+        </div>
+        <div style="background:rgba(220,38,38,0.07); border:1px solid rgba(220,38,38,0.2); border-radius:8px; padding:0.75rem 1rem; font-size:0.78rem; color:rgba(220,38,38,0.8); line-height:1.5;">
+          Social listening confirms: sitters feel they're getting less value over time while still paying a consistently high fee — especially on repeat relationships.
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SLIDE 3 · WHAT THE DATA TOLD US ─── -->
+    <section class="slide s-split" data-slide="3" style="background:var(--bg);">
+      <div class="s-split-left" style="background:var(--bg); display:flex; flex-direction:column; justify-content:center; gap:1.25rem; padding:5vw 4vw;">
+        <span class="slide-label dim">02 / CONTEXT</span>
+        <h2 class="slide-h2 light" style="margin-bottom:0.25rem;">The numbers<br>shaped the test.</h2>
+        <div class="stat-card" style="flex:none;">
+          <span class="stat-label">Top sitter earnings concentration</span>
+          <div class="stat-num">73–77%</div>
+          <p class="stat-desc">Top 20% of sitters generate 73–77% of total earnings — consistent across all geos. The top 1% alone account for 15–19%.</p>
+        </div>
+        <div class="stat-card" style="flex:none;">
+          <span class="stat-label">North America: earnings from repeat clients</span>
+          <div class="stat-num" style="font-size:clamp(2rem,4vw,4rem);">59–63%</div>
+          <p class="stat-desc">Top NA sitters are repeat-driven. In the US: 63%. In Canada: 59%. This is the behaviour we wanted to protect and extend.</p>
+        </div>
+        <p style="font-size:0.72rem; color:rgba(255,255,255,0.25); font-family:var(--font-mono); letter-spacing:0.05em;">Source: Analytics deep dive · Sep 2025 · David Argelich</p>
+      </div>
+      <div class="s-split-right" style="background:rgba(255,255,255,0.02); padding:4vw; display:flex; flex-direction:column; justify-content:center;">
+        <div class="img-frame" style="height:100%; min-height:300px;">
+          <img src="./notion_export_24042026/Relationship-based%20graduated%20fees/images/de-gtr-feedback-repeat.png"
+               alt="Repeat vs. acquisition sitter split by geography"
+               style="object-fit:contain; background:#111; padding:1rem;">
+        </div>
+        <p style="font-family:var(--font-mono); font-size:0.55rem; color:rgba(255,255,255,0.2); margin-top:0.5rem; letter-spacing:0.05em;">Repeat vs. acquisition split — NA vs. Europe</p>
+      </div>
+    </section>
+
+    <!-- ─── SLIDE 4 · PREVIOUS EXPERIMENT ─── -->
+    <section class="slide s-split" data-slide="4">
+      <div class="s-split-left">
+        <span class="slide-label">03 / WHAT WE TRIED</span>
+        <h2 class="slide-h2 dark">The blunt tool<br>didn't work.</h2>
+        <p class="slide-body">A previous test cut the sitter fee from 15% to 5% for all recurring bookings in the UK and all dog walking in Spain. After 4 months:</p>
+        <div class="two-col" style="background:#fff; border:1px solid var(--border); border-radius:var(--r); padding:1.25rem; margin-top:1.25rem; gap:1rem;">
+          <div>
+            <div style="font-family:var(--font-mono); font-size:0.55rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.25rem;">OVERALL DIVERSION</div>
+            <div style="font-size:1.5rem; font-weight:800; color:var(--text);">No change</div>
+          </div>
+          <div>
+            <div style="font-family:var(--font-mono); font-size:0.55rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.25rem;">STAT. SIG. SIGNAL</div>
+            <div style="font-size:1.1rem; font-weight:800; color:var(--accent);">DDC only<br><span style="font-size:0.8rem;">+16.9% recurring units</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="s-split-right" style="background:var(--bg-light); gap:0.875rem;">
+        <div style="font-family:var(--font-mono); font-size:0.58rem; color:var(--text-muted); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.25rem;">4 LEARNINGS THAT SHAPED THE NEXT TEST</div>
+        <div style="background:#fff; border-left:3px solid var(--accent); border-radius:0 8px 8px 0; padding:0.875rem 1rem;">
+          <div style="font-size:0.8rem; font-weight:700; color:var(--text);">Test in North America</div>
+          <p style="font-size:0.72rem; color:var(--text-muted); margin-top:0.2rem; line-height:1.5;">Canada is a closer proxy for the US than UK/ES in terms of repeat booking patterns.</p>
+        </div>
+        <div style="background:#fff; border-left:3px solid var(--accent); border-radius:0 8px 8px 0; padding:0.875rem 1rem;">
+          <div style="font-size:0.8rem; font-weight:700; color:var(--text);">Include boarding-type services</div>
+          <p style="font-size:0.72rem; color:var(--text-muted); margin-top:0.2rem; line-height:1.5;">Boarding accounts for 53% of top US sitter earnings. High ABV services are where the fee pain is most acute.</p>
+        </div>
+        <div style="background:#fff; border-left:3px solid var(--accent); border-radius:0 8px 8px 0; padding:0.875rem 1rem;">
+          <div style="font-size:0.8rem; font-weight:700; color:var(--text);">Design for net neutrality</div>
+          <p style="font-size:0.72rem; color:var(--text-muted); margin-top:0.2rem; line-height:1.5;">A flat fee cut is a pure margin give-up. The next test needs to be financially neutral or better — higher early fee offsets the reduction on repeat.</p>
+        </div>
+        <div style="background:#fff; border-left:3px solid var(--accent); border-radius:0 8px 8px 0; padding:0.875rem 1rem;">
+          <div style="font-size:0.8rem; font-weight:700; color:var(--text);">Target the right sitter segment</div>
+          <p style="font-size:0.72rem; color:var(--text-muted); margin-top:0.2rem; line-height:1.5;">Include both new and established sitters. Previous test lacked segmentation to read the signal clearly.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SLIDE 5 · HYPOTHESIS ─── -->
+    <section class="slide s-dark" data-slide="5" style="align-items:center; text-align:center;">
+      <span class="slide-label dim" style="margin-bottom:2rem;">04 / HYPOTHESIS</span>
+      <div style="max-width:700px; width:100%;">
+        <div style="display:flex; flex-direction:column; gap:1px; background:rgba(255,255,255,0.07); border-radius:var(--r); overflow:hidden; text-align:left; margin-bottom:2rem;">
+          <div style="background:rgba(255,255,255,0.04); padding:1.1rem 1.5rem;">
+            <div style="font-family:var(--font-mono); font-size:0.58rem; color:rgba(255,255,255,0.3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.4rem;">BASED ON</div>
+            <p style="font-size:clamp(0.82rem,1.2vw,0.95rem); color:rgba(255,255,255,0.6); line-height:1.6;">Sitter feedback and the fact that top providers get more than half their earnings from repeat bookings — while still paying the same fee as on a first booking.</p>
+          </div>
+          <div style="background:rgba(37,99,235,0.08); padding:1.1rem 1.5rem; border:1px solid rgba(37,99,235,0.2);">
+            <div style="font-family:var(--font-mono); font-size:0.58rem; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.4rem;">WE BELIEVE THAT</div>
+            <p style="font-size:clamp(0.82rem,1.2vw,0.95rem); color:rgba(255,255,255,0.75); line-height:1.6; font-weight:500;">By setting up a fee structure that more closely maps how and when Rover delivers value to sitters</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.04); padding:1.1rem 1.5rem;">
+            <div style="font-family:var(--font-mono); font-size:0.58rem; color:rgba(255,255,255,0.3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.4rem;">WE WILL</div>
+            <p style="font-size:clamp(0.82rem,1.2vw,0.95rem); color:rgba(255,255,255,0.6); line-height:1.6;">Increase top sitter satisfaction and increase Rover take.</p>
+          </div>
+        </div>
+        <div class="two-col" style="text-align:left;">
+          <div style="background:rgba(111,207,151,0.07); border:1px solid rgba(111,207,151,0.2); border-radius:var(--r); padding:1rem 1.1rem;">
+            <div style="font-family:var(--font-mono); font-size:0.56rem; color:var(--green); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.35rem;">SITTER SUCCESS</div>
+            <p style="font-size:0.8rem; color:rgba(255,255,255,0.55); line-height:1.55;">Most loyal sitters are better off financially and satisfied with the new structure.</p>
+          </div>
+          <div style="background:rgba(37,99,235,0.07); border:1px solid rgba(37,99,235,0.2); border-radius:var(--r); padding:1rem 1.1rem;">
+            <div style="font-family:var(--font-mono); font-size:0.56rem; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.35rem;">ROVER SUCCESS</div>
+            <p style="font-size:0.8rem; color:rgba(255,255,255,0.55); line-height:1.55;">New relationship booking volume is maintained — CBR not significantly hurt.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SLIDE 6 · THREE MODELS EVALUATED ─── -->
+    <section class="slide s-light" data-slide="6" style="justify-content:flex-start; gap:0;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 0 1.25rem;">
+        <div>
+          <span class="slide-label">05 / STRATEGY</span>
+          <h2 style="font-size:clamp(1.2rem,2.5vw,2rem); font-weight:800; color:var(--text); letter-spacing:-0.02em;">Three models. One test.</h2>
+        </div>
+        <div style="font-family:var(--font-mono); font-size:0.58rem; color:var(--text-muted); letter-spacing:0.05em;">Click to explore →</div>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px;">
+        <div class="model-card" onclick="selectModel(this,0)">
+          <div class="img-frame" style="height:90px; margin-bottom:0.5rem; border-radius:6px;">
+            <img src="./notion_export_24042026/Relationship-based%20graduated%20fees/images/dd-ab-repeat-only.webp" alt="New vs. Repeat model exploration" style="object-fit:cover; width:100%; height:100%;">
+          </div>
+          <span class="mc-tag">Model A</span>
+          <span class="mc-name">New vs. Repeat</span>
+          <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.5;">Lower fee on all repeat bookings, higher flat on all first bookings with any client.</p>
+          <span class="mc-check">✓</span>
+        </div>
+        <div class="model-card selected" onclick="selectModel(this,1)">
+          <div class="img-frame" style="height:90px; margin-bottom:0.5rem; border-radius:6px;">
+            <img src="./notion_export_24042026/Relationship-based%20graduated%20fees/images/de-gtr-rel-gbv.png" alt="Relationship-based GBV exploration" style="object-fit:cover; width:100%; height:100%;">
+          </div>
+          <span class="mc-tag">Model B · Selected</span>
+          <span class="mc-name">Relationship-Based GBV</span>
+          <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.5;">Fee drops as cumulative booking value with a <em>specific client</em> hits milestones.</p>
+          <span class="mc-check">✓</span>
+        </div>
+        <div class="model-card" onclick="selectModel(this,2)">
+          <div class="img-frame" style="height:90px; margin-bottom:0.5rem; border-radius:6px;">
+            <img src="./notion_export_24042026/Relationship-based%20graduated%20fees/images/de-gtr-total-clients-mock.png" alt="Account-based GBV exploration" style="object-fit:cover; width:100%; height:100%;">
+          </div>
+          <span class="mc-tag">Model C</span>
+          <span class="mc-name">Account-Based GBV</span>
+          <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.5;">Fee drops as the sitter's total annual Rover earnings hit platform-wide milestones.</p>
+          <span class="mc-check">✓</span>
+        </div>
+      </div>
+      <div id="modelDetail" style="background:#fff; border:1px solid var(--border); border-radius:var(--r); padding:1.1rem 1.5rem; margin-top:10px; display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; flex:1; align-content:start;">
+        <div>
+          <div style="font-family:var(--font-mono); font-size:0.56rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.35rem;">COMPREHENSION</div>
+          <p id="md-comp" style="font-size:0.8rem; color:var(--text); line-height:1.55;">High mental model match. Sitters track clients, not annual totals. 'This client, this relationship.'</p>
+        </div>
+        <div>
+          <div style="font-family:var(--font-mono); font-size:0.56rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.35rem;">GAMING RISK</div>
+          <p id="md-game" style="font-size:0.8rem; color:var(--text); line-height:1.55;">Moderate. GBV threshold mitigates booking-split gaming better than count-based thresholds.</p>
+        </div>
+        <div>
+          <div style="font-family:var(--font-mono); font-size:0.56rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.35rem;">VERDICT</div>
+          <p id="md-verdict" style="font-size:0.8rem; color:var(--accent); font-weight:600; line-height:1.55;">Best match to sitter mental models. Testing first in Canada.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SLIDE 7 · EVALUATION MATRIX ─── -->
+    <section class="slide s-dark" data-slide="7" style="justify-content:center;">
+      <span class="slide-label dim">06 / EVALUATION</span>
+      <h2 class="slide-h2 light" style="margin-bottom:1.75rem;">How they scored.</h2>
+      <table class="eval-matrix">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>New vs. Repeat</th>
+            <th>Relationship-based GBV</th>
+            <th>Account-based GBV</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Comprehension</td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div></div></td>
+          </tr>
+          <tr class="eval-row-win">
+            <td>Fairness match</td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+          </tr>
+          <tr>
+            <td>Gaming resistance</td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot"></div><div class="eval-dot"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot"></div></div></td>
+          </tr>
+          <tr>
+            <td>Diversion reduction</td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+          </tr>
+          <tr>
+            <td>Revenue upside</td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot"></div><div class="eval-dot"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot"></div></div></td>
+            <td><div class="eval-dots"><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div><div class="eval-dot on"></div></div></td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top:1.25rem; font-family:var(--font-mono); font-size:0.56rem; color:rgba(255,255,255,0.3); letter-spacing:0.05em;">↑ Relationship-based wins on fairness match — the dimension most directly tied to diversion behaviour</p>
+    </section>
+
+    <!-- ─── SLIDE 8 · THE INSIGHT ─── -->
+    <section class="slide s-center" data-slide="8">
+      <span class="slide-label dim" style="margin-bottom:1.5rem;">07 / THE INSIGHT</span>
+      <div class="slide-quote" style="max-width:26ch; margin-bottom:1.5rem;">
+        Sitters think about fees <em>per client</em>,<br>not per year.
+      </div>
+      <p class="slide-body light" style="max-width:52ch; text-align:center;">
+        Account-based is operationally cleaner — one annual GBV number, simpler engineering. But when we talked to sitters, every grievance was relational: <em style="color:rgba(255,255,255,0.7); font-style:normal;">"I've cared for this family for 3 years and I still pay 20%."</em> Relationship-based maps to how unfairness actually feels.
+      </p>
+      <div style="display:flex; gap:1.25rem; flex-wrap:wrap; justify-content:center; margin-top:2rem;">
+        <div class="stat-card" style="flex:0 1 220px; text-align:left;">
+          <span class="stat-label">Concept test finding</span>
+          <div class="stat-num" style="font-size:clamp(1.5rem,3vw,3rem);">28</div>
+          <p class="stat-desc">Sitters across 4 segments confirmed: the per-client framing resonated more than an annual platform total.</p>
+        </div>
+        <div class="stat-card" style="flex:0 1 220px; text-align:left;">
+          <span class="stat-label">Account-based risk</span>
+          <div class="stat-num" style="font-size:clamp(1.5rem,3vw,3rem); color:rgba(255,255,255,0.3);">High</div>
+          <p class="stat-desc">Tenure-only incentives don't address diversion — sitters could use Rover to acquire clients then move them off-platform as their annual GBV grows.</p>
+        </div>
+        <div class="stat-card" style="flex:0 1 220px; text-align:left;">
+          <span class="stat-label">Account-based future</span>
+          <div class="stat-num" style="font-size:clamp(1.5rem,3vw,2.5rem); color:var(--green);">Layer</div>
+          <p class="stat-desc">Backlogged as a complementary loyalty track once the relationship model is validated. Not abandoned — sequenced.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SLIDE 9 · FEE STRUCTURE + SIMULATOR ─── -->
+    <section class="slide s-split" data-slide="9" style="background:var(--bg);">
+      <div class="s-split-left" style="background:rgba(255,255,255,0.025); gap:1.25rem;">
+        <span class="slide-label dim">08 / THE MODEL</span>
+        <h2 class="slide-h2 light">The 3-tier<br>relationship model.</h2>
+        <div style="width:100%; border-collapse:collapse; display:table; margin-top:0.5rem;">
+          <div style="display:table; width:100%; border:1px solid rgba(255,255,255,0.1); border-radius:var(--r); overflow:hidden;">
+            <div style="display:table-row; background:rgba(255,255,255,0.06);">
+              <div style="display:table-cell; padding:0.5rem 0.875rem; font-family:var(--font-mono); font-size:0.56rem; color:rgba(255,255,255,0.3); letter-spacing:0.08em;">TIER</div>
+              <div style="display:table-cell; padding:0.5rem 0.875rem; font-family:var(--font-mono); font-size:0.56rem; color:rgba(255,255,255,0.3); letter-spacing:0.08em;">RELATIONSHIP GBV</div>
+              <div style="display:table-cell; padding:0.5rem 0.875rem; font-family:var(--font-mono); font-size:0.56rem; color:rgba(255,255,255,0.3); letter-spacing:0.08em;">SITTER FEE</div>
+            </div>
+            <div style="display:table-row; border-top:1px solid rgba(255,255,255,0.07);">
+              <div style="display:table-cell; padding:0.75rem 0.875rem; font-size:0.82rem; font-weight:600; color:rgba(255,255,255,0.5);">Tier 1</div>
+              <div style="display:table-cell; padding:0.75rem 0.875rem; font-size:0.82rem; color:rgba(255,255,255,0.4);">$0 – $499</div>
+              <div style="display:table-cell; padding:0.75rem 0.875rem; font-size:1.1rem; font-weight:800; color:rgba(255,255,255,0.5);">30%</div>
+            </div>
+            <div style="display:table-row; border-top:1px solid rgba(255,255,255,0.07);">
+              <div style="display:table-cell; padding:0.75rem 0.875rem; font-size:0.82rem; font-weight:600; color:rgba(255,255,255,0.7);">Tier 2</div>
+              <div style="display:table-cell; padding:0.75rem 0.875rem; font-size:0.82rem; color:rgba(255,255,255,0.5);">$500 – $999</div>
+              <div style="display:table-cell; padding:0.75rem 0.875rem; font-size:1.1rem; font-weight:800; color:var(--accent);">15%</div>
+            </div>
+            <div style="display:table-row; border-top:1px solid rgba(255,255,255,0.07); background:rgba(111,207,151,0.05);">
+              <div style="display:table-cell; padding:0.75rem 0.875rem; font-size:0.82rem; font-weight:600; color:var(--green);">Tier 3</div>
+              <div style="display:table-cell; padding:0.75rem 0.875rem; font-size:0.82rem; color:rgba(111,207,151,0.7);">$1,000+</div>
+              <div style="display:table-cell; padding:0.75rem 0.875rem; font-size:1.1rem; font-weight:800; color:var(--green);">10%</div>
+            </div>
+          </div>
+        </div>
+        <ul class="slide-bullets" style="margin-top:0.5rem;">
+          <li>Per relationship — each owner–sitter pair tracked independently</li>
+          <li>GBV = service total (sitter rate + fee, excl. owner fee &amp; tips)</li>
+          <li>Permanent — milestone unlocked means lower tier forever</li>
+          <li>Pro-rated fee when a single booking crosses a tier boundary</li>
+          <li>Backfilled at launch — sitters started at their already-earned tier</li>
+        </ul>
+      </div>
+      <div class="s-split-right" style="background:var(--bg); padding:4vw 4vw;">
+        <div style="font-family:var(--font-mono); font-size:0.58rem; color:rgba(255,255,255,0.3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1rem;">SIMULATE A RELATIONSHIP — $120/BOOKING</div>
+        <div class="sim-wrap">
+          <div class="sim-tiers">
+            <div class="sim-tier current" id="simT1">
+              <div class="sim-tier-fee">30%</div>
+              <div class="sim-tier-label">TIER 1</div>
+              <div class="sim-tier-range">$0 – $499</div>
+            </div>
+            <div class="sim-tier" id="simT2">
+              <div class="sim-tier-fee">15%</div>
+              <div class="sim-tier-label">TIER 2</div>
+              <div class="sim-tier-range">$500 – $999</div>
+            </div>
+            <div class="sim-tier" id="simT3">
+              <div class="sim-tier-fee">10%</div>
+              <div class="sim-tier-label">TIER 3</div>
+              <div class="sim-tier-range">$1,000+</div>
+            </div>
+          </div>
+          <div class="sim-gbv-display">
+            <div>
+              <div class="sim-gbv-val" id="simGbvVal">$0</div>
+              <div class="sim-gbv-sub">RELATIONSHIP GBV</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:clamp(1.5rem,3vw,2.5rem); font-weight:800; color:#fff; line-height:1;" id="simFeeVal">30%</div>
+              <div class="sim-gbv-sub">CURRENT FEE</div>
+            </div>
+          </div>
+          <div class="sim-track-wrap">
+            <div class="sim-track">
+              <div class="sim-fill" id="simFill"></div>
+              <div class="sim-markers">
+                <div class="sim-marker" style="left:45.5%;">
+                  <div class="sim-marker-label">$500</div>
+                </div>
+                <div class="sim-marker" style="left:90.9%;">
+                  <div class="sim-marker-label">$1,000</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sim-callout" id="simCallout">Pro-rated fee applied — part of this booking was at 30%, the rest at 15%.</div>
+          <div class="sim-btns">
+            <button class="sim-btn sim-btn-add" onclick="simAdd()">+ Add booking ($120)</button>
+            <button class="sim-btn sim-btn-reset" onclick="simReset()">Reset</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SLIDE 10 · TIMELINE ─── -->
+    <section class="slide s-dark" data-slide="10" style="overflow:hidden;">
+      <div style="display:grid; grid-template-columns:1fr 2fr; gap:4vw; height:100%; align-items:center;">
+        <div>
+          <span class="slide-label dim">09 / TIMELINE</span>
+          <h2 class="slide-h2 light">18 months,<br>start to live.</h2>
+          <p class="slide-body light">From the first analytics deep dive to a live pilot in Canada, then the US next. Click any milestone to expand detail.</p>
+        </div>
+        <div style="overflow-y:auto; max-height:calc(100vh - 8vw); padding-right:0.5rem;">
+          <div class="timeline" id="timeline">
+            <div class="tl-item" onclick="tlToggle(this)">
+              <div class="tl-date">Sep 2025</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">Analytics deep dive published</div>
+                <div class="tl-detail">David Argelich published the sitters' earnings distribution analysis — top 20% generate 73-77% of earnings; NA top sitters are repeat-driven (59-63%). This shaped everything that followed.</div>
+              </div>
+            </div>
+            <div class="tl-item" onclick="tlToggle(this)">
+              <div class="tl-date">Oct 2025</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">Design exploration + model evaluation</div>
+                <div class="tl-detail">Bernardo published the general design exploration and the alternative monetization evaluation framework. Three models assessed: new vs. repeat, relationship-based GBV, account-based GBV.</div>
+              </div>
+            </div>
+            <div class="tl-item" onclick="tlToggle(this)">
+              <div class="tl-date">Oct–Nov 2025</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">Concept test — 28 sitters, 4 segments</div>
+                <div class="tl-detail">Lizeth Herrera led qualitative concept testing across new, growing, established-loyal, and established-diverting sitters in Canada. Relationship-based GBV selected as the live test model based on findings.</div>
+              </div>
+            </div>
+            <div class="tl-item" onclick="tlToggle(this)">
+              <div class="tl-date">Nov 2025</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">Deep-dive pages published</div>
+                <div class="tl-detail">Bernardo published the relationship-based deep-dive (Nov 13) and the account-based deep-dive (Oct 31) — detailed analysis of mechanics, gaming risks, threshold options, and UX implications.</div>
+              </div>
+            </div>
+            <div class="tl-item" onclick="tlToggle(this)">
+              <div class="tl-date">Dec 2025</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">Fee transparency pre-req + workshop</div>
+                <div class="tl-detail">Fee transparency A/B test designed as a pre-requisite — to isolate the impact of showing sitters their payout before adding the tier structure. Cross-functional monetization workshop held with PM, design, analytics.</div>
+              </div>
+            </div>
+            <div class="tl-item" onclick="tlToggle(this)">
+              <div class="tl-date">Jan 2026</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">Landing page + comms design</div>
+                <div class="tl-detail">Bernardo shared landing page skeleton and Figma prototype. Brand Studio (Defne Kavas) delivered first round of copy for the landing page and launch email.</div>
+              </div>
+            </div>
+            <div class="tl-item" onclick="tlToggle(this)">
+              <div class="tl-date">Feb 2026</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">MVP relationship page spec finalised</div>
+                <div class="tl-detail">Bernardo published the relationship page MVP spec (Feb 9) — 3 core questions the page must answer, full MoSCoW component priority. Engineering planning begins.</div>
+              </div>
+            </div>
+            <div class="tl-item launch" onclick="tlToggle(this)">
+              <div class="tl-date">Mar 4, 2026</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">🚀 Smoke test live — 4 Canadian cities</div>
+                <div class="tl-detail">Launched in Nanaimo, Regina, Saskatoon, and Québec. Email + push notification sent to treatment sitters. 6+ bugs surfaced in the first week; all fixed within 2 weeks.</div>
+              </div>
+            </div>
+            <div class="tl-item active" onclick="tlToggle(this)">
+              <div class="tl-date">Mar 24, 2026</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">🚀 Full Canada test — Vancouver, Calgary, Ottawa</div>
+                <div class="tl-detail">Scaled to three major Canadian cities. Ongoing monitoring via DataDog and Mode dashboards. Social listening active. Results pending at end of 8–10 week test window.</div>
+              </div>
+            </div>
+            <div class="tl-item" onclick="tlToggle(this)">
+              <div class="tl-date">Apr 2026</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">Training/Grooming edge case resolved</div>
+                <div class="tl-detail">Average training relationship GBV is ~$500 — trainers would be stuck at 30% permanently. Decision: exclude Training and Grooming from the graduated take. Flat 20% applies; they don't count toward progress.</div>
+              </div>
+            </div>
+            <div class="tl-item upcoming" onclick="tlToggle(this)">
+              <div class="tl-date">Jun 16, 2026</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">US test — Chicago, Dallas, Seattle</div>
+                <div class="tl-detail">Tentative. Conjoint analysis for US tier values pending. Training and Grooming excluded from day one. Plan to update future bookings to lower tier fee immediately (unlike Canada).</div>
+              </div>
+            </div>
+            <div class="tl-item upcoming" onclick="tlToggle(this)">
+              <div class="tl-date">Q2 2026</div>
+              <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+              <div class="tl-right">
+                <div class="tl-title">UK MVP</div>
+                <div class="tl-detail">TBD. European market has a different acquisition vs. repeat split — learnings may not transfer directly. Translation and localisation work required before any European expansion.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SLIDE 11 · WHAT WE DESIGNED ─── -->
+    <section class="slide s-dark" data-slide="11" style="padding:0; display:grid; grid-template-columns:1fr 1fr; overflow:hidden;">
+      <div style="padding:4vw 5vw; display:flex; flex-direction:column; justify-content:center; overflow-y:auto;">
+        <span class="slide-label dim">10 / SCOPE</span>
+        <h2 class="slide-h2 light" style="margin-bottom:0.5rem;">9 user stories.<br>One cohesive system.</h2>
+        <p class="slide-body light" style="margin-top:0; margin-bottom:1.25rem; max-width:60ch;">Every surface a sitter touches was considered — from the first announcement to a booking that crosses a tier mid-stay. Click any story to expand.</p>
+        <div class="story-chips" id="storyChips">
+          <div class="story-chip" onclick="selectStory(this,0)">US1 · Fee logic</div>
+          <div class="story-chip" onclick="selectStory(this,1)">US2 · Contacts page</div>
+          <div class="story-chip active" onclick="selectStory(this,2)">US3 · Relationship page</div>
+          <div class="story-chip" onclick="selectStory(this,3)">US4 · System messages</div>
+          <div class="story-chip" onclick="selectStory(this,4)">US5 · Earnings breakdown</div>
+          <div class="story-chip" onclick="selectStory(this,5)">US6 · Service settings</div>
+          <div class="story-chip" onclick="selectStory(this,6)">US7 · Announcements</div>
+          <div class="story-chip" onclick="selectStory(this,7)">US8 · Landing page</div>
+          <div class="story-chip" onclick="selectStory(this,8)">US9 · Payment history</div>
+        </div>
+        <div class="story-detail" id="storyDetail" style="margin-top:1.25rem;">
+          <span class="sd-tag">US3 · RELATIONSHIP PAGE</span>
+          <div class="sd-title">The source of truth for per-client GBV progress</div>
+          <p class="sd-body">5–6 sections: header (Rebook + Profile CTAs), progress (tier visualisation + progress bar + banner), upcoming bookings, completed bookings, archived, and pets. Entry points: Contacts tab, conversation header, conversation menu, and booking earnings breakdown. Dark green = completed GBV; light green = pending GBV.</p>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:center; padding:3vw; background:rgba(255,255,255,0.025); overflow:hidden;">
+        <div class="img-frame" id="storyImgFrame" style="width:100%; max-height:calc(100vh - 6vw); overflow:hidden;">
+          <img id="storyImg" src="./notion_export_24042026/Relationship-based%20graduated%20fees/images/dd-rb-rel-page.webp" alt="User story design" style="object-fit:contain; width:100%; height:100%; max-height:calc(100vh - 6vw); background:#1a1a2e;">
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SLIDE 12 · THE RELATIONSHIP PAGE ─── -->
+    <section class="slide s-split" data-slide="12" style="background:var(--bg-light);">
+      <div class="s-split-left" style="background:var(--bg-light);">
+        <span class="slide-label">11 / KEY ARTIFACT</span>
+        <h2 class="slide-h2 dark">The Relationship<br>Page.</h2>
+        <p class="slide-body">Without it, the fee model is invisible. Sitters can't verify their tier, track progress, or understand why a fee changed on a specific booking. It's not a nice-to-have — it's what makes the model real.</p>
+
+        <div style="margin-top:1.25rem; display:flex; flex-direction:column; gap:0.5rem;">
+          <div style="font-family:var(--font-mono); font-size:0.56rem; color:var(--text-muted); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.25rem;">3 NON-NEGOTIABLES</div>
+          <div style="background:#fff; border-left:3px solid var(--accent); border-radius:0 8px 8px 0; padding:0.75rem 1rem;">
+            <p style="font-size:0.78rem; color:var(--text); line-height:1.5; font-weight:600;">Sitters must know how and when they'll gain more value</p>
+          </div>
+          <div style="background:#fff; border-left:3px solid var(--accent); border-radius:0 8px 8px 0; padding:0.75rem 1rem;">
+            <p style="font-size:0.78rem; color:var(--text); line-height:1.5; font-weight:600;">New and existing sitters must know they're rewarded for keeping bookings on-platform</p>
+          </div>
+          <div style="background:#fff; border-left:3px solid var(--accent); border-radius:0 8px 8px 0; padding:0.75rem 1rem;">
+            <p style="font-size:0.78rem; color:var(--text); line-height:1.5; font-weight:600;">Everything focuses at the relationship level — not platform-wide</p>
+          </div>
+        </div>
+
+        <div class="two-col" style="margin-top:1.25rem; gap:0.5rem 1.5rem;">
+          <div>
+            <div style="font-family:var(--font-mono); font-size:0.55rem; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.4rem;">MUST HAVE</div>
+            <ul style="list-style:none; display:flex; flex-direction:column; gap:0.2rem;">
+              <li style="font-size:0.72rem; color:var(--text-muted);">Client ID + current tier</li>
+              <li style="font-size:0.72rem; color:var(--text-muted);">GBV progress bar</li>
+              <li style="font-size:0.72rem; color:var(--text-muted);">Transaction history</li>
+              <li style="font-size:0.72rem; color:var(--text-muted);">Rebook / Message CTA</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-family:var(--font-mono); font-size:0.55rem; color:var(--text-muted); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.4rem;">SHOULD / WON'T (MVP)</div>
+            <ul style="list-style:none; display:flex; flex-direction:column; gap:0.2rem;">
+              <li style="font-size:0.72rem; color:var(--text-muted);">Upcoming bookings</li>
+              <li style="font-size:0.72rem; color:var(--text-muted);">Refund visibility</li>
+              <li style="font-size:0.72rem; color:var(--text-muted); text-decoration:line-through; opacity:0.5;">Conversations</li>
+              <li style="font-size:0.72rem; color:var(--text-muted); text-decoration:line-through; opacity:0.5;">Celebratory milestones</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin-top:1.25rem; background:var(--accent-bg); border-radius:var(--r); padding:0.875rem 1rem;">
+          <div style="font-family:var(--font-mono); font-size:0.56rem; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.3rem;">DESIGN PRINCIPLE</div>
+          <p style="font-size:0.82rem; color:var(--text); line-height:1.5; font-weight:500;">You don't need to understand the model to use it — you just need to see your progress with this client.</p>
+        </div>
+      </div>
+      <div class="s-split-right" style="background:rgba(0,0,0,0.04); padding:3vw; display:flex; flex-direction:column; justify-content:center; gap:0.75rem; overflow:hidden; height:100%;">
+        <div class="img-frame" style="flex:1; min-height:0; overflow:hidden; max-height:calc(100vh - 8vw - 2rem);">
+          <img src="./notion_export_24042026/Relationship-based%20graduated%20fees/images/dd-rb-rel-page.webp"
+               alt="Relationship page MVP design"
+               style="object-fit:contain; width:100%; height:100%; max-height:calc(100vh - 8vw - 2rem); background:#F8F8F8;">
+        </div>
+        <p style="font-family:var(--font-mono); font-size:0.55rem; color:var(--text-muted); letter-spacing:0.05em; text-align:center; flex-shrink:0;">Relationship page MVP · Figma · Feb 2026</p>
+      </div>
+    </section>
+
+    <!-- ─── SLIDE 13 · TOUCHPOINTS SYSTEM ─── -->
+    <section class="slide s-split" data-slide="13" style="background:var(--bg);">
+      <div class="s-split-left" style="background:rgba(255,255,255,0.025);">
+        <span class="slide-label dim">12 / TOUCHPOINTS</span>
+        <h2 class="slide-h2 light">Every surface<br>tells the story.</h2>
+        <p class="slide-body light">The fee model only works if sitters encounter it at the right moment — not just once in a landing page. Five distinct surface types, each with a specific job.</p>
+
+        <div style="display:flex; flex-direction:column; gap:0.6rem; margin-top:1.5rem;">
+          <div style="display:flex; gap:0.875rem; align-items:flex-start;">
+            <div style="width:6px; height:6px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:0.35rem;"></div>
+            <div>
+              <div style="font-size:0.82rem; font-weight:700; color:#fff;">Landing page</div>
+              <div style="font-size:0.72rem; color:rgba(255,255,255,0.4); line-height:1.5; margin-top:0.1rem;">Carousel + FAQs. Source of truth for the full model. Auth-only. Localised en-ca / fr-ca.</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:0.875rem; align-items:flex-start;">
+            <div style="width:6px; height:6px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:0.35rem;"></div>
+            <div>
+              <div style="font-size:0.82rem; font-weight:700; color:#fff;">Dashboard announcement</div>
+              <div style="font-size:0.72rem; color:rgba(255,255,255,0.4); line-height:1.5; margin-top:0.1rem;">First-login callout on Daily Dashboard and web sitter dashboard. Two variants: with / without existing clients.</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:0.875rem; align-items:flex-start;">
+            <div style="width:6px; height:6px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:0.35rem;"></div>
+            <div>
+              <div style="font-size:0.82rem; font-weight:700; color:#fff;">Conversation system message</div>
+              <div style="font-size:0.72rem; color:rgba(255,255,255,0.4); line-height:1.5; margin-top:0.1rem;">Contextual callout in inbox. Content varies: new relationship, in-progress, tier-unlocking, maxed out.</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:0.875rem; align-items:flex-start;">
+            <div style="width:6px; height:6px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:0.35rem;"></div>
+            <div>
+              <div style="font-size:0.82rem; font-weight:700; color:#fff;">Booking earnings breakdown</div>
+              <div style="font-size:0.72rem; color:rgba(255,255,255,0.4); line-height:1.5; margin-top:0.1rem;">Bottom sheet in booking details showing fee breakdown by tier. Links directly to relationship page.</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:0.875rem; align-items:flex-start;">
+            <div style="width:6px; height:6px; border-radius:50%; background:var(--green); flex-shrink:0; margin-top:0.35rem;"></div>
+            <div>
+              <div style="font-size:0.82rem; font-weight:700; color:var(--green);">Relationship page</div>
+              <div style="font-size:0.72rem; color:rgba(255,255,255,0.4); line-height:1.5; margin-top:0.1rem;">The hub. Per-client GBV progress, transaction history, tier status, and rebook CTA. The model's source of truth.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="s-split-right" style="background:rgba(255,255,255,0.02); padding:3vw; display:flex; flex-direction:column; justify-content:center; gap:0.75rem;">
+        <div class="img-frame" style="flex:1; min-height:0;">
+          <img src="./notion_export_24042026/Relationship-based%20graduated%20fees/images/dd-rb-touchpoints.webp"
+               alt="Touchpoints system overview"
+               style="object-fit:contain; width:100%; height:100%; background:#1a1a1a;">
+        </div>
+        <p style="font-family:var(--font-mono); font-size:0.55rem; color:rgba(255,255,255,0.2); letter-spacing:0.05em; text-align:center;">Touchpoints overview · Figma · deep-dive doc</p>
+      </div>
+    </section>
+
+    <!-- ─── SLIDE 14 · DESIGN CHALLENGES ─── -->
+    <section class="slide s-dark" data-slide="14">
+      <span class="slide-label dim">13 / DESIGN CHALLENGES</span>
+      <h2 class="slide-h2 light" style="margin-bottom:0.4rem;">Four hard problems.</h2>
+      <p class="slide-body light" style="margin-top:0; margin-bottom:1.25rem; max-width:60ch;">Click any card to see what we considered and what we decided.</p>
+      <div class="exp-grid">
+        <div class="exp-card" onclick="expToggle(this)">
+          <span class="exp-num">01</span>
+          <span class="exp-title">Model comprehension</span>
+          <p class="exp-lead">Cumulative GBV, milestones, permanent reductions — that's four mental models at once.</p>
+          <p class="exp-body">Options: (A) Show all the maths up front. (B) Progressive disclosure — anchor on 'this relationship with [client name]', reveal mechanics only when needed. (C) Full onboarding flow before first booking.</p>
+          <p class="exp-decision">→ Progressive disclosure. The relationship page is the source of truth; sitters don't need to understand the model to use it — they just need to see their progress. Avoided overwhelming with rules at announcement.</p>
+        </div>
+        <div class="exp-card" onclick="expToggle(this)">
+          <span class="exp-num">02</span>
+          <span class="exp-title">Perceived fairness across services</span>
+          <p class="exp-lead">GBV thresholds favour boarding ($300/stay) over walking ($20/walk). Is that fair?</p>
+          <p class="exp-body">Options: (A) Accept asymmetry in v1, anchor messaging on relationship not maths. (B) Service-specific thresholds. (C) Points-based system where different services earn at different rates. (D) Count-based milestones (5th booking) — equal across services but gameable.</p>
+          <p class="exp-decision">→ Accepted asymmetry in v1. Boarding drives 53% of top sitter earnings; it's the right place to test. Messaging focused on the relationship benefit, not the threshold value. Points system backlogged as a future iteration.</p>
+        </div>
+        <div class="exp-card" onclick="expToggle(this)">
+          <span class="exp-num">03</span>
+          <span class="exp-title">Sense of agency</span>
+          <p class="exp-lead">Progress toward a milestone depends partly on whether the owner chooses to rebook — not just sitter quality.</p>
+          <p class="exp-body">Options: (A) Surface progress as purely dependent on the relationship (honest but demotivating). (B) Focus UI exclusively on actions the sitter controls — booking on-platform, sending post-stay messages, rebooking nudge. (C) Explicitly tell sitters that owner repeat rate is a factor.</p>
+          <p class="exp-decision">→ Focus on sitter-controlled actions. Never show progress as dependent on owner behaviour. UI surfaces: "Book on Rover", "Remind client to rebook", "Send post-stay message" — avoid showing "waiting for client" as a progress state.</p>
+        </div>
+        <div class="exp-card" onclick="expToggle(this)">
+          <span class="exp-num">04</span>
+          <span class="exp-title">Threshold-crossing bookings</span>
+          <p class="exp-lead">A single booking crosses a tier boundary mid-transaction. How is the fee applied?</p>
+          <p class="exp-body">Options: (A) Split fee — first portion charged at old rate, remainder at new rate. Accurate and honest, but creates a blended fee on one ledger line. (B) Cashback — full booking at the old rate; credit issued for the next booking. Simpler ledger display but delayed reward, requires a credit wallet.</p>
+          <p class="exp-decision">→ Split fee. Most transparent — sitters get the benefit the instant they earn it. The ledger complexity is manageable with a clear breakdown modal (US5). Cashback backlogged; at relationship level threshold crossings are recurring, making it a meaningful future incentive loop.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SLIDE 15 · TRAINING / GROOMING EDGE CASE ─── -->
+    <section class="slide s-split" data-slide="15" style="background:var(--bg);">
+      <div class="s-split-left" style="background:rgba(255,255,255,0.025); gap:1.25rem;">
+        <span class="slide-label dim">14 / EDGE CASE</span>
+        <h2 class="slide-h2 light">Training &amp;<br>Grooming.</h2>
+        <p class="slide-body light">Average training relationship GBV is ~$500 — meaning virtually all trainers stay at 30% forever. Off-platform, trainers earn $300–350/client vs. $100–130 on Rover. A 30% Tier 1 makes that gap worse.</p>
+        <p class="slide-body light" style="margin-top:0.5rem;">Five paths were explored. Click each to read the trade-off.</p>
+        <div style="background:rgba(111,207,151,0.08); border:1px solid rgba(111,207,151,0.2); border-radius:var(--r); padding:0.875rem 1rem; margin-top:1rem;">
+          <div style="font-family:var(--font-mono); font-size:0.56rem; color:var(--green); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.3rem;">CHOSEN PATH</div>
+          <p style="font-size:0.82rem; color:rgba(255,255,255,0.65); line-height:1.55;">Training and Grooming excluded from the graduated take. Flat 20% applies; they don't count toward relationship GBV progress. No fee callouts in Training conversations. Mixed relationships (core + training) get two separate sections.</p>
+        </div>
+      </div>
+      <div class="s-split-right" style="background:var(--bg); padding:4vw; display:flex; flex-direction:column; gap:1rem; justify-content:center;">
+        <div class="path-grid" id="pathGrid">
+          <div class="path-card chosen" onclick="selectPath(this)">
+            <div class="path-id">Option A ✓</div>
+            <div class="path-name">Exclude Training &amp; Grooming</div>
+            <div class="path-tag">Complexity: Low</div>
+            <div class="path-desc">Flat 20% for Training and Grooming; these services don't count toward GBV progress. Already live in Canada. Clean, avoids permanent Tier 1 problem.</div>
+          </div>
+          <div class="path-card" onclick="selectPath(this)">
+            <div class="path-id">Option B</div>
+            <div class="path-name">Include as-is</div>
+            <div class="path-tag">Complexity: Very low</div>
+            <div class="path-desc">Same tiers, no exceptions. Trainers permanently stuck at 30%. Creates resentment; makes fee gap vs. off-platform worse.</div>
+          </div>
+          <div class="path-card" onclick="selectPath(this)">
+            <div class="path-id">Option C</div>
+            <div class="path-name">Service-specific thresholds</div>
+            <div class="path-tag">Complexity: Medium</div>
+            <div class="path-desc">Different GBV thresholds per service type — lower milestones for Training. Fair, but adds significant config complexity and comms burden.</div>
+          </div>
+          <div class="path-card" onclick="selectPath(this)">
+            <div class="path-id">Option D</div>
+            <div class="path-name">Service-specific fee %</div>
+            <div class="path-tag">Complexity: Medium</div>
+            <div class="path-desc">Same thresholds but lower Tier 1 fee for Training. Reduces the gap but doesn't solve the stuck-in-Tier-1 problem long-term.</div>
+          </div>
+          <div class="path-card" onclick="selectPath(this)">
+            <div class="path-id">Option E</div>
+            <div class="path-name">Points-based system</div>
+            <div class="path-tag">Complexity: Very high</div>
+            <div class="path-desc">GBV replaced by points accruing at different rates by service type. Most equitable across services — but a completely different model. Future iteration territory.</div>
+          </div>
+        </div>
+        <div class="img-frame" style="min-height:120px; flex:1;">
+          <img src="./notion_export_24042026/Relationship-based%20graduated%20fees/images/dd-training-mixed-rel.webp"
+               alt="Mixed relationship (core + training) design exploration"
+               style="object-fit:contain; width:100%; height:100%; background:#1a1a1a;">
+        </div>
+        <p style="font-family:var(--font-mono); font-size:0.55rem; color:rgba(255,255,255,0.2); letter-spacing:0.05em; text-align:center;">Mixed relationship (core + training) · design exploration · Apr 2026</p>
+      </div>
+    </section>
+
+    <!-- ─── SLIDE 16 · CONCEPT TEST — SEGMENTS ─── -->
+    <section class="slide s-dark" data-slide="16">
+      <div style="display:grid; grid-template-columns:1fr 2fr; gap:4vw; height:100%; align-items:center;">
+        <div>
+          <span class="slide-label dim">15 / RESEARCH</span>
+          <h2 class="slide-h2 light">Concept test.<br>4 segments.<br>28 sitters.</h2>
+          <p class="slide-body light">Qualitative 1:1 interviews, 60 min each, remote via Google Meet. Canada market. Oct–Nov 2025 — before a single line of code was written.</p>
+          <div style="margin-top:1.25rem; display:flex; flex-direction:column; gap:0.5rem;">
+            <div style="font-family:var(--font-mono); font-size:0.56rem; color:rgba(255,255,255,0.3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.25rem;">5 LEARNING DIMENSIONS</div>
+            <div style="font-size:0.75rem; color:rgba(255,255,255,0.4); line-height:1.6;">
+              Cognitive load &nbsp;·&nbsp; Fairness &nbsp;·&nbsp; Alignment with Rover's decreasing value &nbsp;·&nbsp; Perceived benefit &nbsp;·&nbsp; Agency &amp; control
+            </div>
+          </div>
+          <p style="margin-top:1rem; font-size:0.7rem; color:rgba(255,255,255,0.25); font-family:var(--font-mono); letter-spacing:0.04em; line-height:1.5;">Researcher: Lizeth Herrera<br>Stakeholders: Mégane Martinez, Bernardo Prudêncio, Guillem Pons (CPO)</p>
+        </div>
+        <div class="seg-grid" id="segGrid">
+          <div class="seg-card" onclick="segToggle(this)">
+            <div class="seg-name">New sitters</div>
+            <div class="seg-tagline">&lt; 1 year tenure · trial &amp; exploration phase</div>
+            <div class="seg-detail">
+              <div class="seg-kv"><span class="seg-k">Motivation</span><span class="seg-v">Practical &amp; flexible — supplemental income, lifestyle fit</span></div>
+              <div class="seg-kv"><span class="seg-k">React to 47% start fee</span><span class="seg-v">Financial survival risk. Feels unsafe to start a business at such high initial cost. Many would not join at all.</span></div>
+              <div class="seg-kv"><span class="seg-k">Fairness perception</span><span class="seg-v">Structurally unfair — lack leverage, pricing power, or volume to reach milestones quickly</span></div>
+              <div class="seg-kv"><span class="seg-k">Verdict for live test</span><span class="seg-v">Motivation collapses. 47% start acts as a deterrent to taking new clients.</span></div>
+            </div>
+          </div>
+          <div class="seg-card" onclick="segToggle(this)">
+            <div class="seg-name">Growing sitters</div>
+            <div class="seg-tagline">~1 year tenure · stabilising activity</div>
+            <div class="seg-detail">
+              <div class="seg-kv"><span class="seg-k">Motivation</span><span class="seg-v">Optimising for life — a job that fits their life, not business growth</span></div>
+              <div class="seg-kv"><span class="seg-k">React to 47% start fee</span><span class="seg-v">Penalty perception. Enthusiasm drops; the reward feels too distant. 50/50 split feels "too much".</span></div>
+              <div class="seg-kv"><span class="seg-k">Fairness perception</span><span class="seg-v">Service-dependent — fair for boarders, a grind for walkers who need many bookings to hit $500</span></div>
+              <div class="seg-kv"><span class="seg-k">Verdict for live test</span><span class="seg-v">Motivation decreases. Shifts focus to keeping existing clients rather than acquiring new ones.</span></div>
+            </div>
+          </div>
+          <div class="seg-card" onclick="segToggle(this)">
+            <div class="seg-name">Established — loyal</div>
+            <div class="seg-tagline">Long tenure · high repeat usage · risk-averse</div>
+            <div class="seg-detail">
+              <div class="seg-kv"><span class="seg-k">Motivation</span><span class="seg-v">Love &amp; routine — genuine affection for animals; frustrated by market saturation</span></div>
+              <div class="seg-kv"><span class="seg-k">React to 47% start fee</span><span class="seg-v">Punitive. Mechanics clear, but emotional reaction strongly adverse. Concerns about one-off clients who'll never return.</span></div>
+              <div class="seg-kv"><span class="seg-k">Fairness perception</span><span class="seg-v">Conditional fairness — fair if you break through the milestone; unfair if progress depends on owner repeat behaviour</span></div>
+              <div class="seg-kv"><span class="seg-k">Verdict for live test</span><span class="seg-v">Increases motivation post-milestone. Highly motivated once fee drops; sees 10% as a genuine partnership.</span></div>
+            </div>
+          </div>
+          <div class="seg-card" onclick="segToggle(this)">
+            <div class="seg-name">Established — diverters</div>
+            <div class="seg-tagline">Long tenure · suspected off-platform bookings</div>
+            <div class="seg-detail">
+              <div class="seg-kv"><span class="seg-k">Motivation</span><span class="seg-v">Strategic boundaries — strict selectivity, boundary-setting, value-based pricing</span></div>
+              <div class="seg-kv"><span class="seg-k">React to 47% start fee</span><span class="seg-v">Confirmation of bias. Confirms suspicion the model is designed to protect Rover's margins, not partner with sitters.</span></div>
+              <div class="seg-kv"><span class="seg-k">Fairness perception</span><span class="seg-v">Favours "power users" — high-volume sitters. Seasonal or selective sitters feel excluded.</span></div>
+              <div class="seg-kv"><span class="seg-k">Verdict for live test</span><span class="seg-v">Motivation decreases or stagnates. Pre-milestone phase is seen as a "bad deal". Stays only to avoid abandoning existing clients.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SLIDE 17 · RESEARCH — KEY FINDINGS ─── -->
+    <section class="slide s-split" data-slide="17" style="background:var(--bg);">
+      <div class="s-split-left" style="background:rgba(255,255,255,0.025); gap:1rem;">
+        <span class="slide-label dim">16 / FINDINGS</span>
+        <h2 class="slide-h2 light" style="margin-bottom:0.25rem;">What we heard.<br>What we changed.</h2>
+
+        <div style="display:flex; flex-direction:column; gap:0.6rem; margin-top:0.5rem;">
+          <div style="background:rgba(111,207,151,0.07); border:1px solid rgba(111,207,151,0.2); border-radius:8px; padding:0.875rem 1rem;">
+            <div style="font-family:var(--font-mono); font-size:0.55rem; color:var(--green); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.3rem;">RESONATED</div>
+            <p style="font-size:0.78rem; color:rgba(255,255,255,0.6); line-height:1.55;">The principle of "higher fees at the start, lower as the relationship deepens" was understood and felt fair across all segments in theory. Sitters intuitively grasp that Rover provides most value upfront.</p>
+          </div>
+          <div style="background:rgba(220,38,38,0.06); border:1px solid rgba(220,38,38,0.18); border-radius:8px; padding:0.875rem 1rem;">
+            <div style="font-family:var(--font-mono); font-size:0.55rem; color:#f87171; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.3rem;">DIDN'T LAND</div>
+            <p style="font-size:0.78rem; color:rgba(255,255,255,0.6); line-height:1.55;">The mechanics — cumulative GBV, milestone triggers, permanence, scope per client — created significant friction independent of the starting fee. When 47% was shown, fairness perceptions collapsed.</p>
+          </div>
+          <div style="background:rgba(37,99,235,0.08); border:1px solid rgba(37,99,235,0.2); border-radius:8px; padding:0.875rem 1rem;">
+            <div style="font-family:var(--font-mono); font-size:0.55rem; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.3rem;">WHAT IT CHANGED</div>
+            <p style="font-size:0.78rem; color:rgba(255,255,255,0.6); line-height:1.55;">Starting fee tuned to 30% (not 47%). Comms strategy shifted to lead with the "why" before the maths. Backfilling historical GBV at launch was a direct response — sitters enter already winning.</p>
+          </div>
+        </div>
+
+        <div style="margin-top:0.75rem; border-left:2px solid rgba(255,255,255,0.12); padding-left:1rem;">
+          <p style="font-size:clamp(0.82rem,1.2vw,0.95rem); color:rgba(255,255,255,0.5); line-height:1.6; font-style:italic;">"I've cared for this family for 3 years. I know their dog, I know their home, I know their schedule. And I still pay the same 20% as on day one."</p>
+          <p style="font-family:var(--font-mono); font-size:0.56rem; color:rgba(255,255,255,0.25); margin-top:0.4rem; letter-spacing:0.06em;">Established sitter · concept test · Canada · Oct 2025</p>
+        </div>
+      </div>
+      <div class="s-split-right" style="background:rgba(255,255,255,0.02); padding:3vw; display:flex; flex-direction:column; gap:0.75rem; justify-content:center;">
+        <div class="img-frame" style="flex:1; min-height:0;">
+          <img src="./notion_export_24042026/Relationship-based%20graduated%20fees/images/de-gtr-customer-feedback.png"
+               alt="Customer feedback and social listening signals"
+               style="object-fit:contain; width:100%; height:100%; background:#111;">
+        </div>
+        <p style="font-family:var(--font-mono); font-size:0.55rem; color:rgba(255,255,255,0.2); letter-spacing:0.05em; text-align:center;">Social listening &amp; customer feedback · design exploration · Oct 2025</p>
+      </div>
+    </section>
+
+    <!-- ─── SLIDE 18 · 100 CONVERSATIONS ─── -->
+    <section class="slide s-split" data-slide="18" style="background:var(--bg);">
+      <div class="s-split-left" style="background:rgba(255,255,255,0.025);">
+        <span class="slide-label dim">17 / SMOKE TEST RESEARCH</span>
+        <h2 class="slide-h2 light">100 conversations.<br>Zero mentions<br>of fees.</h2>
+        <p class="slide-body light">After the smoke test launched, I manually reviewed 100 real sitter–owner conversations from the treatment geo. Dia reviewed each thread against key themes including any organic mentions of tiered incentives or rewards.</p>
+        <div class="decision-box" style="margin-top:1.25rem;">
+          <span class="dlabel">KEY SIGNAL</span>
+          <p>No explicit mentions of tiered or graduated fees, rewards programs, or loyalty schemes in any conversation. All pricing treated as a flat per-service outcome of the standard Rover flow. This confirmed the model needs to be actively surfaced — sitters won't discover it organically.</p>
+        </div>
+      </div>
+      <div class="s-split-right" style="background:var(--bg); gap:0.875rem;">
+        <div style="font-family:var(--font-mono); font-size:0.56rem; color:rgba(255,255,255,0.3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.5rem;">3 PATTERNS THAT MATTERED</div>
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:var(--r); padding:1.1rem 1.25rem; display:flex; flex-direction:column; gap:0.35rem;">
+          <div style="font-size:0.82rem; font-weight:700; color:#fff;">Relationship CRM behaviour</div>
+          <p style="font-size:0.75rem; color:rgba(255,255,255,0.45); line-height:1.55;">Same sitter and owner, lots of repeat coordination, high trust. "So happy you're available again", "the dogs will be very happy to see you". These are the relationships the fee model is designed to protect — but sitters never reference a program.</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:var(--r); padding:1.1rem 1.25rem; display:flex; flex-direction:column; gap:0.35rem;">
+          <div style="font-size:0.82rem; font-weight:700; color:#fff;">Off-platform gravity — subtle, not explicit</div>
+          <p style="font-size:0.75rem; color:rgba(255,255,255,0.45); line-height:1.55;">Nobody wrote "let's go off Rover." But payment method drift (e-transfer mentions), adjustments handled via SMS, and granular changes made outside of bookings all signal that Rover's perceived marginal value drops as relationships mature.</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:var(--r); padding:1.1rem 1.25rem; display:flex; flex-direction:column; gap:0.35rem;">
+          <div style="font-size:0.82rem; font-weight:700; color:#fff;">Modification opacity creates friction</div>
+          <p style="font-size:0.75rem; color:rgba(255,255,255,0.45); line-height:1.55;">"I was charged for 2 visits but I counted 3" — no visible before/after diff. Sitters explain platform rules from memory. This reinforced the decision to show clear tier-crossing breakdowns in booking details (US5).</p>
+        </div>
+        <p style="font-family:var(--font-mono); font-size:0.56rem; color:rgba(255,255,255,0.2); letter-spacing:0.05em; margin-top:0.25rem;">Author: Bernardo Prudêncio · Mar 12, 2026 · 100 conversations · smoke test geo</p>
+      </div>
+    </section>
+
+
+    <!-- SLIDE 19: Measuring impact -->
+    <section class="slide s-dark" data-slide="19" style="justify-content:center;">
+      <div style="width:100%; max-width:860px; padding:0 2rem;">
+        <div class="slide-label" style="margin-bottom:1.2rem;">19 / 21 · Measurement</div>
+        <h2 class="slide-h2" style="margin-bottom:2rem;">Measuring Impact</h2>
+
+        <div class="two-col" style="gap:1.5rem; margin-bottom:1.5rem;">
+          <div style="background:rgba(99,179,237,0.08); border:1px solid rgba(99,179,237,0.25); border-radius:10px; padding:1.4rem;">
+            <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.08em; color:var(--accent); margin-bottom:0.6rem; text-transform:uppercase;">Primary metric</div>
+            <div style="font-size:1rem; font-weight:600; color:#fff; margin-bottom:0.5rem;">Per-relationship GBV growth</div>
+            <div class="slide-body light" style="font-size:0.8rem;">GBV earned per active sitter–owner pair in the 90-day window post-launch, treatment vs. holdout control. Clean signal of whether lower Tier 2/3 fees are actually pulling repeat bookings back on-platform.</div>
+          </div>
+          <div style="background:rgba(111,207,151,0.08); border:1px solid rgba(111,207,151,0.25); border-radius:10px; padding:1.4rem;">
+            <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.08em; color:#6FCF97; margin-bottom:0.6rem; text-transform:uppercase;">Break-even logic</div>
+            <div style="font-size:1.6rem; font-weight:700; color:#6FCF97; margin-bottom:0.4rem;">≤7%</div>
+            <div class="slide-body light" style="font-size:0.8rem;">Diversion can increase by up to ~7% on <em>new</em> relationships before the take-rate gain from repeat relationships is neutralised. Our hypothesis: loyalty effect more than compensates for the higher starting fee.</div>
+          </div>
+        </div>
+
+        <div style="background:var(--bg-light); border-radius:10px; padding:1.2rem 1.4rem; margin-bottom:1.2rem;">
+          <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.08em; color:var(--text-muted); margin-bottom:0.8rem; text-transform:uppercase;">Secondary signals</div>
+          <table class="measure-table" style="width:100%;">
+            <thead>
+              <tr><th style="color:var(--text-muted);">Signal</th><th style="color:var(--text-muted);">Target</th><th style="color:var(--text-muted);">Why it matters</th></tr>
+            </thead>
+            <tbody>
+              <tr><td style="color:var(--text);">Sitter comprehension</td><td style="color:var(--text-muted);">≥70% correct on key mechanics</td><td style="color:var(--text-muted);">Model only works if sitters understand the incentive</td></tr>
+              <tr><td style="color:var(--text);">Perceived fairness (top sitters)</td><td style="color:var(--text-muted);">Net positive sentiment</td><td style="color:var(--text-muted);">Core retention risk if fairness scores collapse</td></tr>
+              <tr><td style="color:var(--text);">Diversion — new relationships</td><td style="color:var(--text-muted);">No material increase</td><td style="color:var(--text-muted);">Validates that higher Tier 1 fee isn't killing acquisition</td></tr>
+              <tr><td style="color:var(--text);">Repeat booking rate (90-day)</td><td style="color:var(--text-muted);">+3–5pp vs control</td><td style="color:var(--text-muted);">Behavioural proof that Tier 2/3 is changing sitter actions</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="display:flex; gap:1rem; align-items:center;">
+          <div style="flex:1; background:rgba(255,255,255,0.04); border-radius:8px; padding:0.9rem 1.1rem;">
+            <div style="font-size:0.7rem; font-weight:600; color:var(--text-muted); margin-bottom:0.3rem; text-transform:uppercase; letter-spacing:0.06em;">Real-time · DataDog</div>
+            <div class="slide-body light" style="font-size:0.79rem;">Fee calculation errors, p95 API latency, client-side crashes. First-week triage was run against DataDog dashboards before any analytics pipeline was ready.</div>
+          </div>
+          <div style="flex:1; background:rgba(255,255,255,0.04); border-radius:8px; padding:0.9rem 1.1rem;">
+            <div style="font-size:0.7rem; font-weight:600; color:rgba(255,255,255,0.4); margin-bottom:0.3rem; text-transform:uppercase; letter-spacing:0.06em;">Weekly cohorts · Mode</div>
+            <div class="slide-body light" style="font-size:0.79rem;">Cohort-level GBV analysis segmented by sitter tier, service type, and relationship age. Analytics built before Canada launch; first read at 4 weeks.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 20: Reflection -->
+    <section class="slide s-dark" data-slide="20" style="justify-content:center;">
+      <div style="width:100%; max-width:860px; padding:0 2rem;">
+        <div class="slide-label" style="margin-bottom:1.2rem;">20 / 21 · Reflection</div>
+        <h2 class="slide-h2" style="margin-bottom:0.5rem;">What I'd Do Differently</h2>
+        <p class="slide-body light" style="margin-bottom:1.8rem;">Four specific things — not regrets, but what I'd change if I ran this again.</p>
+
+        <div class="two-col" style="gap:1rem;">
+          <div style="background:var(--bg-light); border-radius:10px; padding:1.3rem 1.4rem; border-left:3px solid var(--accent);">
+            <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.08em; color:var(--accent); margin-bottom:0.5rem; text-transform:uppercase;">01 · Test the fee numbers earlier</div>
+            <p class="slide-body dark" style="font-size:0.82rem;">47% of concept test participants showed motivation collapse at a 47% starting fee. We knew this going into the Canada launch but treated it as a business constraint, not a design problem. I'd push for a joint design–finance session to stress-test rate options against comprehension data before they become locked inputs.</p>
+          </div>
+          <div style="background:var(--bg-light); border-radius:10px; padding:1.3rem 1.4rem; border-left:3px solid #D97706;">
+            <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.08em; color:#D97706; margin-bottom:0.5rem; text-transform:uppercase;">02 · Answer "do past earnings count?" in the product</div>
+            <p class="slide-body dark" style="font-size:0.82rem;">The single biggest confusion at launch. We knew it was a question — it was in our FAQ backlog. I'd build a "you're starting at Tier X because of your history" state into the Relationship page from day one, not retroactively via a comms FAQ on April 21.</p>
+          </div>
+          <div style="background:var(--bg-light); border-radius:10px; padding:1.3rem 1.4rem; border-left:3px solid #7C3AED;">
+            <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.08em; color:#7C3AED; margin-bottom:0.5rem; text-transform:uppercase;">03 · Scope the training/grooming edge case sooner</div>
+            <p class="slide-body dark" style="font-size:0.82rem;">The mixed-service relationship (e.g. boarding + training with different sitter licences) surfaced late in the project and needed five option cards and a difficult trade-off conversation. I'd pull edge-case discovery into the first sprint, not the last one before handoff.</p>
+          </div>
+          <div style="background:var(--bg-light); border-radius:10px; padding:1.3rem 1.4rem; border-left:3px solid #059669;">
+            <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.08em; color:#059669; margin-bottom:0.5rem; text-transform:uppercase;">04 · Bring content design in at discovery</div>
+            <p class="slide-body dark" style="font-size:0.82rem;">System messages, announcement copy, landing page, and FAQ all needed more iteration than I'd scoped. Content was brought in at execution. For a model this complex — where comprehension is a primary success metric — content strategy needed to be a first-class input from the first prototype.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 21: Closing -->
+    <section class="slide s-center" data-slide="21">
+      <div style="text-align:center; max-width:560px; padding:0 2rem;">
+        <div class="slide-label dim" style="margin-bottom:2rem; opacity:0.5; display:flex; justify-content:center;">21 / 21</div>
+        <h1 class="slide-h1" style="font-size:clamp(2rem,5vw,3.2rem); margin-bottom:0.6rem; line-height:1.15;">Bernardo Prudêncio</h1>
+        <p class="slide-body light" style="margin-bottom:2.5rem; font-size:1rem;">Senior Product Designer · Monetisation & Provider Experience</p>
+
+        <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-bottom:3rem;">
+          <a href="https://www.linkedin.com/in/bernardoprd/" target="_blank" style="display:inline-block; padding:0.65rem 1.4rem; border:1px solid rgba(99,179,237,0.5); border-radius:40px; color:var(--accent); text-decoration:none; font-size:0.85rem; font-weight:600; transition:background 0.2s;">LinkedIn</a>
+          <a href="mailto:bernardo.prd@gmail.com" style="display:inline-block; padding:0.65rem 1.4rem; border:1px solid rgba(255,255,255,0.2); border-radius:40px; color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; font-weight:600; transition:background 0.2s;">bernardo.prd@gmail.com</a>
+          <a href="./project-graduated-fees.html" style="display:inline-block; padding:0.65rem 1.4rem; background:var(--accent); border-radius:40px; color:#fff; text-decoration:none; font-size:0.85rem; font-weight:700; transition:opacity 0.2s;">View case study →</a>
+        </div>
+
+        <div style="width:40px; height:1px; background:rgba(255,255,255,0.15); margin:0 auto 1.5rem;"></div>
+        <p class="slide-body light" style="font-size:0.75rem; opacity:0.6;">Relationship-Based Graduated Fees · Rover · Canada live · March 2026</p>
+      </div>
+    </section>
+
+    <!-- SLIDES END -->
+  </div><!-- /deck-viewport -->
+
+  <!-- JS placeholder — will be added in Chunk 8 -->
+  <script>
+    // Model card data (slide 6)
+    const modelData = [
+      { comp: "Simple but misaligned. Doesn't match how sitters think — they track clients, not booking types. 'New' resets with every new client.", game: "High gaming risk. Splitting a booking into two makes each appear as 'new'. Easy to exploit.", verdict: "Too gameable and weak at directing loyalty behaviour. Not selected." },
+      { comp: "High mental model match. Sitters track clients, not annual totals. 'This client, this relationship.'", game: "Moderate. GBV threshold mitigates booking-split gaming better than count-based thresholds.", verdict: "Best match to sitter mental models. Testing first in Canada." },
+      { comp: "Conceptually cleaner — one annual number. But misaligned with how sitters describe unfairness: they talk about specific relationships.", game: "Low. Annual GBV is harder to game — harder to manipulate your total across all clients.", verdict: "Good long-term complement. Backlogged as an account-based layer once the relationship model validates." }
+    ];
+    window.selectModel = function(el, idx) {
+      document.querySelectorAll('.model-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      const d = modelData[idx];
+      document.getElementById('md-comp').textContent = d.comp;
+      document.getElementById('md-game').textContent = d.game;
+      const v = document.getElementById('md-verdict');
+      v.textContent = d.verdict;
+      v.style.color = idx === 1 ? 'var(--accent)' : 'var(--text-muted)';
+      v.style.fontWeight = idx === 1 ? '600' : '400';
+    };
+
+    // ── GBV Simulator (slide 9) ──
+    let simGbv = 0;
+    const SIM_MAX = 1100, SIM_T2 = 500, SIM_T3 = 1000, SIM_STEP = 120;
+    let simLastTier = 1, simProrated = false;
+    function simUpdate() {
+      const pct = Math.min(simGbv / SIM_MAX * 100, 100);
+      const fill = document.getElementById('simFill');
+      if (fill) {
+        fill.style.width = pct + '%';
+        fill.className = 'sim-fill' + (simGbv >= SIM_T2 ? ' in-green' : '');
+      }
+      const gv = document.getElementById('simGbvVal');
+      const fv = document.getElementById('simFeeVal');
+      if (gv) gv.textContent = '$' + simGbv;
+      let tier = simGbv < SIM_T2 ? 1 : simGbv < SIM_T3 ? 2 : 3;
+      const fees = ['','30%','15%','10%'];
+      if (fv) fv.textContent = fees[tier];
+      ['simT1','simT2','simT3'].forEach((id,i) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.className = 'sim-tier';
+        if (i+1 === tier) el.classList.add('current');
+        else if (i+1 < tier) el.classList.add('unlocked');
+      });
+      const callout = document.getElementById('simCallout');
+      if (callout) {
+        callout.className = 'sim-callout' + (simProrated ? ' visible' : '');
+      }
+      simLastTier = tier; simProrated = false;
+    }
+    window.simAdd = function() {
+      const prev = simGbv, next = Math.min(simGbv + SIM_STEP, SIM_MAX);
+      const crossT2 = prev < SIM_T2 && next >= SIM_T2;
+      const crossT3 = prev < SIM_T3 && next >= SIM_T3;
+      simProrated = crossT2 || crossT3;
+      simGbv = next;
+      simUpdate();
+    };
+    window.simReset = function() {
+      simGbv = 0; simProrated = false; simUpdate();
+    };
+
+    // ── Timeline expand (slide 10) ──
+    window.tlToggle = function(el) {
+      const isOpen = el.classList.contains('open');
+      document.querySelectorAll('.tl-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) el.classList.add('open');
+    };
+
+    // ── Story chips (slide 11) ──
+    const IMG_BASE = './notion_export_24042026/Relationship-based%20graduated%20fees/images/';
+    const storyData = [
+      { tag:'US1 · FEE LOGIC', title:'Core fee calculation', body:'Fee based on accumulated service total GBV with that specific client. Pro-rated fee applied when a single booking spans a tier boundary. Historical bookings backfilled at launch — sitters entered at their already-earned tier.', img: IMG_BASE + 'dd-rb-split-booking.webp' },
+      { tag:'US2 · CONTACTS PAGE', title:'Renamed Rebook tab — now a full CRM list', body:'Split into Clients (owners with at least one confirmed booking) and Sitters tabs. Each client shows: photo, name, pets, confirmed booking count, $ progress, and current tier. Sortable and searchable by name, pet name, or total bookings.', img: IMG_BASE + 'dd-training-contacts.webp' },
+      { tag:'US3 · RELATIONSHIP PAGE', title:'The source of truth for per-client GBV progress', body:'5–6 sections: header (Rebook + Profile CTAs), progress (tier visualisation + progress bar + banner), upcoming bookings, completed bookings, archived, and pets. Entry points: Contacts tab, conversation header, conversation menu, and booking earnings breakdown. Dark green = completed GBV; light green = pending GBV.', img: IMG_BASE + 'rel-page-mvp.webp' },
+      { tag:'US4 · SYSTEM MESSAGES', title:'Contextual tier updates in conversations', body:'System message appears in the conversation screen and as a banner in booking details. Content varies by relationship status: new, in-progress, tier-unlocking, and maxed out (Tier 3). Push notification sent when a service deposit completes and tier progress updates.', img: IMG_BASE + 'dd-rb-gen-comms-status.webp' },
+      { tag:'US5 · EARNINGS BREAKDOWN', title:'"Your earnings" breakdown modal in booking details', body:'"Your earnings" link in the booking details ledger opens a bottom sheet. Shows breakdown by tier (how much was charged at each rate), total earnings, and a primary CTA linking to the relationship page.', img: IMG_BASE + 'dd-rb-details.webp' },
+      { tag:'US6 · SERVICE SETTINGS', title:'Tier-aware rate display when sitters set prices', body:'Visual tiers component added to service settings (collapsed by default). Copy below the rate input updated to: "earn between $X and $Y" showing the Tier 1 to Tier 3 earnings range for that rate.', img: IMG_BASE + 'dd-rb-compact.webp' },
+      { tag:'US7 · ANNOUNCEMENTS', title:'Dashboard callout at first login post-launch', body:'Callout on the Daily Dashboard (apps) and sitter dashboard (web) and payment history page. Two versions: sitters with existing clients (you already have progress) and sitters with no clients yet. Learn More → interstitial bottom sheet → landing page.', img: IMG_BASE + 'dd-rb-rebook.webp' },
+      { tag:'US8 · LANDING PAGE', title:'rover.com/long-term-relationships-on-rover', body:'Localised for en-ca and fr-ca. Carousel (4 stages showing the fee journey) + collapsible FAQs. Not indexed; auth-only for the US test. April 21 clarification push added FAQ: historical earnings count toward starting tier from day 1.', img: IMG_BASE + 'de-gtr-rel-page-mock.png' },
+      { tag:'US9 · PAYMENT HISTORY', title:'Fee model reflected in transaction ledgers', body:'Stay price, Rover fees, and Earnings updated in payment history to reflect the new tiered fee model. Sitters can verify the exact fee applied to each booking and cross-reference with their relationship page progress.', img: IMG_BASE + 'dd-rb-payment-history.webp' }
+    ];
+    window.selectStory = function(el, idx) {
+      document.querySelectorAll('.story-chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      const d = storyData[idx];
+      const det = document.getElementById('storyDetail');
+      if (det) {
+        det.querySelector('.sd-tag').textContent = d.tag;
+        det.querySelector('.sd-title').textContent = d.title;
+        det.querySelector('.sd-body').textContent = d.body;
+      }
+      const img = document.getElementById('storyImg');
+      if (img && d.img) {
+        img.src = d.img;
+        img.alt = d.title;
+      }
+    };
+
+    // ── Expandable challenge cards (slide 14) ──
+    window.expToggle = function(el) {
+      const isOpen = el.classList.contains('open');
+      document.querySelectorAll('.exp-card.open').forEach(c => c.classList.remove('open'));
+      if (!isOpen) el.classList.add('open');
+    };
+
+    // ── Training path selection (slide 15) ──
+    window.selectPath = function(el) {
+      document.querySelectorAll('.path-card').forEach(c => {
+        if (!c.classList.contains('chosen')) c.classList.remove('selected');
+      });
+      if (!el.classList.contains('chosen')) el.classList.add('selected');
+    };
+
+    // ── Segment cards (slide 16) ──
+    window.segToggle = function(el) {
+      const isOpen = el.classList.contains('open');
+      document.querySelectorAll('.seg-card.open').forEach(c => c.classList.remove('open'));
+      if (!isOpen) el.classList.add('open');
+    };
+
+    // ── Navigation core ──
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const TOTAL = slides.length;
+    const progressFill = document.getElementById('progressFill');
+    const slideCounter = document.getElementById('slideCounter');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let current = 0;
+
+    function onSlideEnter(idx) {
+      // Animate GBV bar on slide 9 (index 8) when entering
+      if (idx === 8) {
+        const fill = document.getElementById('simFill');
+        if (fill && simGbv === 0) {
+          fill.style.width = '0%';
+        }
+      }
+      // Auto-expand first story chip on slide 11 (index 10)
+      if (idx === 10) {
+        const chip = document.querySelector('.story-chip[data-idx="2"]');
+        if (chip && !chip.classList.contains('active')) {
+          window.selectStory(chip, 2);
+        }
+      }
+    }
+
+    function goTo(idx, dir) {
+      if (idx < 0 || idx >= TOTAL || idx === current) return;
+      const out = slides[current], inn = slides[idx];
+      const d = dir ?? (idx >= current ? 1 : -1);
+      out.style.transition = 'opacity 0.38s ease, transform 0.38s ease';
+      out.style.opacity = '0';
+      out.style.transform = d === 1 ? 'translateX(-56px)' : 'translateX(56px)';
+      out.style.pointerEvents = 'none';
+      setTimeout(() => {
+        out.style.transition = 'none';
+        out.style.transform = d === 1 ? 'translateX(56px)' : 'translateX(-56px)';
+      }, 400);
+      inn.style.transition = 'none';
+      inn.style.transform = d === 1 ? 'translateX(56px)' : 'translateX(-56px)';
+      inn.style.opacity = '0';
+      inn.style.pointerEvents = 'none';
+      void inn.offsetWidth;
+      inn.style.transition = 'opacity 0.38s ease, transform 0.38s ease';
+      inn.style.transform = 'translateX(0)';
+      inn.style.opacity = '1';
+      inn.style.pointerEvents = 'all';
+      current = idx;
+      updateUI();
+      onSlideEnter(idx);
+    }
+
+    function next() { goTo(current + 1, 1); }
+    function prev() { goTo(current - 1, -1); }
+
+    function updateUI() {
+      progressFill.style.width = ((current + 1) / TOTAL * 100) + '%';
+      slideCounter.textContent = (current + 1) + ' / ' + TOTAL;
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === TOTAL - 1;
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'ArrowDown') { e.preventDefault(); next(); }
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); prev(); }
+    });
+
+    let _tx = 0;
+    document.addEventListener('touchstart', e => { _tx = e.changedTouches[0].clientX; }, { passive: true });
+    document.addEventListener('touchend', e => {
+      const d = _tx - e.changedTouches[0].clientX;
+      if (Math.abs(d) >= 50) { d > 0 ? next() : prev(); }
+    }, { passive: true });
+
+    nextBtn.addEventListener('click', next);
+    prevBtn.addEventListener('click', prev);
+
+    // Init first slide
+    slides[0].style.opacity = '1';
+    slides[0].style.pointerEvents = 'all';
+    slides[0].style.transform = 'translateX(0)';
+    updateUI();
+    onSlideEnter(0);
+  </script>
+  <script src="./figma-capture.js"></script>
+</body>
+</html>
