@@ -661,6 +661,31 @@
 </head>
 <body>
 
+<!-- Password gate -->
+<div id="pw-gate" style="position:fixed;inset:0;z-index:9999;background:#0F0F0F;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;">
+  <p style="margin:0;font-size:0.875rem;color:#aaa;font-family:sans-serif;">This page is password protected.</p>
+  <div style="display:flex;gap:0.5rem;">
+    <input id="pw-input" type="password" placeholder="Password" autofocus style="padding:0.5rem 0.75rem;font-size:0.875rem;border:1px solid #444;background:#1a1a1a;color:#fff;border-radius:4px;outline:none;width:160px;" />
+    <button onclick="checkPw()" style="padding:0.5rem 1rem;font-size:0.875rem;background:#fff;color:#111;border:none;border-radius:4px;cursor:pointer;">Enter</button>
+  </div>
+  <p id="pw-error" style="margin:0;font-size:0.75rem;color:#f87171;display:none;">Incorrect password.</p>
+</div>
+<script>
+  (function(){
+    if(sessionStorage.getItem('pw_ok')==='1'){document.getElementById('pw-gate').style.display='none';}
+    else{document.getElementById('pw-input').addEventListener('keydown',function(e){if(e.key==='Enter')checkPw();});}
+  })();
+  function checkPw(){
+    if(document.getElementById('pw-input').value==='06121994'){
+      sessionStorage.setItem('pw_ok','1');
+      document.getElementById('pw-gate').style.display='none';
+    } else {
+      document.getElementById('pw-error').style.display='block';
+    }
+  }
+</script>
+<!-- /Password gate -->
+
   <!-- progress bar -->
   <div class="deck-progress">
     <div class="deck-progress-fill" id="progressFill"></div>

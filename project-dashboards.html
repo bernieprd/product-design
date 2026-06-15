@@ -47,6 +47,32 @@ and HTML5 Apps. It also documents Mozilla products, like Firefox OS.">
 </head>
 
 <body class="projects-page projects-dashboards">
+
+<!-- Password gate -->
+<div id="pw-gate" style="position:fixed;inset:0;z-index:9999;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;">
+  <p style="margin:0;font-size:0.875rem;color:#555;font-family:sans-serif;">This page is password protected.</p>
+  <div style="display:flex;gap:0.5rem;">
+    <input id="pw-input" type="password" placeholder="Password" autofocus style="padding:0.5rem 0.75rem;font-size:0.875rem;border:1px solid #ccc;border-radius:4px;outline:none;width:160px;" />
+    <button onclick="checkPw()" style="padding:0.5rem 1rem;font-size:0.875rem;background:#111;color:#fff;border:none;border-radius:4px;cursor:pointer;">Enter</button>
+  </div>
+  <p id="pw-error" style="margin:0;font-size:0.75rem;color:#c00;display:none;">Incorrect password.</p>
+</div>
+<script>
+  (function(){
+    if(sessionStorage.getItem('pw_ok')==='1'){document.getElementById('pw-gate').style.display='none';}
+    else{document.getElementById('pw-input').addEventListener('keydown',function(e){if(e.key==='Enter')checkPw();});}
+  })();
+  function checkPw(){
+    if(document.getElementById('pw-input').value==='06121994'){
+      sessionStorage.setItem('pw_ok','1');
+      document.getElementById('pw-gate').style.display='none';
+    } else {
+      document.getElementById('pw-error').style.display='block';
+    }
+  }
+</script>
+<!-- /Password gate -->
+
     <h1><a href="./index.html">Bernardo Prudêncio</a></h1><span> &nbsp;/ digital experience designer</span>
     <main>
         <h2><span>dashboards</span><br><span>dashboards dashboards</span></h2>
