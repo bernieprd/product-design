@@ -164,4 +164,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ─── Behavior 4: Case-study image lightbox ───────────────────────────────────
+
+  document.querySelectorAll('.preview-card[data-lightbox]').forEach(card => {
+    const open = () => {
+      const img   = card.querySelector('img');
+      const meta  = card.querySelector('.pl-meta');
+      const title = card.querySelector('.pl-title');
+      if (meta)  { const el = document.createElement('span'); el.className = 'lightbox-meta';  el.textContent = meta.textContent;  lightboxContent.appendChild(el); }
+      if (title) { const el = document.createElement('h2');   el.className = 'lightbox-title'; el.textContent = title.textContent; lightboxContent.appendChild(el); }
+      if (img)   { const el = document.createElement('img');  el.src = img.src;                lightboxContent.appendChild(el); }
+      openLightbox();
+    };
+    card.addEventListener('click', open);
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+    });
+  });
+
 });

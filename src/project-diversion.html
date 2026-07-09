@@ -25,28 +25,39 @@
   </div>
 </div>
 
-<div class="cs-bento">
-  <div class="card cs-text-card col-5">
+<main class="bento">
+
+  <!-- Problem text — 2×2 -->
+  <div class="card cs-text-card col-2 row-2">
     <span class="cs-section-label">01 / Problem</span>
     <h2>The Problem</h2>
     <p>Rover estimated 20%+ of potential revenue was lost to off-platform bookings — relationships starting on Rover, completing elsewhere. I led design on two complementary initiatives: phone blocking and a Community Guidelines modal.</p>
     <p>The design constraint: do not hurt booking rates. Keeping people in the product only matters if they can still book.</p>
   </div>
-  <div class="card card-dark cs-metric-card col-4">
+
+  <!-- $5M metric — 1×1 -->
+  <div class="card card-dark cs-metric-card col-1">
     <div class="cmn">$5M</div>
     <div class="cml">combined protected revenue</div>
   </div>
-  <div class="card card-dark cs-metric-card col-3">
+
+  <!-- 3.5% metric — 1×1 -->
+  <div class="card card-dark cs-metric-card col-1">
     <div class="cmn">3.5%</div>
     <div class="cml">higher booking odds post-guidelines</div>
   </div>
-</div>
 
-<div class="cs-bento">
-  <div class="card cs-image-card col-6">
-    <img src="./notion_export_24042026/Reducing%20platform%20diversion/Community%20guidelines/image.png" alt="Community Guidelines modal" style="height: 100%; min-height: 160px; object-fit: cover; object-position: center bottom;">
+  <!-- Community Guidelines image — 2×2 -->
+  <div class="card preview-card col-2 row-2" data-lightbox role="button" tabindex="0">
+    <img src="./notion_export_24042026/Reducing%20platform%20diversion/Community%20guidelines/image.png" alt="Community Guidelines modal">
+    <div class="preview-label">
+      <span class="pl-meta">Rover · 2022–2023</span>
+      <span class="pl-title">Community Guidelines modal</span>
+    </div>
   </div>
-  <div class="card cs-text-card col-6">
+
+  <!-- Design text — 2×2 -->
+  <div class="card cs-text-card col-2 row-2">
     <span class="cs-section-label">02 / Design</span>
     <h2>Phone Blocking & Community Guidelines</h2>
     <p>Phone blocking: any personal number shared before a booking was intercepted. App and web showed a modal; SMS masked the number with an automated explanation. The block lifted once a booking was confirmed between that pair.</p>
@@ -56,32 +67,45 @@
       <div class="cs-detail-body">Support numbers always allowed. Relay numbers blocked from re-sharing. Cross-surface consistency across iOS, web, and SMS required coordination with multiple teams.</div>
     </details>
   </div>
-</div>
 
-<div class="cs-bento">
-  <div class="card cs-image-card col-6 row-3" style="background: #f0f0f0;">
-    <img src="./notion_export_24042026/Reducing%20platform%20diversion/image%201.png" alt="Cross-surface phone blocking flow" style="height: 100%; min-height: 260px; object-fit: contain;">
+  <!-- Cross-surface flow image — 2×2 -->
+  <div class="card preview-card col-2 row-2" data-lightbox role="button" tabindex="0" style="background: #f0f0f0;">
+    <img src="./notion_export_24042026/Reducing%20platform%20diversion/image%201.png" alt="Cross-surface phone blocking flow" style="object-fit: contain;">
+    <div class="preview-label">
+      <span class="pl-meta">Rover · 2022–2023</span>
+      <span class="pl-title">Phone blocking — cross-surface flow</span>
+    </div>
   </div>
-  <div class="card cs-image-card col-6 row-3">
-    <img src="./resources/diversion-results.png" alt="Results" style="aspect-ratio: unset; height: 100%; min-height: 260px;">
-  </div>
-</div>
 
-<div class="cs-bento">
-  <div class="card card-dark cs-metric-card col-3">
+  <!-- $3.6M metric — 1×1 -->
+  <div class="card card-dark cs-metric-card col-1">
     <div class="cmn">$3.6M</div>
     <div class="cml">phone blocking annual upside</div>
   </div>
-  <div class="card card-dark cs-metric-card col-3">
+
+  <!-- $2.2M metric — 1×1 -->
+  <div class="card card-dark cs-metric-card col-1">
     <div class="cmn">$2.2M</div>
     <div class="cml">community guidelines annual</div>
   </div>
-  <div class="card cs-text-card col-6">
+
+  <!-- Results text — 2×2 -->
+  <div class="card cs-text-card col-2 row-2">
     <span class="cs-section-label">03 / Results</span>
     <h2>Neutral Broadly, Positive Where It Counts</h2>
     <p>Booking rates stayed neutral across the marketplace — we didn't make it harder to book. In the high-risk segments, booking odds were 3.5% higher when both sides had seen Community Guidelines.</p>
   </div>
-</div>
+
+  <!-- Results image — 2×2 -->
+  <div class="card preview-card col-2 row-2" data-lightbox role="button" tabindex="0">
+    <img src="./resources/diversion-results.png" alt="Experiment results">
+    <div class="preview-label">
+      <span class="pl-meta">Rover · 2022–2023</span>
+      <span class="pl-title">Experiment results</span>
+    </div>
+  </div>
+
+</main>
 
 <div class="next-project"><a href="./project-service-areas.html">Next: Service Areas →</a></div>
 
@@ -95,6 +119,17 @@
     </div>
   </div>
 </footer>
+
+<!-- LIGHTBOX / BOTTOM SHEET -->
+<div id="lightbox" class="lightbox" aria-modal="true" role="dialog" aria-label="Preview" hidden>
+  <div class="lightbox-backdrop"></div>
+  <div class="lightbox-panel">
+    <div class="lightbox-content"></div>
+    <button class="lightbox-close" aria-label="Close">Close ×</button>
+  </div>
+</div>
+
+  <script src="./bento.js"></script>
   <script src="./figma-capture.js"></script>
 </body>
 </html>
